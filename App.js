@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import {View, Text, TextInput, StyleSheet, TouchableOpacity }  from 'react-native'
 import Icon from 'react-native-vector-icons/FontAwesome'
+import { throwStatement } from '@babel/types'
 
 class App extends Component {
 
@@ -9,8 +10,9 @@ class App extends Component {
       this.state = {
         showHide : 'eye-slash',
         statusHide : false,
-        inputEmail : '',
-        noteEmail : ''
+        noteEmail : '',
+        notePassword : '',
+        button_status : true
       }
   }
 
@@ -18,11 +20,27 @@ class App extends Component {
     
     if(/^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/.test(email))
     {
-      this.setState({ noteEmail: 'email yang anda masukkan sesuai format' })
+      this.setState({ noteEmail: 'Your email is valid' })
     }
     else  {
-      this.setState({ noteEmail: 'Yang anda masukkan bukan email' })
+      this.setState({ noteEmail: 'This is not an email' })
     }
+  }
+
+  validatePassword = (password)=>{
+    if(/^(?=.{8,})/.test(password)){
+        this.setState({ notePassword: 'Password correct'})
+    }
+    else {
+        this.setState({ notePassword: 'Password must be nine characters or longer'})
+    }
+  }
+
+  enableButton = ()=>{
+    if (this.state.noteEmail === 'Your email is valid' && this.state.notePassword === "Password correct") 
+      this.setState({button_status : false})
+      else 
+        this.setState({button_status : true})
   }
 
   render(){
@@ -38,12 +56,13 @@ class App extends Component {
           <Text>{this.state.noteEmail}</Text>
           <Text style={style.Label,{marginTop:10}}>Password</Text>
           <View style={{flex:1,flexDirection:'row'}}>
-            <TextInput style={{ borderColor: 'black', borderWidth:2, height: 40, width:289}} secureTextEntry={this.state.statusHide} />
+            <TextInput style={{ borderColor: 'black', borderWidth:2, height: 40, width:289}} secureTextEntry={this.state.statusHide} onChangeText={(input_password)=> { this.setState({input_password}), this.validatePassword(input_password), this.enableButton() }} value={this.state.input_password}  />
             <TouchableOpacity style={{backgroundColor:'grey', height : 40, width : 30 }} onPress={()=> {if (this.state.showHide == 'eye-slash'){this.setState({showHide : 'eye', statusHide: false}) }else this.setState({showHide : 'eye-slash', statusHide: true}) }} >
               <Icon name={this.state.showHide} size={30}  />
             </TouchableOpacity>
           </View>
-          <TouchableOpacity style={{backgroundColor:'grey', borderWidth: 2, height: 35, marginTop: 70}}><Text style={{textAlign:"center", color:'white', fontSize: 18}}>Log IN</Text></TouchableOpacity>
+          <Text style={{marginTop:40}}>{this.state.notePassword}</Text>
+          <TouchableOpacity style={{backgroundColor:'grey', borderWidth: 2, height: 35, marginTop: 70}} disabled={this.state.button_status} ><Text style={{textAlign:"center", color:'white', fontSize: 18}}>Log IN</Text></TouchableOpacity>
         </View>
       </View>
     )
