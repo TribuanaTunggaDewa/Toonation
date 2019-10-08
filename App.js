@@ -39,7 +39,7 @@ class App extends Component {
           <Text style={style.Label,{marginTop:10}}>Password</Text>
           <View style={{flex:1,flexDirection:'row'}}>
             <TextInput style={{ borderColor: 'black', borderWidth:2, height: 40, width:289}} secureTextEntry={this.state.statusHide} />
-            <TouchableOpacity style={{backgroundColor:'grey', height : 40, width : 40 }} onPress={()=> {if (this.state.showHide == 'eye-slash'){this.setState({showHide : 'eye', statusHide: true}) }else this.setState({showHide : 'eye-slash', statusHide: false}) }} >
+            <TouchableOpacity style={{backgroundColor:'grey', height : 40, width : 30 }} onPress={()=> {if (this.state.showHide == 'eye-slash'){this.setState({showHide : 'eye', statusHide: false}) }else this.setState({showHide : 'eye-slash', statusHide: true}) }} >
               <Icon name={this.state.showHide} size={30}  />
             </TouchableOpacity>
           </View>
