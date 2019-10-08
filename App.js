@@ -52,7 +52,7 @@ class App extends Component {
         </View>
         <View style={style.ContainerContent}>
           <Text style={style.Label,{marginTop:20}}>Email</Text>
-          <TextInput style={{ borderColor: 'black', borderWidth:2, height: 40}} onChangeText={(input_email)=>{this.setState({input_email}), this.validateEmail(input_email)}} value={this.state.input_email} />
+          <TextInput style={{ borderColor: 'black', borderWidth:2, height: 40}} onChangeText={(input_email)=>{this.setState({input_email}), this.validateEmail(input_email), this.enableButton()}} value={this.state.input_email} />
           <Text>{this.state.noteEmail}</Text>
           <Text style={style.Label,{marginTop:10}}>Password</Text>
           <View style={{flex:1,flexDirection:'row'}}>
