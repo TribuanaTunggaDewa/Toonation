@@ -2,9 +2,9 @@ import React, {Component} from 'react'
 import {View, StyleSheet, TouchableOpacity }  from 'react-native'
 import {Container, Title, Content, Text, Header, Form, Card, CardItem, Item, Label, Input, Button} from 'native-base'
 import Icon from 'react-native-vector-icons/FontAwesome'
-import {createAppContainer} from 'react-navigation'
+import {createAppContainer, createSwitchNavigator} from 'react-navigation'
 import {createStackNavigator} from 'react-navigation-stack'
-
+import {createBottomTabNavigator} from 'react-navigation-tabs'
 
 class LoginScreen extends Component {
 
@@ -81,26 +81,67 @@ class LoginScreen extends Component {
 }
 
 
-class ForYourScreen extends Component {
+
+class ForYouScreen extends Component {
   render(){
     return(
     <Container>
       <Content>
         <Item>
-          
+          <Text>For You Screen</Text>
         </Item>
       </Content>
     </Container>
     )} 
 }
 
-const AppNavigator = createStackNavigator({
-  Login: LoginScreen,
-  Fyscreen: ForYourScreen
-},
-{
-  initialRouteName: 'Fyscreen'
+class FavouriteScreen extends Component {
+  render(){
+    return(
+      <Container>
+        <Content>
+          <Item>
+              <Text>Favorit screen</Text>
+          </Item>
+        </Content>
+      </Container>
+    )
+  }
+}
+
+class ProfileScreen extends Component {
+  render(){
+    return(
+      <Container>
+        <Content>
+          <Item>
+            <Text>Profile screen</Text>
+          </Item>
+        </Content>
+      </Container>
+    )
+  }
+}
+
+
+
+
+const switchContainer = createSwitchNavigator({
+  login : LoginScreen,
+  Fyscreen : {
+    screen : createBottomTabNavigator({
+      Fyscreen : ForYouScreen,
+      Favorite : FavouriteScreen,
+      Profile  : ProfileScreen
+    })
+  }
+},{
+  initialRouteName : 'login'
 })
+
+
+const AppContainer = createAppContainer(switchContainer)
+
 
 const style = StyleSheet.create({
   Container :{
@@ -124,10 +165,8 @@ const style = StyleSheet.create({
   }
 })
 
-const AppContainer = createAppContainer(AppNavigator)
-
 export default class App extends Component {
   render(){
-    return <AppContainer />
+    return (<AppContainer/>)
   }
 }
