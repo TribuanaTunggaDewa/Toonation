@@ -70,7 +70,7 @@ class LoginScreen extends Component {
                     </Item>
                   </CardItem>
                   <Text style={{marginLeft:35}}>{this.state.notePassword}</Text>
-                  <TouchableOpacity style={{backgroundColor:'grey', borderWidth: 2, height: 35, marginTop: 70}} disabled={this.state.button_status} onPress={()=> this.props.navigation.navigate('Fyscreen')} ><Text style={{textAlign:"center", color:'white', fontSize: 18}}>Log IN</Text></TouchableOpacity>
+                  <TouchableOpacity style={{backgroundColor:'grey', borderWidth: 2, height: 35, marginTop: 70}} disabled={this.state.button_status} onPress={()=> this.props.navigation.navigate('For You')} ><Text style={{textAlign:"center", color:'white', fontSize: 18}}>Log IN</Text></TouchableOpacity>
                 </Card>
               </Form>
             </Content>
@@ -89,6 +89,7 @@ class ForYouScreen extends Component {
       <Content>
         <Item>
           <Text>For You Screen</Text>
+          <Button onPress={()=>{this.props.navigation.navigate('DetilWebtoon')}}><Text>Button Bro</Text></Button>
         </Item>
       </Content>
     </Container>
@@ -102,6 +103,7 @@ class FavouriteScreen extends Component {
         <Content>
           <Item>
               <Text>Favorit screen</Text>
+              <TouchableOpacity style={{backgroundColor:'grey', borderWidth: 2, height: 35, marginTop: 70}} disabled={this.state.button_status} onPress={()=> this.props.navigation.navigate('')} ><Text style={{textAlign:"center", color:'white', fontSize: 18}}>Log IN</Text></TouchableOpacity>
           </Item>
         </Content>
       </Container>
@@ -123,14 +125,34 @@ class ProfileScreen extends Component {
   }
 }
 
+class DetailWebtoonScreen extends Component {
+  render(){
+    return(
+      <Container>
+        <Content>
+          <Item>
+            <Text>Detail Webtoon Screen</Text>
+          </Item>
+        </Content>
+      </Container>
+    )
+  }
+}
+
+
 
 
 
 const switchContainer = createSwitchNavigator({
   login : LoginScreen,
-  Fyscreen : {
+  'For You' : {
     screen : createBottomTabNavigator({
-     'For You' : ForYouScreen,
+     'For You' : {
+       screen: createStackNavigator({
+         'For You' : ForYouScreen,
+          DetilWebtoon : DetailWebtoonScreen,
+       })
+     },
       Favorite : FavouriteScreen,
       Profile  : ProfileScreen
     })
