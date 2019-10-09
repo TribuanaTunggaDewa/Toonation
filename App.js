@@ -1,9 +1,9 @@
 import React, {Component} from 'react'
 import {View, Text, TextInput, StyleSheet, TouchableOpacity }  from 'react-native'
 import Icon from 'react-native-vector-icons/FontAwesome'
-import { throwStatement } from '@babel/types'
+import { creatStackNavigator, createAppContainer } from 'react-navigation'
 
-class App extends Component {
+class HomeScreen extends Component {
 
   constructor(props){
     super(props)
@@ -70,6 +70,12 @@ class App extends Component {
 
 }
 
+const AppNavigator = creatStackNavigator({
+  Home : {
+    HomeScreen
+  }
+})
+
 const style = StyleSheet.create({
   Container :{
     margin : 20,
@@ -92,4 +98,3 @@ const style = StyleSheet.create({
   }
 })
 
-export default App
