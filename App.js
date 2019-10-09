@@ -130,7 +130,7 @@ const switchContainer = createSwitchNavigator({
   login : LoginScreen,
   Fyscreen : {
     screen : createBottomTabNavigator({
-      Fyscreen : ForYouScreen,
+     'For You' : ForYouScreen,
       Favorite : FavouriteScreen,
       Profile  : ProfileScreen
     })
