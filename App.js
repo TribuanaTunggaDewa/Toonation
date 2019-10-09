@@ -5,6 +5,7 @@ import Icon from 'react-native-vector-icons/FontAwesome'
 import {createAppContainer} from 'react-navigation'
 import {createStackNavigator} from 'react-navigation-stack'
 
+
 class LoginScreen extends Component {
 
   constructor(props){
@@ -79,12 +80,15 @@ class LoginScreen extends Component {
 
 }
 
+
 class ForYourScreen extends Component {
   render(){
     return(
     <Container>
       <Content>
-        <Text>For Your screen</Text>
+        <Item>
+          
+        </Item>
       </Content>
     </Container>
     )} 
