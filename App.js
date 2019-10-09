@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
-import {View, Text, TextInput, StyleSheet, TouchableOpacity }  from 'react-native'
+import {View, StyleSheet, TouchableOpacity }  from 'react-native'
+import {Container, Title, Content, Text, Header, Form, Card, CardItem, Item, Label, Input, Button} from 'native-base'
 import Icon from 'react-native-vector-icons/FontAwesome'
 
 class App extends Component {
@@ -44,26 +45,33 @@ class App extends Component {
 
   render(){
     return(
-      <View style={style.Container}>
-        <View style={style.ContainerTitle}>
-          <Text style={style.Title}>LOG IN</Text>
-          <Text style={{textAlign:'center', letterSpacing:2}}>Login with your account Toonation</Text>
-        </View>
-        <View style={style.ContainerContent}>
-          <Text style={style.Label,{marginTop:20}}>Email</Text>
-          <TextInput style={{ borderColor: 'black', borderWidth:2, height: 40}} onChangeText={(input_email)=>{this.setState({input_email}), this.validateEmail(input_email), this.enableButton()}} value={this.state.input_email} />
-          <Text>{this.state.noteEmail}</Text>
-          <Text style={style.Label,{marginTop:10}}>Password</Text>
-          <View style={{flex:1,flexDirection:'row'}}>
-            <TextInput style={{ borderColor: 'black', borderWidth:2, height: 40, width:289}} secureTextEntry={this.state.statusHide} onChangeText={(input_password)=> { this.setState({input_password}), this.validatePassword(input_password), this.enableButton() }} value={this.state.input_password}  />
-            <TouchableOpacity style={{backgroundColor:'grey', height : 40, width : 30 }} onPress={()=> {if (this.state.showHide == 'eye-slash'){this.setState({showHide : 'eye', statusHide: false}) }else this.setState({showHide : 'eye-slash', statusHide: true}) }} >
-              <Icon name={this.state.showHide} size={30}  />
-            </TouchableOpacity>
-          </View>
-          <Text style={{marginTop:40}}>{this.state.notePassword}</Text>
-          <TouchableOpacity style={{backgroundColor:'grey', borderWidth: 2, height: 35, marginTop: 70}} disabled={this.state.button_status} ><Text style={{textAlign:"center", color:'white', fontSize: 18}}>Log IN</Text></TouchableOpacity>
-        </View>
-      </View>
+        <Container>
+            <Header style={{backgroundColor:'#3D3C3A'}}>
+              <Title style={style.Title}>Toonation</Title>
+            </Header>
+            <Content style={{marginTop: 20, marginLeft: 10, marginRight: 10}}>
+              <Text style={style.Title}>LOG IN</Text>
+              <Text style={{textAlign:'center', letterSpacing:2}}>Login with your account Toonation</Text>
+              <Form>
+                <Card style ={style.ContainerTitle ,style.Container}>              
+                  <CardItem>
+                    <Item rounded>
+                      <Input placeholder='Email' onChangeText={(input_email)=>{this.setState({input_email}), this.validateEmail(input_email), this.enableButton()}} value={this.state.input_email} />
+                    </Item>
+                  </CardItem>
+                    <Text style={{marginLeft:35}}>{this.state.noteEmail}</Text>
+                  <CardItem>
+                    <Item rounded style={{flex:1,flexDirection:'row'}}>
+                      <Input placeholder='Password' secureTextEntry={this.state.statusHide} onChangeText={(input_password)=> { this.setState({input_password}), this.validatePassword(input_password), this.enableButton() }} value={this.state.input_password} />
+                        <Icon name={this.state.showHide} size={30} onPress={()=> {if (this.state.showHide == 'eye-slash'){this.setState({showHide : 'eye', statusHide: false}) }else this.setState({showHide : 'eye-slash', statusHide: true})}}  />
+                    </Item>
+                  </CardItem>
+                  <Text style={{marginLeft:35}}>{this.state.notePassword}</Text>
+                  <TouchableOpacity style={{backgroundColor:'grey', borderWidth: 2, height: 35, marginTop: 70}} disabled={this.state.button_status} ><Text style={{textAlign:"center", color:'white', fontSize: 18}}>Log IN</Text></TouchableOpacity>
+                </Card>
+              </Form>
+            </Content>
+          </Container>
     )
   }
 
