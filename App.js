@@ -99,7 +99,7 @@ const AppNavigator = createStackNavigator({
   Fyscreen: ForYourScreen
 },
 {
-  initialRouteName: 'Login'
+  initialRouteName: 'Fyscreen'
 })
 
 const style = StyleSheet.create({
