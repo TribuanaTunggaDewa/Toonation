@@ -83,6 +83,11 @@ class LoginScreen extends Component {
 
 
 class ForYouScreen extends Component {
+
+  static navigationOptions = {
+    
+  }
+
   render(){
     return(
     <Container>
@@ -103,7 +108,6 @@ class FavouriteScreen extends Component {
         <Content>
           <Item>
               <Text>Favorit screen</Text>
-              <TouchableOpacity style={{backgroundColor:'grey', borderWidth: 2, height: 35, marginTop: 70}} disabled={this.state.button_status} onPress={()=> this.props.navigation.navigate('')} ><Text style={{textAlign:"center", color:'white', fontSize: 18}}>Log IN</Text></TouchableOpacity>
           </Item>
         </Content>
       </Container>
@@ -132,6 +136,21 @@ class DetailWebtoonScreen extends Component {
         <Content>
           <Item>
             <Text>Detail Webtoon Screen</Text>
+            <Button onPress={()=>{this.props.navigation.navigate('DetilEpisode')}}><Text>Button Bro</Text></Button>
+          </Item>
+        </Content>
+      </Container>
+    )
+  }
+}
+
+class DetailEpisodeScreen extends Component {
+  render(){
+    return(
+      <Container>
+        <Content>
+          <Item>
+            <Text>Detail Episode Screen</Text>
           </Item>
         </Content>
       </Container>
@@ -149,14 +168,17 @@ const switchContainer = createSwitchNavigator({
     screen : createBottomTabNavigator({
      'For You' : {
        screen: createStackNavigator({
-         'For You' : ForYouScreen,
+         'For You' :  ForYouScreen,
           DetilWebtoon : DetailWebtoonScreen,
+          DetilEpisode : DetailEpisodeScreen
        })
      },
       Favorite : FavouriteScreen,
       Profile  : ProfileScreen
+    },{
+      headerMode: 'none'
     })
-  }
+  } 
 },{
   initialRouteName : 'login'
 })
