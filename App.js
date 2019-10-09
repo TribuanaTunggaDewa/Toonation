@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {View, Text, TextInput, StyleSheet, TouchableOpacity }  from 'react-native'
 import Icon from 'react-native-vector-icons/FontAwesome'
 
-class HomeScreen extends Component {
+class App extends Component {
 
   constructor(props){
     super(props)
@@ -69,11 +69,7 @@ class HomeScreen extends Component {
 
 }
 
-const AppNavigator = creatStackNavigator({
-  Home : {
-    HomeScreen
-  }
-})
+
 
 const style = StyleSheet.create({
   Container :{
@@ -97,3 +93,4 @@ const style = StyleSheet.create({
   }
 })
 
+export default App
