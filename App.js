@@ -2,8 +2,10 @@ import React, {Component} from 'react'
 import {View, StyleSheet, TouchableOpacity }  from 'react-native'
 import {Container, Title, Content, Text, Header, Form, Card, CardItem, Item, Label, Input, Button} from 'native-base'
 import Icon from 'react-native-vector-icons/FontAwesome'
+import {createAppContainer} from 'react-navigation'
+import {createStackNavigator} from 'react-navigation-stack'
 
-class App extends Component {
+class LoginScreen extends Component {
 
   constructor(props){
     super(props)
@@ -67,7 +69,7 @@ class App extends Component {
                     </Item>
                   </CardItem>
                   <Text style={{marginLeft:35}}>{this.state.notePassword}</Text>
-                  <TouchableOpacity style={{backgroundColor:'grey', borderWidth: 2, height: 35, marginTop: 70}} disabled={this.state.button_status} ><Text style={{textAlign:"center", color:'white', fontSize: 18}}>Log IN</Text></TouchableOpacity>
+                  <TouchableOpacity style={{backgroundColor:'grey', borderWidth: 2, height: 35, marginTop: 70}} disabled={this.state.button_status} onPress={()=> this.props.navigation.navigate('Fyscreen')} ><Text style={{textAlign:"center", color:'white', fontSize: 18}}>Log IN</Text></TouchableOpacity>
                 </Card>
               </Form>
             </Content>
@@ -77,7 +79,24 @@ class App extends Component {
 
 }
 
+class ForYourScreen extends Component {
+  render(){
+    return(
+    <Container>
+      <Content>
+        <Text>For Your screen</Text>
+      </Content>
+    </Container>
+    )} 
+}
 
+const AppNavigator = createStackNavigator({
+  Login: LoginScreen,
+  Fyscreen: ForYourScreen
+},
+{
+  initialRouteName: 'Login'
+})
 
 const style = StyleSheet.create({
   Container :{
@@ -101,4 +120,10 @@ const style = StyleSheet.create({
   }
 })
 
-export default App
+const AppContainer = createAppContainer(AppNavigator)
+
+export default class App extends Component {
+  render(){
+    return <AppContainer />
+  }
+}
