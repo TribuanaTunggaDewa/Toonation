@@ -2,9 +2,7 @@ import React, {Component} from 'react'
 import {View, StyleSheet, TouchableOpacity }  from 'react-native'
 import {Container, Title, Content, Text, Header, Form, Card, CardItem, Item, Label, Input, Button} from 'native-base'
 import Icon from 'react-native-vector-icons/FontAwesome'
-import {createAppContainer, createSwitchNavigator} from 'react-navigation'
-import {createStackNavigator} from 'react-navigation-stack'
-import {createBottomTabNavigator} from 'react-navigation-tabs'
+
 
 class LoginScreen extends Component {
 
@@ -18,6 +16,7 @@ class LoginScreen extends Component {
         button_status : true
       }
   }
+
 
   validateEmail = (email) => {
     
@@ -79,5 +78,27 @@ class LoginScreen extends Component {
   }
 
 }
+
+const style = StyleSheet.create({
+    Container :{
+      margin : 20,
+      paddingTop: 30
+    },
+    ContainerTitle:{
+      alignContent:'center',
+      paddingTop : 50
+    },
+    Title : {
+      alignContent:'center',
+      textAlign:'center',
+      fontSize: 36
+    },
+    ContainerContent:{
+      paddingTop: 20
+    },
+    Label:{
+      fontSize: 18,
+    }
+  })
 
 export default LoginScreen
