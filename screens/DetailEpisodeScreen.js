@@ -16,16 +16,12 @@ class DetailEpisodeScreen extends Component {
       }
     }
 
-    static navigationOptions = {
-        title: 'Detail Episode'
-      }
-
       render(){
         return(
           <Container>
             <Content>
                 <Item>
-                <Text>{this.state.item.title}</Text>
+                <Text>{console.log(JSON.stringify(this.props.navigation))}</Text>
                 </Item>
                 <FlatList
                      data={this.state.item.frame}

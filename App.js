@@ -35,6 +35,7 @@ const onShare = async () => {
 }
 
 
+
 const switchContainer = createSwitchNavigator({
   login : LoginScreen,
   'For You' : {
@@ -46,15 +47,17 @@ const switchContainer = createSwitchNavigator({
             },
           DetilWebtoon : {
             screen : DetailWebtoonScreen,
-            navigationOptions : {
-              headerRight: < Icon name='share' size={39} onPress={()=>onShare()} />
-            }
+            navigationOptions: ({ navigation }) => (console.log(navigation),{
+            title: `${navigation.state.params.item.title}`,
+            headerRight: < Icon name='share' size={39} onPress={()=>onShare()} />
+            }),
           },
           DetilEpisode : {
             screen : DetailEpisodeScreen,
-            navigationOptions: {
+            navigationOptions: ({navigation})=> (console.log(navigation),{
+              title: `${navigation.state.params.frame.title}`,
               headerRight: < Icon name='share' size={39} onPress={()=>onShare()} />
-            }
+            })
           }
        },{
          navigationOptions:{

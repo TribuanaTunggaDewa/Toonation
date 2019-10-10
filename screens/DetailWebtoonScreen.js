@@ -14,9 +14,6 @@ constructor(props){
 }
 
 
-static navigationOptions = {
-    title: 'Detail'
-  }
 
   render(){
     return(
@@ -26,7 +23,7 @@ static navigationOptions = {
             <Image style={{width:370, height:270}} source={{uri:this.state.item.image}} />
             </Item>
             <Item>
-            <Text>{this.state.item.title}</Text>
+            <Text></Text>
             </Item>
             <Item>
             <FlatList

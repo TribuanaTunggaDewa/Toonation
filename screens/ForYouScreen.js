@@ -302,7 +302,7 @@ class ForYouScreen extends Component {
 
                                     <View key={favouriteUri.index}>
                                         <View>
-                                        <TouchableOpacity onPress={()=> this.props.navigation.navigate('DetilWebtoon', {  item: favouriteUri, data: [...this.state.images, ...this.state.favouriteUris] })}><Image style={{width:100, height:150}} source={{uri:favouriteUri.image}} /></TouchableOpacity>
+                                        <TouchableOpacity onPress={()=> this.props.navigation.navigate('DetilWebtoon', {  item: favouriteUri })}><Image style={{width:100, height:150}} source={{uri:favouriteUri.image}} /></TouchableOpacity>
                                         </View>
                                         <Text style={{textAlign:'center'}}>{favouriteUri.title}</Text>
                                     </View>                            
