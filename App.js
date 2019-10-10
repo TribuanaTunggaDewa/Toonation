@@ -50,7 +50,12 @@ const switchContainer = createSwitchNavigator({
               headerRight: < Icon name='share' size={39} onPress={()=>onShare()} />
             }
           },
-          DetilEpisode : DetailEpisodeScreen
+          DetilEpisode : {
+            screen : DetailEpisodeScreen,
+            navigationOptions: {
+              headerRight: < Icon name='share' size={39} onPress={()=>onShare()} />
+            }
+          }
        },{
          navigationOptions:{
            tabBarLabel: 'For You',
