@@ -74,7 +74,15 @@ const switchContainer = createSwitchNavigator({
         }
       },
       Profile  : {
-        screen : ProfileScreen,
+        screen : createStackNavigator({
+          Profile : {
+            screen : ProfileScreen,
+            navigationOptions:{
+             title : 'Profile',
+             headerRight: <Icon name='pencil' size={30} /> 
+            }
+          }
+        }),
         navigationOptions: {
           tabBarLabel: 'Profile',
           tabBarIcon: <Icon name='user' size={30}/>
