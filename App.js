@@ -13,6 +13,9 @@ import DetailEpisodeScreen from './screens/DetailEpisodeScreen'
 import ProfileScreen from './screens/ProfileScreen'
 import EditProfileScreen from './screens/EditProfileScreen'
 import myWebtoonscreen from './screens/myWebtoonscreen'
+import createMyWebtoonScreen from './screens/createMyWebtoonScreen'
+import createWebtoonScreen from './screens/createWebtoonScreen'
+import createWebtoonEpisodeScreen from './screens/createWebtoonEpisodeScreen'
 
 
 const onShare = async () => {
@@ -78,15 +81,51 @@ const switchContainer = createSwitchNavigator({
       Profile  : {
         screen : createStackNavigator({
           Profile : {
-            screen : ProfileScreen,
+            screen :  ProfileScreen,
+            navigationOptions : ({navigation}) => {
+              return {
+                title: 'Profile',
+                headerRight: <Icon name='pencil' size={30} onPress = { ()=> navigation.navigate('ProfileEdit')} />
+              }
+            }
          },
-          ProfileEdit : EditProfileScreen
-        },{
-          mywbtoonScreen : myWebtoonscreen
-        },{
-          
+          ProfileEdit : {
+            screen : EditProfileScreen, 
+            navigationOptions: ()=> ({
+                title: 'Edit Profile',
+                headerRight: <Icon name='' size={39} />
+            })
+          },
+          myWebtoon : {
+            screen : myWebtoonscreen,
+            navigationOptions: ()=> {
+                title: 'My Webtoon'
+            }
+          },
+          createmyWebtoon : {
+            screen : createWebtoonScreen,
+            navigationOptions: ()=> {
+              title : 'My Webtoon'
+            }
+          },
+          createWebtoon: {
+            screen : createWebtoonScreen,
+            navigationOptions: ()=> {
+              title : 'create Webtoon'
+            }
+          },
+          createwebtoonEpisode : {
+            screen : createWebtoonEpisodeScreen,
+            navigationOptions: ()=>{
+              title : 'Create Episode'
+            }
+          }
         })
-      }
+        ,
+        navigationOptions: {
+          tabBarLabel:'Profile',
+          tabBarIcon: <Icon name='user' size={30} />
+        }}
     })
   } 
 },{
