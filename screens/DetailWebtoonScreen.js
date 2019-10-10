@@ -4,8 +4,6 @@ import {Container, Title, Content, Text, Header, Form, Card, CardItem, Item, Lab
 import Icon from 'react-native-vector-icons/FontAwesome'
 
 
-
-
 class DetailWebtoonScreen extends Component {
 
 constructor(props){
@@ -16,10 +14,33 @@ constructor(props){
     }
 }
 
+onShare = async () => {
+    try {
+      const result = await Share.share({
+        message:
+          'React Native | A framework for building native apps using React',
+      });
+
+      if (result.action === Share.sharedAction) {
+        if (result.activityType) {
+          // shared with activity type of result.activityType
+        } else {
+          // shared
+        }
+      } else if (result.action === Share.dismissedAction) {
+        // dismissed
+      }
+    } catch (error) {
+      alert(error.message);
+    }
+  }
+
 
 
 static navigationOptions = {
-   title: 'Detail Webtoon'
+   title: 'Detail Webtoon',
+   headerRight: <TouchableOpacity onPress={this.onShare}><Icon name='share' size={30}  /></TouchableOpacity>
+  
 }
 
   render(){

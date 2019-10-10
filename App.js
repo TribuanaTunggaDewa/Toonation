@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {View, StyleSheet, TouchableOpacity, ScrollView }  from 'react-native'
+import {View, StyleSheet, TouchableOpacity, ScrollView, Share }  from 'react-native'
 import {Container, Title, Content, Text, Header, Form, Card, CardItem, Item, Label, Input, Button} from 'native-base'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import {createAppContainer, createSwitchNavigator} from 'react-navigation'
@@ -13,6 +13,28 @@ import DetailEpisodeScreen from './screens/DetailEpisodeScreen'
 import ProfileScreen from './screens/ProfileScreen'
 
 
+const onShare = async () => {
+  try {
+    const result = await Share.share({
+      message:
+        'React Native | A framework for building native apps using React',
+    });
+
+    if (result.action === Share.sharedAction) {
+      if (result.activityType) {
+        // shared with activity type of result.activityType
+      } else {
+        // shared
+      }
+    } else if (result.action === Share.dismissedAction) {
+      // dismissed
+    }
+  } catch (error) {
+    alert(error.message);
+  }
+}
+
+
 const switchContainer = createSwitchNavigator({
   login : LoginScreen,
   'For You' : {
@@ -22,7 +44,12 @@ const switchContainer = createSwitchNavigator({
          'For You' :  {
            screen : ForYouScreen,
             },
-          DetilWebtoon : DetailWebtoonScreen,
+          DetilWebtoon : {
+            screen : DetailWebtoonScreen,
+            navigationOptions : {
+              headerRight: < Icon name='share' size={39} onPress={()=>onShare()} />
+            }
+          },
           DetilEpisode : DetailEpisodeScreen
        },{
          navigationOptions:{
@@ -76,6 +103,8 @@ const style = StyleSheet.create({
     fontSize: 18,
   }
 })
+
+
 
 export default class App extends Component {
   render(){
