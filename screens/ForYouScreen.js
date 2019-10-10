@@ -167,7 +167,7 @@ class ForYouScreen extends Component {
                             {this.state.images.map((img)=>{
                                   return(
                                     <View key={img.index}>
-                                        <Image style={{ width: BannerWidth, height: BannerHeight }} source={{ uri:img.image }}  />
+                                        <TouchableOpacity onPress={()=> this.props.navigation.navigate('DetilWebtoon', {  item: img })}><Image style={{ width: BannerWidth, height: BannerHeight }} source={{ uri:img.image }}  /></TouchableOpacity>
                                     </View>
                                 )
                             })}

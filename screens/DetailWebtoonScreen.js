@@ -18,10 +18,6 @@ static navigationOptions = {
     title: 'Detail'
   }
 
- 
-
-
-
   render(){
     return(
       <Container>
