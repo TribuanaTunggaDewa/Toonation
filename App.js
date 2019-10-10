@@ -78,21 +78,14 @@ const switchContainer = createSwitchNavigator({
       Profile  : {
         screen : createStackNavigator({
           Profile : {
-            screen : EditProfileScreen ,
-            navigationOptions:{
-             title : 'Profile',
-             headerRight: <Icon name='pencil' size={30} /> 
-            }
-          }
+            screen : ProfileScreen,
+         },
+          ProfileEdit : EditProfileScreen
         },{
-         editProfile : EditProfileScreen
+          mywbtoonScreen : myWebtoonscreen
         },{
-         mywebtoonScreen : myWebtoonscreen 
-        }),
-        navigationOptions: {
-          tabBarLabel: 'Profile',
-          tabBarIcon: <Icon name='user' size={30}/>
-        }
+          
+        })
       }
     })
   } 

@@ -19,8 +19,11 @@ export default class Profile extends Component{
     return (
       <Container>
         <Content>
+          <Item>
+            <Icon name='rocket' size={400}  /> 
+          </Item>
           <Item style={{borderWidth:0, justifyContent:"center"}}>
-              <Image style={{height:200,width:200}} source={{uri : 'https://cdn3.iconfinder.com/data/icons/social-messaging-productivity-6/128/profile-female-circle2-512.png'}}></Image>
+              <TouchableOpacity onPress={()=> this.props.navigation.navigate('editProfile')}><Image style={{height:200,width:200}} source={{uri : 'https://cdn3.iconfinder.com/data/icons/social-messaging-productivity-6/128/profile-female-circle2-512.png'}}></Image></TouchableOpacity>
           </Item>
           <Item>
             <TouchableOpacity style={{width:Dimensions.get('window').width}}>
