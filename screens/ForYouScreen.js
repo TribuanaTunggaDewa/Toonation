@@ -38,32 +38,6 @@ class ForYouScreen extends Component {
                                 image: 'https://2.bp.blogspot.com/-eWXm9o6LZ6o/Wgke2tKNftI/AAAAAAAAE0U/5XWqvJcHddIPxDXktmab8Kzo5ty529kfACLcBGAs/s1600/Petruk%2BGareng%2B-%2BSetan%2BPerawan-00.jpg'},
                           {     title: 'Ririwa',
                                 image: 'https://cdn.brilio.net/news/2015/11/30/29400/109182-tatang-s.jpg'}],
-         All           : [
-            {     
-                                title: 'Dendam Si Loreng',
-                                image: 'https://2.bp.blogspot.com/-pN2r3170uQg/XBdphUqN_gI/AAAAAAAAK9Q/e-5Ai1LUM9YZ06YcLFAB8CsWjyPJ01EiQCLcBGAs/s1600/Petruk%2BGareng%2BTatang%2BS%2B-%2BDendam%2BSi%2BLoreng%2B01.jpg'},
-                          {     title: 'Setan Perawan',
-                                image: 'https://2.bp.blogspot.com/-eWXm9o6LZ6o/Wgke2tKNftI/AAAAAAAAE0U/5XWqvJcHddIPxDXktmab8Kzo5ty529kfACLcBGAs/s1600/Petruk%2BGareng%2B-%2BSetan%2BPerawan-00.jpg'},
-                          {     title: 'Ririwa',
-                                image: 'https://cdn.brilio.net/news/2015/11/30/29400/109182-tatang-s.jpg'},
-                                {    title: 'Siksa Neraka',
-                                image: 'https://3.bp.blogspot.com/-OX9qZxIJZKw/WdxAmTK4wWI/AAAAAAAADtM/F5l2UBhsSnEurqmacMR3No1ebDxM1tDggCLcBGAs/s1600/Komik_dahsyatnya_azab_neraka%2Bkomikkoplak.blogspot.com-page-004.jpg'},
-                          {     title: 'Babi Siluman',
-                                image: 'https://cdn.brilio.net/news/2015/11/30/29400/109183-tatang-s.jpg'},
-                          {
-                                title : 'Bonna And Friends',
-                                image : 'https://i.ytimg.com/vi/uBGMlfUi6m8/maxresdefault.jpg'
-                          },
-                          {     title : 'Bobo dan Paman Gembul',
-                                image : 'https://asset-a.grid.id//crop/0x0:0x0/700x465/photo/bobofoto/original/3294_cergam-bobo-paman-gembul-sakit.jpg'},
-                          {     title : 'Negri Dongeng',
-                                image : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQoVYzvB_6kTjYQ1t1YmjdTxQYKq-pnCK6iqB6_j35Am3A6TIZhPQ'},
-                          {
-                                title : 'Paman Kikuk,Husin, dan Asta',
-                                image : 'https://asset-a.grid.id//crop/0x0:0x0/700x465/photo/bobofoto/original/14246_paman-kikuk-dan-kura-kura.jpg'
-                          }
-
-         ]
       }
   }
 
@@ -106,7 +80,7 @@ class ForYouScreen extends Component {
                             {this.state.images.map((img)=>{
                                   return(
                                     <View key={img.index}>
-                                        <Image style={{ width: BannerWidth, height: BannerHeight }} source={{ uri:img.image }} />
+                                        <Image style={{ width: BannerWidth, height: BannerHeight }} source={{ uri:img.image }}  />
                                     </View>
                                 )
                             })}
@@ -132,7 +106,7 @@ class ForYouScreen extends Component {
                         <Text style={{color:'white', fontSize:18}}>All</Text>
                     </Item>
                     <FlatList
-                     data={this.state.All}
+                     data={[...this.state.favouriteUris,...this.state.images]}
                      renderItem={({item})=> this.allpage(item) }
                      >
                     </FlatList>
