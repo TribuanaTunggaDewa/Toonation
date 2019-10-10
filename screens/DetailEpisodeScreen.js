@@ -9,9 +9,9 @@ import Icon from 'react-native-vector-icons/FontAwesome'
 
 class DetailEpisodeScreen extends Component {
 
-  static navigationOptions = {
-    title: 'Detail Episode'
-  }
+    static navigationOptions = {
+        title: 'Detail Episode'
+      }
 
   render(){
     return(

@@ -131,7 +131,7 @@ class ForYouScreen extends Component {
  allpage(images){
      return(
          <ListItem>
-             <TouchableOpacity onPress={()=> this.props.navigation.navigate('DetilWebtoon', {  item: images, data: [...this.state.images, ...this.state.favouriteUris] })} ><Image style={{height:200, width:150}} source={{uri:images.image}} /></TouchableOpacity>
+             <TouchableOpacity onPress={()=> this.props.navigation.navigate('DetilWebtoon', {  item: images })} ><Image style={{height:200, width:150}} source={{uri:images.image}} /></TouchableOpacity>
              <Body>
                  <Text>{images.title}</Text>
                  <Button warning ><Text>+ Add Favorite</Text></Button>

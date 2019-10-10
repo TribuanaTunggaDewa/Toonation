@@ -9,39 +9,18 @@ class DetailWebtoonScreen extends Component {
 constructor(props){
     super(props)
     this.state = {
-        data : props.navigation.state.params.data,
         item : props.navigation.state.params.item
     }
 }
 
-onShare = async () => {
-    try {
-      const result = await Share.share({
-        message:
-          'React Native | A framework for building native apps using React',
-      });
-
-      if (result.action === Share.sharedAction) {
-        if (result.activityType) {
-          // shared with activity type of result.activityType
-        } else {
-          // shared
-        }
-      } else if (result.action === Share.dismissedAction) {
-        // dismissed
-      }
-    } catch (error) {
-      alert(error.message);
-    }
-  }
-
-
 
 static navigationOptions = {
-   title: 'Detail Webtoon',
-   headerRight: <TouchableOpacity onPress={this.onShare}><Icon name='share' size={30}  /></TouchableOpacity>
-  
-}
+    title: 'Detail'
+  }
+
+ 
+
+
 
   render(){
     return(
@@ -59,7 +38,7 @@ static navigationOptions = {
                      renderItem={({item})=> {
                          return(
                          <Item>
-                           <Image style={{height:200, width:150}} source={{uri:item.image}} />      
+                             <TouchableOpacity onPress={()=> this.props.navigation.navigate('DetilEpisode', item)}><Image style={{height:200, width:150}} source={{uri:item.image}} /></TouchableOpacity>
                               <View>
                                 <Text style={{textAlign: 'justify'}}>{item.title}</Text>
                                 <Text style={{textAlign: 'justify'}}>{item.date}</Text>
