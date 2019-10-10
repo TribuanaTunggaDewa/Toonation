@@ -4,7 +4,7 @@ import {Container, Title, Content, Text, Header, Form, Card, CardItem, Item, Lab
 import Icon from 'react-native-vector-icons/FontAwesome'
 import {createAppContainer, createSwitchNavigator} from 'react-navigation'
 import {createStackNavigator} from 'react-navigation-stack'
-import {createBottomTabNavigator} from 'react-navigation-tabs'
+import {createBottomTabNavigator, BottomTabBar} from 'react-navigation-tabs'
 import LoginScreen from './screens/LoginScreen'
 import ForYouScreen  from './screens/ForYouScreen'
 import FavouriteScreen from './screens/FavouriteScreen'
@@ -24,14 +24,31 @@ const switchContainer = createSwitchNavigator({
             },
           DetilWebtoon : DetailWebtoonScreen,
           DetilEpisode : DetailEpisodeScreen
+       },{
+         navigationOptions:{
+           tabBarLabel: 'For You',
+           tabBarIcon: <Icon name='th-large' size={30} />
+         }
        })
      },
-      Favorite : FavouriteScreen,
-      Profile  : ProfileScreen
+      Favorite : {
+        screen : FavouriteScreen,
+        navigationOptions:{
+          tabBarLabel: 'Favorite',
+          tabBarIcon: <Icon name='star' size={30}/>
+        }
+      },
+      Profile  : {
+        screen : ProfileScreen,
+        navigationOptions: {
+          tabBarLabel: 'Profile',
+          tabBarIcon: <Icon name='user' size={30}/>
+        }
+      }
     })
   } 
 },{
-  initialRouteName : 'login'
+  initialRouteName : 'For You'
 })
 
 

@@ -44,10 +44,10 @@ class ForYouScreen extends Component {
  allpage(images){
      return(
          <ListItem>
-             <Image style={{height:200, width:150}} source={{uri:images.image}} />
+             <TouchableOpacity onPress={()=> this.props.navigation.navigate('DetilWebtoon')} ><Image style={{height:200, width:150}} source={{uri:images.image}} /></TouchableOpacity>
              <Body>
                  <Text>{images.title}</Text>
-                 <Button warning><Text>+ Add Favorite</Text></Button>
+                 <Button warning ><Text>+ Add Favorite</Text></Button>
              </Body>
          </ListItem>
      )
