@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {View, StyleSheet, TouchableOpacity, ScrollView }  from 'react-native'
+import {View, StyleSheet, TouchableOpacity, ScrollView, Image, FlatList}  from 'react-native'
 import {Container, Title, Content, Text, Header, Form, Card, CardItem, Item, Label, Input, Button} from 'native-base'
 import Icon from 'react-native-vector-icons/FontAwesome'
 
@@ -7,6 +7,17 @@ import Icon from 'react-native-vector-icons/FontAwesome'
 
 
 class DetailWebtoonScreen extends Component {
+
+constructor(props){
+    super(props)
+    this.state = {
+        data : props.navigation.state.params.data,
+        item : props.navigation.state.params.item
+    }
+}
+
+
+
 static navigationOptions = {
    title: 'Detail Webtoon'
 }
@@ -15,10 +26,28 @@ static navigationOptions = {
     return(
       <Container>
         <Content>
-          <Item>
-            <Text>Detail Webtoon Screen</Text>
-            <Button onPress={()=>{this.props.navigation.navigate('DetilEpisode')}}><Text>Button Bro</Text></Button>
-          </Item>
+            <Item>
+            <Image style={{width:370, height:270}} source={{uri:this.state.item.image}} />
+            </Item>
+            <Item>
+            <Text>{this.state.item.title}</Text>
+            </Item>
+            <Item>
+            <FlatList
+                     data={this.state.item.episode}
+                     renderItem={({item})=> {
+                         return(
+                         <Item>
+                           <Image style={{height:200, width:150}} source={{uri:item.image}} />      
+                              <View>
+                                <Text style={{textAlign: 'justify'}}>{item.title}</Text>
+                                <Text style={{textAlign: 'justify'}}>{item.date}</Text>
+                                </View>
+                         </Item>)
+                     }}
+                     >
+                    </FlatList>
+            </Item>
         </Content>
       </Container>
     )
