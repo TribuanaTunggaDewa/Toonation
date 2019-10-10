@@ -27,7 +27,7 @@ export default class Profile extends Component{
                 <Item>
                 <Text>Create WebToon</Text>
                 <Right>
-                <Icon name="arrow-forward"/>
+                <TouchableOpacity onPress ><Icon name="arrow-forward"  size={30}/></TouchableOpacity>
                 </Right>
                 </Item>
             </TouchableOpacity>  

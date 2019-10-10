@@ -11,6 +11,8 @@ import FavouriteScreen from './screens/FavouriteScreen'
 import DetailWebtoonScreen from './screens/DetailWebtoonScreen'
 import DetailEpisodeScreen from './screens/DetailEpisodeScreen'
 import ProfileScreen from './screens/ProfileScreen'
+import EditProfileScreen from './screens/EditProfileScreen'
+import myWebtoonscreen from './screens/myWebtoonscreen'
 
 
 const onShare = async () => {
@@ -76,12 +78,16 @@ const switchContainer = createSwitchNavigator({
       Profile  : {
         screen : createStackNavigator({
           Profile : {
-            screen : ProfileScreen,
+            screen : EditProfileScreen ,
             navigationOptions:{
              title : 'Profile',
              headerRight: <Icon name='pencil' size={30} /> 
             }
           }
+        },{
+         editProfile : EditProfileScreen
+        },{
+         mywebtoonScreen : myWebtoonscreen 
         }),
         navigationOptions: {
           tabBarLabel: 'Profile',
