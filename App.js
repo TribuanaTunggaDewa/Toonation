@@ -93,7 +93,7 @@ const switchContainer = createSwitchNavigator({
         }),
         navigationOptions:{
           tabBarLabel: 'Favorite',
-          tabBarIcon: <Icon name='star' size={30}/>
+          tabBarIcon: <Icon name='star' size={30}/>, 
         }
       },
       Profile  : {
