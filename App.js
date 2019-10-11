@@ -14,8 +14,9 @@ import ProfileScreen from './screens/ProfileScreen'
 import EditProfileScreen from './screens/EditProfileScreen'
 import myWebtoonscreen from './screens/myWebtoonscreen'
 import createMyWebtoonScreen from './screens/createMyWebtoonScreen'
-import createWebtoonScreen from './screens/createWebtoonScreen'
 import createWebtoonEpisodeScreen from './screens/createWebtoonEpisodeScreen'
+import editWebtoonEpisodeScreen from './screens/editWebtoonEpisodeScreen'
+import EditWebtoonscreen from './screens/EditWebtoonscreen'
 
 
 const onShare = async () => {
@@ -91,33 +92,41 @@ const switchContainer = createSwitchNavigator({
          },
           ProfileEdit : {
             screen : EditProfileScreen, 
-            navigationOptions: ()=> ({
+            navigationOptions: ({navigation})=> ({
                 title: 'Edit Profile',
-                headerRight: <Icon name='' size={39} />
+                headerRight: <Icon name='check' size={39}  onPress={ ()=> navigation.navigate('Profile') }  />
             })
           },
           myWebtoon : {
             screen : myWebtoonscreen,
-            navigationOptions: ()=> {
+            navigationOptions:{
                 title: 'My Webtoon'
             }
           },
           createmyWebtoon : {
-            screen : createWebtoonScreen,
-            navigationOptions: ()=> {
-              title : 'My Webtoon'
-            }
-          },
-          createWebtoon: {
-            screen : createWebtoonScreen,
-            navigationOptions: ()=> {
-              title : 'create Webtoon'
-            }
-          },
+            screen : createMyWebtoonScreen,
+              navigationOptions: ({navigation})=> ({
+                title: 'My Webtoon',
+                headerRight: <Icon name='check' size={39}   />
+            })
+            },
           createwebtoonEpisode : {
             screen : createWebtoonEpisodeScreen,
-            navigationOptions: ()=>{
-              title : 'Create Episode'
+            navigationOptions:{
+              title : 'Create Episode',
+              headerRight: <Icon name='check' size={39}   />
+            }
+          },
+          editWebtoonEpisode : {
+            screen: editWebtoonEpisodeScreen,
+            navigationOptions: {
+              title : 'Edit Episode'
+            }
+          },
+          EditWebtoon: {
+            screen: EditWebtoonscreen,
+            navigationOptions:{
+              title: 'Edit Webtoon'
             }
           }
         })

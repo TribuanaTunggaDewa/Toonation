@@ -21,24 +21,19 @@ export default class Profile extends Component{
     return (
       <Container>
         <Content>
-          <Item>
-            <Icon name='rocket' size={400}  /> 
-          </Item>
           <Item style={{borderWidth:0, justifyContent:"center"}}>
-              <TouchableOpacity onPress={()=> this.props.navigation.navigate('editProfile')}><Image style={{height:200,width:200}} source={{uri : 'https://cdn3.iconfinder.com/data/icons/social-messaging-productivity-6/128/profile-female-circle2-512.png'}}></Image></TouchableOpacity>
+              <TouchableOpacity><Image style={{height:200,width:200}} source={{uri : 'https://cdn3.iconfinder.com/data/icons/social-messaging-productivity-6/128/profile-female-circle2-512.png'}}></Image></TouchableOpacity>
           </Item>
-          <Item>
-            <TouchableOpacity style={{width:Dimensions.get('window').width}}>
-                <Item>
+          
+          <Item onPress={()=> this.props.navigation.navigate('myWebtoon')  }>
                 <Text>Create WebToon</Text>
                 <Right>
-                <TouchableOpacity onPress ><Icon name="arrow-forward"  size={30}/></TouchableOpacity>
+                <Icon name="arrow-forward"  size={40} />
                 </Right>
-                </Item>
-            </TouchableOpacity>  
+
           </Item>
           <Item>
-            <TouchableOpacity style={{width:Dimensions.get('window').width}} onPress={() => alert('LogOut')}> 
+            <TouchableOpacity style={{width:Dimensions.get('window').width}} >
             <Text>Log Out</Text>
             </TouchableOpacity> 
           </Item>

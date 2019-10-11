@@ -60,12 +60,17 @@ export default class My_webtoon_creation extends Component{
     return (
       <Container>
         <Content>
-          <Item style={{borderWidth:0}}>
-          <TouchableOpacity
-          activeOpacity={0.7}
-          onPress={this.clickHandler}
+          <Item style={{borderWidth:5}}>
+            <FlatList style={{borderWidth:0}}
+            data={this.state.entries} 
+            renderItem={({ item }) => this.allPage(item)}
+            keyExtractor={item => item.id}
+            >
+            </FlatList>
+            <TouchableOpacity
+          onPress={()=> this.props.navigation.navigate('createmyWebtoon') }
           style={styles.TouchableOpacityStyle}>
-          <Image
+          <Image 
             source={{
               uri:
                 'https://raw.githubusercontent.com/AboutReact/sampleresource/master/plus_icon.png',
@@ -74,13 +79,6 @@ export default class My_webtoon_creation extends Component{
             style={styles.FloatingButtonStyle}
           />
         </TouchableOpacity>
-            <FlatList style={{borderWidth:0}}
-            data={this.state.entries} 
-            renderItem={({ item }) => this.allPage(item)}
-            keyExtractor={item => item.id}
-            >
-            </FlatList>
-            
           </Item>
           
         </Content>

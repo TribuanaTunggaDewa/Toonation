@@ -4,7 +4,7 @@ import {Image,View,StyleSheet,Dimensions,ScrollView,FlatList,TouchableOpacity} f
 import Carousel from 'react-native-banner-carousel';
 
 
-export default class createMyWebtoonScreen extends Component{
+export default class editWebtoonEpisodeScreen extends Component{
   constructor(props){
     super(props)
     this.state={
@@ -33,12 +33,11 @@ export default class createMyWebtoonScreen extends Component{
   allPage(image, index) {
     return (
         <ListItem style={{height:100,borderWidth:0}}>
-        <TouchableOpacity onPress={()=>this.props.navigation.navigate("EditWebtoon", {title :image})} style={{width: 66, height: 58}}>
+        <TouchableOpacity onPress={()=>this.props.navigation.navigate("", {title :image})} style={{width: 66, height: 58}}>
         <Image source={{uri : image.image}} style={{width: 66, height: 58}}></Image>
         </TouchableOpacity>
         <Body>
         <Text style={{fontSize:20}}>{image.title}</Text>
-        <Text style={{fontSize:10}}>{image.date}</Text>
         </Body>
       </ListItem>
     );
@@ -50,12 +49,15 @@ export default class createMyWebtoonScreen extends Component{
       <Container>
         <Content>
             <Label>
-                    <Text>Title</Text>
+                    <Text>Name</Text>
             </Label>  
           <Item regular style={{height: 40 ,width:Dimensions.get('window').width-20}}>
-            <Input style={{justifyContent:'center'}} label='' ></Input>
+            <Input></Input>
             
           </Item>
+          <Label>
+                    <Text>Add Image</Text>
+            </Label>  
           <Item>
             <FlatList style={{borderWidth:0}}
             data={this.state.entries} 
@@ -65,9 +67,11 @@ export default class createMyWebtoonScreen extends Component{
             </FlatList>
          </Item>
          <Item style={{justifyContent: 'center'}}>
-             <Button onPress={()=>this.props.navigation.navigate("createwebtoonEpisode")} >
-                 <Text>+ ADD EPISODE</Text>
+             <Button style={{width : 300,justifyContent:'center'}} onPress={()=>this.props.navigation.navigate("")}>
+                 <Text>+ IMAGE</Text>
              </Button>
+             <Button danger style={{width : 300,justifyContent:'center'}}><Text style={{fontSize:7}}>DELETE</Text>
+        </Button>
          </Item>
 
         </Content>

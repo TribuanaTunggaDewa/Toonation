@@ -4,7 +4,7 @@ import {Image,View,StyleSheet,Dimensions,ScrollView,FlatList,TouchableOpacity} f
 import Carousel from 'react-native-banner-carousel';
 
 
-export default class create_webtoon_episode extends Component{
+export default class createWebtoonEpisodeScreen extends Component{
   constructor(props){
     super(props)
     this.state={
@@ -33,7 +33,7 @@ export default class create_webtoon_episode extends Component{
   allPage(image, index) {
     return (
         <ListItem style={{height:100,borderWidth:0}}>
-        <TouchableOpacity onPress={()=>this.props.navigation.navigate("Detail_screen", {title :image})} style={{width: 66, height: 58}}>
+        <TouchableOpacity onPress={()=>this.props.navigation.navigate("editWebtoonEpisode", {title :image})} style={{width: 66, height: 58}}>
         <Image source={{uri : image.image}} style={{width: 66, height: 58}}></Image>
         </TouchableOpacity>
         <Body>
