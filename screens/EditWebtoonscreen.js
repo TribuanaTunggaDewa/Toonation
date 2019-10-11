@@ -70,7 +70,9 @@ export default class EditWebtoonscreen extends Component{
              <Button style={{width : 300,justifyContent:'center'}} onPress={()=>this.props.navigation.navigate("")}>
                  <Text>+ IMAGE</Text>
              </Button>
-             <Button danger style={{width : 300,justifyContent:'center'}}><Text style={{fontSize:7}}>DELETE</Text>
+         </Item>
+         <Item style={{justifyContent:'center'}}>
+         <Button danger style={{width : 300,justifyContent:'center'}}><Text style={{fontSize:7}}>DELETE</Text>
         </Button>
          </Item>
 
