@@ -132,10 +132,7 @@ class FavouriteScreen extends Component {
     }
   }
 
-  static navigationOptions = {
-      headerMode : 'none'
-  }
-
+ 
 
   render(){
     return(

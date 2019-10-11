@@ -74,7 +74,12 @@ const switchContainer = createSwitchNavigator({
      },
       Favorite : {
         screen : createStackNavigator({
-          Favorite: FavouriteScreen,
+          Favorite: {
+            screen : FavouriteScreen,
+            navigationOptions: {
+              header : null
+            }
+          },
           DetilWebtoon : {
             screen : DetailWebtoonScreen,
             navigationOptions: ({ navigation }) => (console.log(navigation),{
