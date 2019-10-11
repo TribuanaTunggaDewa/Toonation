@@ -30,12 +30,12 @@ handleChoosePhoto=()=>{
     return (
       <Container>
         <Content>
-          <Item style={{borderWidth:0, justifyContent:"center"}}>
-              <Image style={{height:200,width:200}} source={{uri : this.state.photo.uri}}></Image>
+          <Item style={{borderWidth:0, alignSelf:"center"}}>
+              <Image style={{height:200,width:200, borderRadius: 200/ 2, borderWidth:4, borderColor: 'black'}} source={{uri : this.state.photo.uri}}></Image>
+              <Icon name='camera' size={30} onPress={this.handleChoosePhoto}/>
           </Item>
-          <Button onPress={this.handleChoosePhoto} ><Text>Take a photo</Text></Button>
-          <Item rounded>
-              <Input />
+          <Item style={{width: 250, marginTop : 20, alignSelf:'center'}}  rounded>
+              <Input  />
           </Item>
         </Content>
         

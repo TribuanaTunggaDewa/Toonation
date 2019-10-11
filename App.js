@@ -73,7 +73,24 @@ const switchContainer = createSwitchNavigator({
        })
      },
       Favorite : {
-        screen : FavouriteScreen,
+        screen : createStackNavigator({
+          Favorite: FavouriteScreen,
+          DetilWebtoon : {
+            screen : DetailWebtoonScreen,
+            navigationOptions: ({ navigation }) => (console.log(navigation),{
+            title: `${navigation.state.params.item.title}`,
+            headerRight: < Icon name='share' size={39} onPress={()=>onShare()} />
+            }),
+          },
+          DetilEpisode : {
+            screen : DetailEpisodeScreen,
+            navigationOptions: ({navigation})=> (console.log(navigation),{
+              title: `${navigation.state.params.frame.title}`,
+              headerRight: < Icon name='share' size={39} onPress={()=>onShare()} />
+            })
+          }
+          
+        }),
         navigationOptions:{
           tabBarLabel: 'Favorite',
           tabBarIcon: <Icon name='star' size={30}/>
