@@ -31,7 +31,7 @@ constructor(props){
                      renderItem={({item})=> {
                          return(
                          <Item>
-                             <TouchableOpacity onPress={()=> this.props.navigation.navigate('', {frame : item })}><Image style={{height:200, width:150}} source={{uri:item.image}} /></TouchableOpacity>
+                             <TouchableOpacity onPress={()=> this.props.navigation.navigate('DetilEpisode', {frame : item })}><Image style={{height:200, width:150}} source={{uri:item.image}} /></TouchableOpacity>
                               <View>
                                 <Text style={{textAlign: 'justify'}}>{item.title}</Text>
                                 <Text style={{textAlign: 'justify'}}>{item.date}</Text>
