@@ -155,7 +155,7 @@ const switchContainer = createSwitchNavigator({
     })
   } 
 },{
-  initialRouteName : 'For You'
+  initialRouteName : 'login'
 })
 
 
