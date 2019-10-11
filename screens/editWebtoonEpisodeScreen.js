@@ -72,7 +72,7 @@ export default class editWebtoonEpisodeScreen extends Component{
              </Button>
          </Item>
          <Item style={{justifyContent: 'center'}}>
-              <Button danger style={{width : 300,justifyContent:'center'}}><Text style={{fontSize:7}}>DELETE</Text>
+              <Button danger style={{width : 300,justifyContent:'center'}}><Text>DELETE</Text>
               </Button>
          </Item>
 

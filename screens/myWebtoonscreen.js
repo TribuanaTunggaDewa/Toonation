@@ -70,7 +70,7 @@ export default class My_webtoon_creation extends Component{
             <TouchableOpacity
           onPress={()=> this.props.navigation.navigate('createmyWebtoon') }
           style={styles.TouchableOpacityStyle}>
-          <Image 
+          <Image  
             source={{
               uri:
                 'https://raw.githubusercontent.com/AboutReact/sampleresource/master/plus_icon.png',
