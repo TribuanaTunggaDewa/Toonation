@@ -3,14 +3,26 @@ import { Container,Header,Text, Body, Content, Form, Item, Input, Button,Toast,R
 import {Image,View,StyleSheet,Dimensions,ScrollView,FlatList} from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/FontAwesome'
+import ImagePicker from 'react-native-image-picker'
 
 export default class Profile extends Component{
   constructor(props){
     super(props)
     this.state={
+      photo:''
     }
 }
   
+handleChoosePhoto=()=>{
+  const option = {
+    noData : true
+  }
+  ImagePicker.launchImageLibrary(option, response => {
+    if(response.uri){
+      this.setState({ photo: response})
+    }
+  })
+}
   
   
   render() {
@@ -19,8 +31,9 @@ export default class Profile extends Component{
       <Container>
         <Content>
           <Item style={{borderWidth:0, justifyContent:"center"}}>
-              <Image style={{height:200,width:200}} source={{uri : 'https://cdn3.iconfinder.com/data/icons/social-messaging-productivity-6/128/profile-female-circle2-512.png'}}></Image>
+              <Image style={{height:200,width:200}} source={{uri : this.state.photo.uri}}></Image>
           </Item>
+          <Button onPress={this.handleChoosePhoto} ><Text>Take a photo</Text></Button>
           <Item rounded>
               <Input />
           </Item>
