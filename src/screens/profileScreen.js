@@ -4,8 +4,9 @@ import {Image,View,StyleSheet,Dimensions,ScrollView,FlatList} from 'react-native
 import Carousel from 'react-native-banner-carousel';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import ImagePicker from 'react-native-image-picker'
+import styles from '../datas/styles';
 
-export default class profile extends Component{
+class profile extends Component{
   
   constructor(props){
     super(props)
@@ -32,13 +33,13 @@ handleChoosePhoto=()=>{
     
     return (
       <Container>
-        <Content>
+        <Content style={styles.content}>
           <Item style={{borderWidth:0, justifyContent:"center"}}>
-              <TouchableOpacity><Image style={{height:200,width:200}} source={{uri : 'https://cdn3.iconfinder.com/data/icons/social-messaging-productivity-6/128/profile-female-circle2-512.png'}}></Image></TouchableOpacity>
+              <TouchableOpacity><Image style={styles.circleBorder} ></Image></TouchableOpacity>
              
           </Item>
           
-          <Item onPress={()=> this.props.navigation.navigate('myWebtoon')  }>
+          <Item style={{marginTop: 30}} onPress={()=> this.props.navigation.navigate('myWebtoon')  }>
                 <Text>Create WebToon</Text>
                 <Right>
                 <Icon name="arrow-forward"  size={40} />
@@ -57,10 +58,5 @@ handleChoosePhoto=()=>{
   }
 };
 
-const styles = StyleSheet.create({
-  container: {
-      flex: 1,
-      backgroundColor: '#fff',
-      justifyContent: 'center'
-  },
-});
+
+export default  profile

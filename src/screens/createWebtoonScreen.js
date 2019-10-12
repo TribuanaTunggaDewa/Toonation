@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Icon,Container,Header,Text, Body, Content, Form, Item, Input, Button,Toast,Root, Label,InputGroup, Footer, FooterTab, CardItem,Card, Left, Right, ListItem} from 'native-base'
 import {Image,View,StyleSheet,Dimensions,ScrollView,FlatList,TouchableOpacity} from 'react-native';
 import Carousel from 'react-native-banner-carousel';
-
+import styles from '../datas/styles'
 
 export default class createWebtoonScreen extends Component{
   constructor(props){
@@ -48,7 +48,7 @@ export default class createWebtoonScreen extends Component{
     
     return (
       <Container>
-        <Content>
+        <Content style={styles.content}>
             <Label>
                     <Text>Title</Text>
             </Label>  
@@ -64,9 +64,9 @@ export default class createWebtoonScreen extends Component{
             >
             </FlatList>
          </Item>
-         <Item style={{justifyContent: 'center'}}>
-             <Button onPress={()=>this.props.navigation.navigate("createwebtoonEpisode")} >
-                 <Text>+ ADD EPISODE</Text>
+         <Item >
+             <Button style={styles.oneButton} onPress={()=>this.props.navigation.navigate("createwebtoonEpisode")} >
+                 <Text >+ ADD EPISODE</Text>
              </Button>
          </Item>
 
@@ -74,12 +74,5 @@ export default class createWebtoonScreen extends Component{
       </Container>
     )
   }
-};
+}
 
-const styles = StyleSheet.create({
-  container: {
-      flex: 1,
-      backgroundColor: '#fff',
-      justifyContent: 'center'
-  },
-});

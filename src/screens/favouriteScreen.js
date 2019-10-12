@@ -3,6 +3,7 @@ import {View, StyleSheet, TouchableOpacity, ScrollView,FlatList, ListItem, Image
 import {Container, Title, Content, Text, Header, Form, Card, CardItem, Item, Label, Input, Button,Body} from 'native-base'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import  dataFavourite  from '../datas/dataFavourite'
+import styles from '../datas/styles'
 
 
 class favouriteScreen extends Component {
@@ -21,29 +22,29 @@ class favouriteScreen extends Component {
   render(){
     return(
       <Container>
-                <Header style={{backgroundColor:'#3D3C3A'}} searchBar rounded>
+                <Header style={styles.header} searchBar rounded>
                     <Item horizontal>
                         <Input placeholder='Search' />
                         <TouchableOpacity><Icon name='search' size={22  } /></TouchableOpacity>
                     </Item>
                 </Header>
                 <Content >
-                    <Item style={{backgroundColor:'#3D3C3A'}}>
-                        <Text style={{color:'white', fontSize:18}}>My Favorite</Text>
+                    <Item style={styles.secondHeader}>
+                        <Text>My Favorite</Text>
                     </Item>
                     <FlatList
                      data={this.state.favouriteUris}
                      renderItem={({item})=> {
                       return(
                       <Item>
-                          <TouchableOpacity onPress={()=> this.props.navigation.navigate('DetilWebtoon', {item : item })}><Image style={{height:200, width:150}} source={{uri:item.image}} /></TouchableOpacity>
-                           <View>
+                          <TouchableOpacity onPress={()=> this.props.navigation.navigate('DetilWebtoon', {item : item })}><Image style={styles.imagelist} source={{uri:item.image}} /></TouchableOpacity>
+                           <View style={styles.textList}>
                              <Text style={{textAlign: 'justify'}}>{item.title}</Text>
-                             <Text style={{textAlign: 'justify'}}>{item.date}</Text>
+                             <Text style={{textAlign: 'justify'}}>{item.episode[0].date}</Text>
                              </View>
                       </Item>)
                   }}
-                     
+                     style={styles.content}
                      >
                     </FlatList>
                    

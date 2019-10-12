@@ -11,7 +11,8 @@ export default StyleSheet.create({
     },
     content:{
         marginTop: 10,
-        padding: 10   
+        padding: 10,
+        backgroundColor : '#BDBDBD'
     },
     loginTitle:{
         fontSize: 28,
@@ -24,30 +25,31 @@ export default StyleSheet.create({
         textAlign:'center'
     },
     loginCard:{
-        marginTop: 30
+        marginTop: 30,
+        backgroundColor:'white',
+        width: 270,
+        alignSelf:'center'
     },
     oneButton:{
-        backgroundColor: color,
+        backgroundColor: buttonColor,
         width: 270,
         height:50,
-        alignSelf:'center',
+        alignSelf: 'center'
     },
     TextButton:{
         fontSize:18,
         textAlign:'center',
         justifyContent:'center',
-        paddingTop: 10,
-        color: 'white'
-},cardItem:{
-    backgroundColor:'white'
-},text:{
-    color:'white'
-},imageBanner : {
-    width: 300,
-    height: 250
+        paddingTop: 10
+
 },header:{
     backgroundColor: color
-},buttoncolor :{
+},secondHeader:{
+    backgroundColor: '#00796B'
+},
+
+
+buttoncolor :{
     backgroundColor: buttonColor
 },imageBanner:{
         width :400,
@@ -56,7 +58,43 @@ export default StyleSheet.create({
     imagelist:{
         width: 100,
         height: 150,
+        marginStart: 25,
+        padding: 10
+        
+    },   splitButton:{
+        backgroundColor: buttonColor,
+        marginStart: 11,
+    },
+    textList:{
         marginStart: 30
+    },
+    circleBorder : {
+        height:200,
+        width:200, 
+        borderRadius: 200/ 2,
+        borderWidth:4,
+        borderColor: 'black',
+        alignSelf:'center'
+    },
+    container: {
+        flex: 1,
+        backgroundColor: '#fff',
+        justifyContent: 'center'
+    },
+    TouchableOpacityStyle: {
+      position: 'absolute',
+      width: 50,
+      height: 50,
+      alignItems: 'center',
+      justifyContent: 'center',
+      right: 30,
+      bottom: 10,
+    },
+    FloatingButtonStyle: {
+      resizeMode: 'contain',
+      width: 50,
+      height: 50,
+      //backgroundColor:'black'
     }
    
 

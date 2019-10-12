@@ -24,11 +24,11 @@
 
         allpage(images){
             return(
-                <ListItem>
-                    <TouchableOpacity onPress={()=> this.props.navigation.navigate('DetilWebtoon', {  item: images })} ><Image source={{uri:images.image}} /></TouchableOpacity>
-                    <Body>
+                <ListItem rounded>
+                    <TouchableOpacity onPress={()=> this.props.navigation.navigate('DetilWebtoon', {  item: images })} ><Image source={{uri:images.image}} style={styles.imagelist} /></TouchableOpacity>
+                    <Body style={styles.textList}>
                         <Text>{images.title}</Text>
-                        <Button style={styles.buttoncolor} ><Text>+ Add Favorite</Text></Button>
+                        <Button style={styles.splitButton} ><Text>+ Add Favorite</Text></Button>
                     </Body>
                 </ListItem>
             )
@@ -67,10 +67,10 @@
                                     })}
                                 </Carousel>
                             </Item>
-                            <Item>
+                            <Item style={styles.secondHeader}>
                             <Text>Favourite</Text>
                             </Item>
-                            <Item horizontal >
+                            <Item horizontal style={styles.content} >
                                 <ScrollView horizontal >
                                     {this.state.favouriteUris.map((favouriteUri)=>{
                                         return(
@@ -85,12 +85,13 @@
                                     })} 
                                 </ScrollView>
                             </Item>
-                            <Item>
+                            <Item style={styles.secondHeader}>
                                 <Text>All</Text>
                             </Item>
                             <FlatList
                             data={[...this.state.favouriteUris,...this.state.images]}
                             renderItem={({item})=> this.allpage(item) }
+                            style={styles.content}
                             >
                             </FlatList>
                             

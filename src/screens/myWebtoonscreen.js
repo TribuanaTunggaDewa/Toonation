@@ -59,7 +59,7 @@ export default class My_webtoon_creation extends Component{
     
     return (
       <Container>
-        <Content>
+        <Content style={{backgroundColor: 'grey'}}>
           <Item style={{borderWidth:5}}>
             <FlatList style={{borderWidth:0}}
             data={this.state.entries} 
@@ -70,12 +70,8 @@ export default class My_webtoon_creation extends Component{
             <TouchableOpacity
           onPress={()=> this.props.navigation.navigate('createmyWebtoon') }
           style={styles.TouchableOpacityStyle}>
-          <Image  
-            source={{
-              uri:
-                'https://raw.githubusercontent.com/AboutReact/sampleresource/master/plus_icon.png',
-            }}
-           
+          <Icon name='plus-circle' size={50}
+            color='#03A9F4'
             style={styles.FloatingButtonStyle}
           />
         </TouchableOpacity>

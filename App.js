@@ -17,6 +17,7 @@
     import createEpisodeScreen from './src/screens/createEpisodeScreen'
     import editEpisodeScreen from './src/screens/editEpisodeScreen'
     import editWebtoonscreen from './src/screens/editWebtoonscreen'
+    import styles from './src/datas/styles'
 
 
     const onShare = async () => {
@@ -55,20 +56,32 @@
                 screen : detailWebtoonScreen,
                 navigationOptions: ({ navigation }) => (console.log(navigation),{
                 title: `${navigation.state.params.item.title}`,
-                headerRight: < Icon name='share' size={39} onPress={()=>onShare()} />
+                headerRight: < Icon name='share-alt' size={25} onPress={()=>onShare()} />,
+                headerStyle:{
+                  backgroundColor: '#009688',
+                }
                 }),
               },
               DetilEpisode : {
                 screen : detailEpisodeScreen,
                 navigationOptions: ({navigation})=> (console.log(navigation),{
                   title: `${navigation.state.params.frame.title}`,
-                  headerRight: < Icon name='share' size={39} onPress={()=>onShare()} />
+                  headerRight: < Icon name='share-alt' size={25}  onPress={()=>onShare()} />,
+                  headerStyle:{
+                    backgroundColor: '#009688'
+                  }
                 })
               }
           },{
             navigationOptions:{
               tabBarLabel: 'For You',
-              tabBarIcon: <Icon name='th-large' size={30} />
+              tabBarIcon: ({activeTintColor}) => <Icon name='th-large' size={30} color={activeTintColor} />,
+              tabBarOptions:{
+                activeTintColor: 'white',
+                inactiveBackgroundColor: '#00796B',
+                activeBackgroundColor: '#009688'
+              }
+              
             }
           })
         },
@@ -84,14 +97,20 @@
                 screen : detailWebtoonScreen,
                 navigationOptions: ({ navigation }) => (console.log(navigation),{
                 title: `${navigation.state.params.item.title}`,
-                headerRight: < Icon name='share' size={39} onPress={()=>onShare()} />
+                headerRight: < Icon name='share-alt' size={25}  onPress={()=>onShare()} />,
+                headerStyle:{
+                  backgroundColor: '#009688'
+                }
                 }),
               },
               DetilEpisode : {
                 screen : detailEpisodeScreen,
                 navigationOptions: ({navigation})=> (console.log(navigation),{
                   title: `${navigation.state.params.frame.title}`,
-                  headerRight: < Icon name='share' size={39} onPress={()=>onShare()} />
+                  headerRight: < Icon name='share-alt' size={25}  onPress={()=>onShare()} />,
+                  headerStyle:{
+                    backgroundColor: '#009688'
+                  }
                 })
               }
               
@@ -99,6 +118,11 @@
             navigationOptions:{
               tabBarLabel: 'Favorite',
               tabBarIcon: <Icon name='star' size={30}/>, 
+              tabBarOptions:{
+                activeTintColor: 'white',
+                inactiveBackgroundColor: '#00796B',
+                activeBackgroundColor: '#009688'
+              }
             }
           },
           Profile  : {
@@ -108,7 +132,10 @@
                 navigationOptions : ({navigation}) => {
                   return {
                     title: 'Profile',
-                    headerRight: <Icon name='pencil' size={30} onPress = { ()=> navigation.navigate('ProfileEdit')} />
+                    headerRight: <Icon name='pencil' size={30} onPress = { ()=> navigation.navigate('ProfileEdit')} />,
+                    headerStyle:{
+                      backgroundColor: '#009688'
+                    }
                   }
                 }
             },
@@ -116,48 +143,71 @@
                 screen : editProfileScreen, 
                 navigationOptions: ({navigation})=> ({
                     title: 'Edit Profile',
-                    headerRight: <Icon name='check' size={39}  onPress={ ()=> navigation.navigate('Profile') }  />
+                    headerRight: <Icon name='check' size={20}  onPress={ ()=> navigation.navigate('Profile') }  />,
+                    headerStyle:{
+                      backgroundColor: '#009688'
+                    }
                 })
               },
               myWebtoon : {
                 screen : myWebtoonscreen,
                 navigationOptions:{
-                    title: 'My Webtoon'
+                    title: 'My Webtoon',
+                    headerStyle:{
+                      backgroundColor: '#009688'
+                    }
                 }
               },
               createmyWebtoon : {
                 screen : createWebtoonScreen,
                   navigationOptions: ({navigation})=> ({
                     title: 'My Webtoon',
-                    headerRight: <Icon name='check' size={39}   />
+                    headerRight: <Icon name='check' size={20}   />,
+                    headerStyle:{
+                      backgroundColor: '#009688'
+                    }
                 })
                 },
               createwebtoonEpisode : {
                 screen : createEpisodeScreen,
                 navigationOptions:{
                   title : 'Create Episode',
-                  headerRight: <Icon name='check' size={39}   />
+                  headerRight: <Icon name='check' size={20}   />,
+                  headerStyle:{
+                    backgroundColor: '#009688'
+                  }
                 }
               },
               editWebtoonEpisode : {
                 screen: editEpisodeScreen,
                 navigationOptions: {
-                  title : 'Edit Episode'
+                  title : 'Edit Episode',
+                  headerStyle:{
+                    backgroundColor: '#009688'
+                  }
                 }
               },
               EditWebtoon: {
                 screen: editWebtoonscreen,
                 navigationOptions:{
-                  title: 'Edit Webtoon'
+                  title: 'Edit Webtoon',
+                  headerStyle:{
+                    backgroundColor: '#009688'
+                  }
                 }
               }
             })
             ,
             navigationOptions: {
               tabBarLabel:'Profile',
-              tabBarIcon: <Icon name='user' size={30} />
+              tabBarIcon: <Icon name='user' size={30} />,
+              tabBarOptions: {
+                activeTintColor: 'white',
+                inactiveBackgroundColor: '#00796B',
+                activeBackgroundColor: '#009688'
+              }
             }}
-        })
+        }),
       } 
     },{
       initialRouteName : 'For You'
