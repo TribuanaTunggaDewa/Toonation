@@ -165,32 +165,6 @@
 
 
     const AppContainer = createAppContainer(switchContainer)
-
-
-    const style = StyleSheet.create({
-      Container :{
-        margin : 20,
-        paddingTop: 30
-      },
-      ContainerTitle:{
-        alignContent:'center',
-        paddingTop : 50
-      },
-      Title : {
-        alignContent:'center',
-        textAlign:'center',
-        fontSize: 36
-      },
-      ContainerContent:{
-        paddingTop: 20
-      },
-      Label:{
-        fontSize: 18,
-      }
-    })
-
-
-
     export default class App extends Component {
       render(){
         return (<AppContainer/>)

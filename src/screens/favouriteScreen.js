@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {View, StyleSheet, TouchableOpacity, ScrollView,FlatList, ListItem, Image }  from 'react-native'
 import {Container, Title, Content, Text, Header, Form, Card, CardItem, Item, Label, Input, Button,Body} from 'native-base'
 import Icon from 'react-native-vector-icons/FontAwesome'
-import  dataFavourite  from '../data/dataFavourite'
+import  dataFavourite  from '../datas/dataFavourite'
 
 
 class favouriteScreen extends Component {

@@ -4,8 +4,8 @@
         import Icon from 'react-native-vector-icons/FontAwesome'
         import Carousel from 'react-native-banner-carousel'
         import { FlatList } from 'react-native-gesture-handler'
-        import dataBanner from '../data/dataBanner'
-        import  dataFavourite  from '../data/dataFavourite'
+        import dataBanner from '../datas/dataBanner'
+        import  dataFavourite  from '../datas/dataFavourite'
 
         const BannerWidth = 400
         const BannerHeight =  270
@@ -24,7 +24,7 @@
         allpage(images){
             return(
                 <ListItem>
-                    <TouchableOpacity onPress={()=> this.props.navigation.navigate('DetilWebtoon', {  item: images })} ><Image style={{height:200, width:150}} source={{uri:images.image}} /></TouchableOpacity>
+                    <TouchableOpacity onPress={()=> this.props.navigation.navigate('DetilWebtoon', {  item: images })} ><Image source={{uri:images.image}} /></TouchableOpacity>
                     <Body>
                         <Text>{images.title}</Text>
                         <Button warning ><Text>+ Add Favorite</Text></Button>
@@ -42,14 +42,14 @@
 
             return(
                     <Container>
-                        <Header style={{backgroundColor:'#3D3C3A'}} searchBar rounded>
+                        <Header  searchBar rounded>
                             <Item horizontal>
                                 <Input placeholder='Search' />
                                 <TouchableOpacity><Icon name='search' size={22  } /></TouchableOpacity>
                             </Item>
                         </Header>
                         <Content >
-                            <Item style={styles.container}>
+                            <Item>
                                 <Carousel   
                                     autoplay
                                     autoplayTimeout={5000}
@@ -60,13 +60,13 @@
                                     {this.state.images.map((img)=>{
                                         return(
                                             <View key={img.index}>
-                                                <TouchableOpacity onPress={()=> this.props.navigation.navigate('DetilWebtoon', {  item: img })}><Image style={{ width: BannerWidth, height: BannerHeight }} source={{ uri:img.image }}  /></TouchableOpacity>
+                                                <TouchableOpacity onPress={()=> this.props.navigation.navigate('DetilWebtoon', {  item: img })}><Image  source={{ uri:img.image }}  /></TouchableOpacity>
                                             </View>
                                         )
                                     })}
                                 </Carousel>
                             </Item>
-                            <Item horizontal style={{backgroundColor:'#3D3C3A'}}>
+                            <Item horizontal >
                                 <Text style={{color:'white', fontSize:18, flexWrap:'wrap-reverse'}}>Favourite</Text>
                                 <ScrollView horizontal style={{backgroundColor:'white', flex:1, marginLeft:0}}>
                                     {this.state.favouriteUris.map((favouriteUri)=>{
