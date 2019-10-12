@@ -4,7 +4,7 @@ import {Image,View,StyleSheet,Dimensions,ScrollView,FlatList,TouchableOpacity} f
 import Carousel from 'react-native-banner-carousel';
 
 
-export default class createMyWebtoonScreen extends Component{
+export default class createWebtoonScreen extends Component{
   constructor(props){
     super(props)
     this.state={

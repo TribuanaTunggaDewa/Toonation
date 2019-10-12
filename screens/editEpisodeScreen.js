@@ -4,26 +4,26 @@ import {Image,View,StyleSheet,Dimensions,ScrollView,FlatList,TouchableOpacity} f
 import Carousel from 'react-native-banner-carousel';
 
 
-export default class EditWebtoonscreen extends Component{
+export default class editEpisodeScreen extends Component{
   constructor(props){
     super(props)
     this.state={
       BannerWidth: Dimensions.get('window').width,
       BannerHeight: 260,
       entries: [{
-        title: 'Webtoon 1',
+        title: 'Episode 1',
         date: '1 Januari 1945',
         image: 'https://akcdn.detik.net.id/community/media/visual/2019/04/03/dac43146-7dd4-49f4-89ca-d81f57b070fc.jpeg?w=770&q=90'
       }, {
-        title: 'Webtoon 2',
+        title: 'Episode 2',
         date: '1 Januari 1945',
         image: 'https://akcdn.detik.net.id/community/media/visual/2019/04/03/dac43146-7dd4-49f4-89ca-d81f57b070fc.jpeg?w=770&q=90'
       }, {
-        title: 'Webtoon 3',
+        title: 'Episode 3',
         date: '1 Januari 1945',
         image: 'https://akcdn.detik.net.id/community/media/visual/2019/04/03/dac43146-7dd4-49f4-89ca-d81f57b070fc.jpeg?w=770&q=90'
       },{
-        title: 'Webtoon 4',
+        title: 'Episode 4',
         date: '1 Januari 1945',
         image: 'https://akcdn.detik.net.id/community/media/visual/2019/04/03/dac43146-7dd4-49f4-89ca-d81f57b070fc.jpeg?w=770&q=90'
       }]
@@ -71,9 +71,9 @@ export default class EditWebtoonscreen extends Component{
                  <Text>+ IMAGE</Text>
              </Button>
          </Item>
-         <Item style={{justifyContent:'center'}}>
-         <Button danger style={{width : 300,justifyContent:'center'}}><Text>DELETE</Text>
-        </Button>
+         <Item style={{justifyContent: 'center'}}>
+              <Button danger style={{width : 300,justifyContent:'center'}}><Text>DELETE</Text>
+              </Button>
          </Item>
 
         </Content>

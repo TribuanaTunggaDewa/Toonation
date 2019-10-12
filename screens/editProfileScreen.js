@@ -5,7 +5,7 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/FontAwesome'
 import ImagePicker from 'react-native-image-picker'
 
-export default class Profile extends Component{
+export default class editProfilescreen extends Component{
   constructor(props){
     super(props)
     this.state={

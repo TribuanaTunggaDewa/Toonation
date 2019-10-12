@@ -5,18 +5,18 @@ import Icon from 'react-native-vector-icons/FontAwesome'
 import {createAppContainer, createSwitchNavigator} from 'react-navigation'
 import {createStackNavigator} from 'react-navigation-stack'
 import {createBottomTabNavigator, BottomTabBar} from 'react-navigation-tabs'
-import LoginScreen from './screens/LoginScreen'
-import ForYouScreen  from './screens/ForYouScreen'
-import FavouriteScreen from './screens/FavouriteScreen'
-import DetailWebtoonScreen from './screens/DetailWebtoonScreen'
-import DetailEpisodeScreen from './screens/DetailEpisodeScreen'
-import ProfileScreen from './screens/ProfileScreen'
-import EditProfileScreen from './screens/EditProfileScreen'
+import loginScreen from './screens/loginScreen'
+import forYouScreen  from './screens/forYouScreen'
+import favouriteScreen from './screens/favouriteScreen'
+import detailWebtoonScreen from './screens/detailWebtoonScreen'
+import detailEpisodeScreen from './screens/detailEpisodeScreen'
+import profileScreen from './screens/profileScreen'
+import editProfileScreen from './screens/editProfileScreen'
 import myWebtoonscreen from './screens/myWebtoonscreen'
-import createMyWebtoonScreen from './screens/createMyWebtoonScreen'
-import createWebtoonEpisodeScreen from './screens/createWebtoonEpisodeScreen'
-import editWebtoonEpisodeScreen from './screens/editWebtoonEpisodeScreen'
-import EditWebtoonscreen from './screens/EditWebtoonscreen'
+import createWebtoonScreen from './screens/createWebtoonScreen'
+import createEpisodeScreen from './screens/createEpisodeScreen'
+import editEpisodeScreen from './screens/editEpisodeScreen'
+import editWebtoonscreen from './screens/editWebtoonscreen'
 
 
 const onShare = async () => {
@@ -43,23 +43,23 @@ const onShare = async () => {
 
 
 const switchContainer = createSwitchNavigator({
-  login : LoginScreen,
+  login : loginScreen,
   'For You' : {
     screen : createBottomTabNavigator({
      'For You' : {
        screen: createStackNavigator({
          'For You' :  {
-           screen : ForYouScreen,
+           screen : forYouScreen,
             },
           DetilWebtoon : {
-            screen : DetailWebtoonScreen,
+            screen : detailWebtoonScreen,
             navigationOptions: ({ navigation }) => (console.log(navigation),{
             title: `${navigation.state.params.item.title}`,
             headerRight: < Icon name='share' size={39} onPress={()=>onShare()} />
             }),
           },
           DetilEpisode : {
-            screen : DetailEpisodeScreen,
+            screen : detailEpisodeScreen,
             navigationOptions: ({navigation})=> (console.log(navigation),{
               title: `${navigation.state.params.frame.title}`,
               headerRight: < Icon name='share' size={39} onPress={()=>onShare()} />
@@ -75,20 +75,20 @@ const switchContainer = createSwitchNavigator({
       Favorite : {
         screen : createStackNavigator({
           Favorite: {
-            screen : FavouriteScreen,
+            screen : favouriteScreen,
             navigationOptions: {
               header : null
             }
           },
           DetilWebtoon : {
-            screen : DetailWebtoonScreen,
+            screen : detailWebtoonScreen,
             navigationOptions: ({ navigation }) => (console.log(navigation),{
             title: `${navigation.state.params.item.title}`,
             headerRight: < Icon name='share' size={39} onPress={()=>onShare()} />
             }),
           },
           DetilEpisode : {
-            screen : DetailEpisodeScreen,
+            screen : detailEpisodeScreen,
             navigationOptions: ({navigation})=> (console.log(navigation),{
               title: `${navigation.state.params.frame.title}`,
               headerRight: < Icon name='share' size={39} onPress={()=>onShare()} />
@@ -104,7 +104,7 @@ const switchContainer = createSwitchNavigator({
       Profile  : {
         screen : createStackNavigator({
           Profile : {
-            screen :  ProfileScreen,
+            screen :  profileScreen,
             navigationOptions : ({navigation}) => {
               return {
                 title: 'Profile',
@@ -113,7 +113,7 @@ const switchContainer = createSwitchNavigator({
             }
          },
           ProfileEdit : {
-            screen : EditProfileScreen, 
+            screen : editProfileScreen, 
             navigationOptions: ({navigation})=> ({
                 title: 'Edit Profile',
                 headerRight: <Icon name='check' size={39}  onPress={ ()=> navigation.navigate('Profile') }  />
@@ -126,27 +126,27 @@ const switchContainer = createSwitchNavigator({
             }
           },
           createmyWebtoon : {
-            screen : createMyWebtoonScreen,
+            screen : createWebtoonScreen,
               navigationOptions: ({navigation})=> ({
                 title: 'My Webtoon',
                 headerRight: <Icon name='check' size={39}   />
             })
             },
           createwebtoonEpisode : {
-            screen : createWebtoonEpisodeScreen,
+            screen : createEpisodeScreen,
             navigationOptions:{
               title : 'Create Episode',
               headerRight: <Icon name='check' size={39}   />
             }
           },
           editWebtoonEpisode : {
-            screen: editWebtoonEpisodeScreen,
+            screen: editEpisodeScreen,
             navigationOptions: {
               title : 'Edit Episode'
             }
           },
           EditWebtoon: {
-            screen: EditWebtoonscreen,
+            screen: editWebtoonscreen,
             navigationOptions:{
               title: 'Edit Webtoon'
             }

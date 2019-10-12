@@ -4,26 +4,26 @@ import {Image,View,StyleSheet,Dimensions,ScrollView,FlatList,TouchableOpacity} f
 import Carousel from 'react-native-banner-carousel';
 
 
-export default class createWebtoonEpisodeScreen extends Component{
+export default class editWebtoonscreen extends Component{
   constructor(props){
     super(props)
     this.state={
       BannerWidth: Dimensions.get('window').width,
       BannerHeight: 260,
       entries: [{
-        title: 'Episode 1',
+        title: 'Webtoon 1',
         date: '1 Januari 1945',
         image: 'https://akcdn.detik.net.id/community/media/visual/2019/04/03/dac43146-7dd4-49f4-89ca-d81f57b070fc.jpeg?w=770&q=90'
       }, {
-        title: 'Episode 2',
+        title: 'Webtoon 2',
         date: '1 Januari 1945',
         image: 'https://akcdn.detik.net.id/community/media/visual/2019/04/03/dac43146-7dd4-49f4-89ca-d81f57b070fc.jpeg?w=770&q=90'
       }, {
-        title: 'Episode 3',
+        title: 'Webtoon 3',
         date: '1 Januari 1945',
         image: 'https://akcdn.detik.net.id/community/media/visual/2019/04/03/dac43146-7dd4-49f4-89ca-d81f57b070fc.jpeg?w=770&q=90'
       },{
-        title: 'Episode 4',
+        title: 'Webtoon 4',
         date: '1 Januari 1945',
         image: 'https://akcdn.detik.net.id/community/media/visual/2019/04/03/dac43146-7dd4-49f4-89ca-d81f57b070fc.jpeg?w=770&q=90'
       }]
@@ -33,13 +33,11 @@ export default class createWebtoonEpisodeScreen extends Component{
   allPage(image, index) {
     return (
         <ListItem style={{height:100,borderWidth:0}}>
-        <TouchableOpacity onPress={()=>this.props.navigation.navigate("editWebtoonEpisode", {title :image})} style={{width: 66, height: 58}}>
+        <TouchableOpacity onPress={()=>this.props.navigation.navigate("", {title :image})} style={{width: 66, height: 58}}>
         <Image source={{uri : image.image}} style={{width: 66, height: 58}}></Image>
         </TouchableOpacity>
         <Body>
         <Text style={{fontSize:20}}>{image.title}</Text>
-        <Button danger style={{height:15,width:70,marginLeft:12}}><Text style={{fontSize:7}}>DELETE</Text>
-        </Button>
         </Body>
       </ListItem>
     );
@@ -72,6 +70,10 @@ export default class createWebtoonEpisodeScreen extends Component{
              <Button style={{width : 300,justifyContent:'center'}} onPress={()=>this.props.navigation.navigate("")}>
                  <Text>+ IMAGE</Text>
              </Button>
+         </Item>
+         <Item style={{justifyContent:'center'}}>
+         <Button danger style={{width : 300,justifyContent:'center'}}><Text>DELETE</Text>
+        </Button>
          </Item>
 
         </Content>

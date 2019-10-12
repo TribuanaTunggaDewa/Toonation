@@ -4,7 +4,7 @@ import {Container, Title, Content, Text, Header, Form, Card, CardItem, Item, Lab
 import Icon from 'react-native-vector-icons/FontAwesome'
 
 
-class LoginScreen extends Component {
+class loginScreen extends Component {
 
   constructor(props){
     super(props)
@@ -101,4 +101,4 @@ const style = StyleSheet.create({
     }
   })
 
-export default LoginScreen
+export default loginScreen

@@ -5,7 +5,7 @@ import Carousel from 'react-native-banner-carousel';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import ImagePicker from 'react-native-image-picker'
 
-export default class Profile extends Component{
+export default class profile extends Component{
   
   constructor(props){
     super(props)

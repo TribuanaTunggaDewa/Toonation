@@ -4,7 +4,7 @@ import {Container, Title, Content, Text, Header, Form, Card, CardItem, Item, Lab
 import Icon from 'react-native-vector-icons/FontAwesome'
 
 
-class DetailWebtoonScreen extends Component {
+class detailWebtoonScreen extends Component {
 
 constructor(props){
     super(props)
@@ -47,4 +47,4 @@ constructor(props){
   }
 }
 
-export default DetailWebtoonScreen
+export default detailWebtoonScreen

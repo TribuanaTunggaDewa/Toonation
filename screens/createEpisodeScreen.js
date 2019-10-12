@@ -4,7 +4,7 @@ import {Image,View,StyleSheet,Dimensions,ScrollView,FlatList,TouchableOpacity} f
 import Carousel from 'react-native-banner-carousel';
 
 
-export default class editWebtoonEpisodeScreen extends Component{
+export default class createEpisodeScreen extends Component{
   constructor(props){
     super(props)
     this.state={
@@ -33,11 +33,13 @@ export default class editWebtoonEpisodeScreen extends Component{
   allPage(image, index) {
     return (
         <ListItem style={{height:100,borderWidth:0}}>
-        <TouchableOpacity onPress={()=>this.props.navigation.navigate("", {title :image})} style={{width: 66, height: 58}}>
+        <TouchableOpacity onPress={()=>this.props.navigation.navigate("editWebtoonEpisode", {title :image})} style={{width: 66, height: 58}}>
         <Image source={{uri : image.image}} style={{width: 66, height: 58}}></Image>
         </TouchableOpacity>
         <Body>
         <Text style={{fontSize:20}}>{image.title}</Text>
+        <Button danger style={{height:15,width:70,marginLeft:12}}><Text style={{fontSize:7}}>DELETE</Text>
+        </Button>
         </Body>
       </ListItem>
     );
@@ -70,10 +72,6 @@ export default class editWebtoonEpisodeScreen extends Component{
              <Button style={{width : 300,justifyContent:'center'}} onPress={()=>this.props.navigation.navigate("")}>
                  <Text>+ IMAGE</Text>
              </Button>
-         </Item>
-         <Item style={{justifyContent: 'center'}}>
-              <Button danger style={{width : 300,justifyContent:'center'}}><Text>DELETE</Text>
-              </Button>
          </Item>
 
         </Content>

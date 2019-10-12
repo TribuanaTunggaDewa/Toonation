@@ -7,7 +7,7 @@ import Icon from 'react-native-vector-icons/FontAwesome'
 
 
 
-class DetailEpisodeScreen extends Component {
+class detailEpisodeScreen extends Component {
 
     constructor(props){
       super(props)
@@ -39,4 +39,4 @@ class DetailEpisodeScreen extends Component {
       }
 }
 
-export default DetailEpisodeScreen
+export default detailEpisodeScreen
