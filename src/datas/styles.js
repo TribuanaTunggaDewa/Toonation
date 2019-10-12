@@ -1,5 +1,8 @@
 import {StyleSheet} from 'react-native'
 
+const color = '#009688'
+const buttonColor = '#03A9F4'
+
 export default StyleSheet.create({
     
     container:{
@@ -24,7 +27,7 @@ export default StyleSheet.create({
         marginTop: 30
     },
     oneButton:{
-        backgroundColor:'#00BCD4',
+        backgroundColor: color,
         width: 270,
         height:50,
         alignSelf:'center',
@@ -39,7 +42,22 @@ export default StyleSheet.create({
     backgroundColor:'white'
 },text:{
     color:'white'
-}
+},imageBanner : {
+    width: 300,
+    height: 250
+},header:{
+    backgroundColor: color
+},buttoncolor :{
+    backgroundColor: buttonColor
+},imageBanner:{
+        width :400,
+        height:170
+    },
+    imagelist:{
+        width: 100,
+        height: 150,
+        marginStart: 30
+    }
    
 
 })

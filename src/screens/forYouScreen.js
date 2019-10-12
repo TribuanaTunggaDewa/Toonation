@@ -6,6 +6,7 @@
         import { FlatList } from 'react-native-gesture-handler'
         import dataBanner from '../datas/dataBanner'
         import  dataFavourite  from '../datas/dataFavourite'
+        import styles from '../datas/styles'
 
         const BannerWidth = 400
         const BannerHeight =  270
@@ -27,7 +28,7 @@
                     <TouchableOpacity onPress={()=> this.props.navigation.navigate('DetilWebtoon', {  item: images })} ><Image source={{uri:images.image}} /></TouchableOpacity>
                     <Body>
                         <Text>{images.title}</Text>
-                        <Button warning ><Text>+ Add Favorite</Text></Button>
+                        <Button style={styles.buttoncolor} ><Text>+ Add Favorite</Text></Button>
                     </Body>
                 </ListItem>
             )
@@ -42,7 +43,7 @@
 
             return(
                     <Container>
-                        <Header  searchBar rounded>
+                        <Header style={styles.header}  searchBar rounded>
                             <Item horizontal>
                                 <Input placeholder='Search' />
                                 <TouchableOpacity><Icon name='search' size={22  } /></TouchableOpacity>
@@ -60,30 +61,32 @@
                                     {this.state.images.map((img)=>{
                                         return(
                                             <View key={img.index}>
-                                                <TouchableOpacity onPress={()=> this.props.navigation.navigate('DetilWebtoon', {  item: img })}><Image  source={{ uri:img.image }}  /></TouchableOpacity>
+                                                <TouchableOpacity onPress={()=> this.props.navigation.navigate('DetilWebtoon', {  item: img })}><Image style={styles.imageBanner} source={{ uri:img.image }}  /></TouchableOpacity>
                                             </View>
                                         )
                                     })}
                                 </Carousel>
                             </Item>
+                            <Item>
+                            <Text>Favourite</Text>
+                            </Item>
                             <Item horizontal >
-                                <Text style={{color:'white', fontSize:18, flexWrap:'wrap-reverse'}}>Favourite</Text>
-                                <ScrollView horizontal style={{backgroundColor:'white', flex:1, marginLeft:0}}>
+                                <ScrollView horizontal >
                                     {this.state.favouriteUris.map((favouriteUri)=>{
                                         return(
 
                                             <View key={favouriteUri.index}>
                                                 <View>
-                                                <TouchableOpacity onPress={()=> this.props.navigation.navigate('DetilWebtoon', {  item: favouriteUri })}><Image style={{width:100, height:150}} source={{uri:favouriteUri.image}} /></TouchableOpacity>
+                                                <TouchableOpacity onPress={()=> this.props.navigation.navigate('DetilWebtoon', {  item: favouriteUri })}><Image style={styles.imagelist} source={{uri:favouriteUri.image}} /></TouchableOpacity>
                                                 </View>
-                                                <Text style={{textAlign:'center'}}>{favouriteUri.title}</Text>
+                                                <Text style={{textAlign:'center', marginStart:24}}>{favouriteUri.title}</Text>
                                             </View>                            
                                         )
                                     })} 
                                 </ScrollView>
                             </Item>
-                            <Item style={{backgroundColor:'#3D3C3A'}}>
-                                <Text style={{color:'white', fontSize:18}}>All</Text>
+                            <Item>
+                                <Text>All</Text>
                             </Item>
                             <FlatList
                             data={[...this.state.favouriteUris,...this.state.images]}
@@ -96,13 +99,5 @@
 
             )} 
         }
-
-        const styles = StyleSheet.create({
-            container: {
-                flex: 1,
-                backgroundColor: '#fff',
-                justifyContent: 'center'
-            },
-        })
 
         export default forYouScreen

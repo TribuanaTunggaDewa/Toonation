@@ -160,7 +160,7 @@
         })
       } 
     },{
-      initialRouteName : 'login'
+      initialRouteName : 'For You'
     })
 
 
