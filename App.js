@@ -56,9 +56,13 @@
                 screen : detailWebtoonScreen,
                 navigationOptions: ({ navigation }) => (console.log(navigation),{
                 title: `${navigation.state.params.item.title}`,
-                headerRight: < Icon name='share-alt' size={25} onPress={()=>onShare()} />,
+                headerRight:  < Icon name='share-alt' size={25} color='white' onPress={()=>onShare()} />,
                 headerStyle:{
-                  backgroundColor: '#009688',
+                  backgroundColor: '#009688'
+                },
+                headerTintColor:'white',
+                headerTitleStyle:{
+                  color:'white'
                 }
                 }),
               },
@@ -66,10 +70,14 @@
                 screen : detailEpisodeScreen,
                 navigationOptions: ({navigation})=> (console.log(navigation),{
                   title: `${navigation.state.params.frame.title}`,
-                  headerRight: < Icon name='share-alt' size={25}  onPress={()=>onShare()} />,
+                  headerRight: < Icon name='share-alt' size={25} color='white'  onPress={()=>onShare()} />,
                   headerStyle:{
                     backgroundColor: '#009688'
-                  }
+                  },
+                  headerTintColor:'white',
+                  headerTitleStyle:{
+                  color:'white'
+                }
                 })
               }
           },{
@@ -97,9 +105,13 @@
                 screen : detailWebtoonScreen,
                 navigationOptions: ({ navigation }) => (console.log(navigation),{
                 title: `${navigation.state.params.item.title}`,
-                headerRight: < Icon name='share-alt' size={25}  onPress={()=>onShare()} />,
+                headerRight: < Icon name='share-alt' size={25}  color='white' onPress={()=>onShare()} />,
                 headerStyle:{
                   backgroundColor: '#009688'
+                },
+                headerTintColor:'white',
+                headerTitleStyle:{
+                  color:'white'
                 }
                 }),
               },
@@ -107,10 +119,14 @@
                 screen : detailEpisodeScreen,
                 navigationOptions: ({navigation})=> (console.log(navigation),{
                   title: `${navigation.state.params.frame.title}`,
-                  headerRight: < Icon name='share-alt' size={25}  onPress={()=>onShare()} />,
+                  headerRight: < Icon name='share-alt' size={25}  color='white' onPress={()=>onShare()} />,
                   headerStyle:{
                     backgroundColor: '#009688'
-                  }
+                  },
+                  headerTintColor:'white',
+                  headerTitleStyle:{
+                  color:'white'
+                }
                 })
               }
               
@@ -132,10 +148,14 @@
                 navigationOptions : ({navigation}) => {
                   return {
                     title: 'Profile',
-                    headerRight: <Icon name='pencil' size={30} onPress = { ()=> navigation.navigate('ProfileEdit')} />,
+                    headerRight: <Icon name='pencil' size={30} color='white' onPress = { ()=> navigation.navigate('ProfileEdit')} />,
                     headerStyle:{
                       backgroundColor: '#009688'
-                    }
+                    },
+                    headerTintColor:'white',
+                    headerTitleStyle:{
+                      color:'white'
+                }
                   }
                 }
             },
@@ -143,10 +163,14 @@
                 screen : editProfileScreen, 
                 navigationOptions: ({navigation})=> ({
                     title: 'Edit Profile',
-                    headerRight: <Icon name='check' size={20}  onPress={ ()=> navigation.navigate('Profile') }  />,
+                    headerRight: <Icon name='check' size={20} color='white'  onPress={ ()=> navigation.navigate('Profile') }  />,
                     headerStyle:{
                       backgroundColor: '#009688'
-                    }
+                    },
+                    headerTintColor:'white',
+                    headerTitleStyle:{
+                      color:'white'
+                }
                 })
               },
               myWebtoon : {
@@ -155,35 +179,53 @@
                     title: 'My Webtoon',
                     headerStyle:{
                       backgroundColor: '#009688'
-                    }
+                    },
+                    headerTintColor:'white',
+                    headerTitleStyle:{
+                      color:'white'
+                }
                 }
               },
               createmyWebtoon : {
                 screen : createWebtoonScreen,
                   navigationOptions: ({navigation})=> ({
                     title: 'My Webtoon',
-                    headerRight: <Icon name='check' size={20}   />,
+                    headerRight: <Icon name='check' size={20} color='white'   />,
                     headerStyle:{
                       backgroundColor: '#009688'
+                    },
+                    headerTintColor:'white',
+                    headerTitleStyle:{
+                      color:'white'
                     }
                 })
                 },
               createwebtoonEpisode : {
                 screen : createEpisodeScreen,
+               
                 navigationOptions:{
                   title : 'Create Episode',
-                  headerRight: <Icon name='check' size={20}   />,
+                  headerRight: <Icon name='check' size={20} color='white'   />,
                   headerStyle:{
                     backgroundColor: '#009688'
+                  },
+                  headerTintColor:'white',
+                  headerTitleStyle:{
+                    color:'white'
                   }
                 }
               },
               editWebtoonEpisode : {
                 screen: editEpisodeScreen,
+                headerRight: <Icon name='check' size={20} color='white'   />,
                 navigationOptions: {
                   title : 'Edit Episode',
                   headerStyle:{
                     backgroundColor: '#009688'
+                  },
+                  headerTintColor:'white',
+                  headerTitleStyle:{
+                    color:'white'
                   }
                 }
               },
@@ -193,6 +235,11 @@
                   title: 'Edit Webtoon',
                   headerStyle:{
                     backgroundColor: '#009688'
+                  },
+                  headerRight: <Icon name='check' size={20} color='white'   />,
+                  headerTintColor:'white',
+                  headerTitleStyle:{
+                    color:'white'
                   }
                 }
               }
