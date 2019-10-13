@@ -44,7 +44,7 @@
             return(
                     <Container>
                         <Header style={styles.header}  searchBar rounded>
-                            <Item horizontal>
+                            <Item horizontal style={{padding:10}}>
                                 <Input placeholder='Search' />
                                 <TouchableOpacity><Icon name='search' size={22  } /></TouchableOpacity>
                             </Item>
@@ -76,10 +76,10 @@
                                         return(
 
                                             <View key={favouriteUri.index}>
-                                                <View>
+                                                <View style={styles.textList}>
                                                 <TouchableOpacity onPress={()=> this.props.navigation.navigate('DetilWebtoon', {  item: favouriteUri })}><Image style={styles.imagelist} source={{uri:favouriteUri.image}} /></TouchableOpacity>
+                                                <Text style={{textAlign:'center'}}>{favouriteUri.title}</Text>
                                                 </View>
-                                                <Text style={{textAlign:'center', marginStart:24}}>{favouriteUri.title}</Text>
                                             </View>                            
                                         )
                                     })} 

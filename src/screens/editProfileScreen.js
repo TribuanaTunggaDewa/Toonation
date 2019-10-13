@@ -35,8 +35,8 @@ handleChoosePhoto=()=>{
               <Image style={styles.circleBorder} source={{uri : this.state.photo.uri}}></Image>
               <Icon name='camera' size={30} onPress={this.handleChoosePhoto}/>
           </Item>
-          <Item style={styles.loginCard}>
-              <Input style={styles.textList} />
+          <Item>
+              <Input />
           </Item>
         </Content>
         
