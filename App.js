@@ -75,7 +75,7 @@
           },{
             navigationOptions:{
               tabBarLabel: 'For You',
-              tabBarIcon: ({activeTintColor}) => <Icon name='th-large' size={30} color={activeTintColor} />,
+              tabBarIcon: ({tintColor}) => <Icon name='th-large' size={30} color={tintColor} />,
               tabBarOptions:{
                 activeTintColor: 'white',
                 inactiveBackgroundColor: '#00796B',
@@ -117,7 +117,7 @@
             }),
             navigationOptions:{
               tabBarLabel: 'Favorite',
-              tabBarIcon: <Icon name='star' size={30}/>, 
+              tabBarIcon: ({tintColor}) => <Icon name='star' size={30} color={tintColor} />,
               tabBarOptions:{
                 activeTintColor: 'white',
                 inactiveBackgroundColor: '#00796B',
@@ -200,7 +200,7 @@
             ,
             navigationOptions: {
               tabBarLabel:'Profile',
-              tabBarIcon: <Icon name='user' size={30} />,
+              tabBarIcon: ({tintColor}) => <Icon name='user' size={30} color={tintColor} />,
               tabBarOptions: {
                 activeTintColor: 'white',
                 inactiveBackgroundColor: '#00796B',
