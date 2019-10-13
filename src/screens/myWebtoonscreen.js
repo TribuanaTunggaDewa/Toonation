@@ -2,54 +2,26 @@ import React, { Component } from 'react';
 import { Container,Header,Text, Body, Content, Form, Item, Input, Button,Toast,Root, Label,InputGroup, Footer, FooterTab, CardItem,Card, Left, Right, ListItem} from 'native-base'
 import {Image,View,StyleSheet,Dimensions,ScrollView,FlatList,TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome'
+import styles from '../datas/styles'
+import dataBanner from '../datas/dataBanner'
+import dataFavourite from '../datas/dataFavourite'
 
 
 export default class My_webtoon_creation extends Component{
   constructor(props){
     super(props)
     this.state={
-      BannerWidth: Dimensions.get('window').width,
-      BannerHeight: 260,
-      entries: [{
-        title: 'Young MOM',
-        episodes : 50,
-        image: 'https://akcdn.detik.net.id/community/media/visual/2019/04/03/dac43146-7dd4-49f4-89ca-d81f57b070fc.jpeg?w=770&q=90'
-      }, {
-        title: 'Old MOM',
-        favorite: '100 + favorite',
-        episodes : 50,
-        image: 'https://akcdn.detik.net.id/community/media/visual/2019/04/03/dac43146-7dd4-49f4-89ca-d81f57b070fc.jpeg?w=770&q=90'
-      }, {
-        title: 'Baby MOM',
-        favorite: '100 + favorite',
-        episodes : 50,
-        image: 'https://akcdn.detik.net.id/community/media/visual/2019/04/03/dac43146-7dd4-49f4-89ca-d81f57b070fc.jpeg?w=770&q=90'
-      },{
-        title: 'Teen MOM',
-        favorite: '100 + favorite',
-        episodes : 50,
-        image: 'https://akcdn.detik.net.id/community/media/visual/2019/04/03/dac43146-7dd4-49f4-89ca-d81f57b070fc.jpeg?w=770&q=90'
-      }, {
-        title: 'Very Old MOM',
-        favorite: '100 + favorite',
-        episodes : 50,
-        image: 'https://akcdn.detik.net.id/community/media/visual/2019/04/03/dac43146-7dd4-49f4-89ca-d81f57b070fc.jpeg?w=770&q=90'
-      }, {
-        title: 'Very Old MOM',
-        favorite: '100 + favorite',
-        episodes : 50,
-        image: 'https://akcdn.detik.net.id/community/media/visual/2019/04/03/dac43146-7dd4-49f4-89ca-d81f57b070fc.jpeg?w=770&q=90'
-      }]
+      entries: [...dataBanner,...dataFavourite]
     }
   }
   
   allPage(image, index) {
     return (
-      <ListItem style={{height:100,borderWidth:0}}>
-        <Image source={{uri : image.image}} style={{width: 66, height: 58}}></Image>
-        <Body>
-        <Text style={{fontSize:20}}>{image.title}</Text>
-        <Text style={{fontSize:10, marginTop:10}}>{image.episodes}</Text>
+      <ListItem >
+        <Image style={styles.imagelist} source={{uri : image.image}} ></Image>
+        <Body style={styles.textList} >
+        <Text >{image.title}</Text>
+        <Text >{image.episodes}</Text>
         </Body>
       </ListItem>
     );
@@ -59,49 +31,18 @@ export default class My_webtoon_creation extends Component{
     
     return (
       <Container>
-        <Content style={{backgroundColor: 'grey'}}>
-          <Item style={{borderWidth:5}}>
-            <FlatList style={{borderWidth:0}}
+        <Content style={styles.content}>
+          <Item>
+            <FlatList 
             data={this.state.entries} 
             renderItem={({ item }) => this.allPage(item)}
             keyExtractor={item => item.id}
-            >
-            </FlatList>
-            <TouchableOpacity
-          onPress={()=> this.props.navigation.navigate('createmyWebtoon') }
-          style={styles.TouchableOpacityStyle}>
-          <Icon name='plus-circle' size={50}
-            color='#03A9F4'
-            style={styles.FloatingButtonStyle}
-          />
-        </TouchableOpacity>
+            />
+          <Icon name='plus-circle' color='#03A9F4' size={50} onPress={()=> this.props.navigation.navigate('createmyWebtoon') }/>
           </Item>
           
         </Content>
       </Container>
     )
   }
-};
-
-const styles = StyleSheet.create({
-  container: {
-      flex: 1,
-      backgroundColor: '#fff',
-      justifyContent: 'center'
-  },
-  TouchableOpacityStyle: {
-    position: 'absolute',
-    width: 50,
-    height: 50,
-    alignItems: 'center',
-    justifyContent: 'center',
-    right: 30,
-    bottom: 10,
-  },
-  FloatingButtonStyle: {
-    resizeMode: 'contain',
-    width: 50,
-    height: 50,
-    //backgroundColor:'black'
-  },
-});
+}

@@ -3,13 +3,12 @@ import { Icon,Container,Header,Text, Body, Content, Form, Item, Input, Button,To
 import {Image,View,StyleSheet,Dimensions,ScrollView,FlatList,TouchableOpacity} from 'react-native';
 import Carousel from 'react-native-banner-carousel';
 import styles from '../datas/styles'
+import { Colors } from 'react-native/Libraries/NewAppScreen';
 
 export default class createWebtoonScreen extends Component{
   constructor(props){
     super(props)
     this.state={
-      BannerWidth: Dimensions.get('window').width,
-      BannerHeight: 260,
       entries: [{
         title: 'Episode 1',
         date: '1 Januari 1945',
@@ -32,13 +31,13 @@ export default class createWebtoonScreen extends Component{
   
   allPage(image, index) {
     return (
-        <ListItem style={{height:100,borderWidth:0}}>
-        <TouchableOpacity onPress={()=>this.props.navigation.navigate("EditWebtoon", {title :image})} style={{width: 66, height: 58}}>
-        <Image source={{uri : image.image}} style={{width: 66, height: 58}}></Image>
+        <ListItem>
+        <TouchableOpacity onPress={()=>this.props.navigation.navigate("EditWebtoon", {title :image})} >
+        <Image style={styles.imagelist} source={{uri : image.image}} ></Image>
         </TouchableOpacity>
-        <Body>
-        <Text style={{fontSize:20}}>{image.title}</Text>
-        <Text style={{fontSize:10}}>{image.date}</Text>
+        <Body style={styles.textList}>
+        <Text>{image.title}</Text>
+        <Text>{image.date}</Text>
         </Body>
       </ListItem>
     );
@@ -48,26 +47,26 @@ export default class createWebtoonScreen extends Component{
     
     return (
       <Container>
-        <Content style={styles.content}>
+        <Content style={styles.content} >
             <Label>
                     <Text>Title</Text>
             </Label>  
-          <Item regular style={{height: 40 ,width:Dimensions.get('window').width-20}}>
-            <Input style={{justifyContent:'center'}} label='' ></Input>
+          <Item >
+            <Input style={styles.input}></Input>
             
           </Item>
           <Item>
-            <FlatList style={{borderWidth:0}}
+            <FlatList 
             data={this.state.entries} 
             renderItem={({ item }) => this.allPage(item)}
             keyExtractor={item => item.id}
             >
             </FlatList>
          </Item>
-         <Item >
-             <Button style={styles.oneButton} onPress={()=>this.props.navigation.navigate("createwebtoonEpisode")} >
-                 <Text >+ ADD EPISODE</Text>
-             </Button>
+         <Item style={{justifyContent:'center'}}>
+             <TouchableOpacity style={styles.oneButton}  onPress={()=>this.props.navigation.navigate("createwebtoonEpisode")} >
+                 <Text style={[styles.TextButton, {color:'white'}]}>+ ADD EPISODE</Text>
+             </TouchableOpacity>
          </Item>
 
         </Content>

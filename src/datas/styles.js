@@ -5,6 +5,9 @@ const buttonColor = '#03A9F4'
 
 export default StyleSheet.create({
     
+    input: {
+        width: 100
+    },
     container:{
         padding: 10,
         alignItems: 'center'
@@ -40,7 +43,8 @@ export default StyleSheet.create({
         fontSize:18,
         textAlign:'center',
         justifyContent:'center',
-        paddingTop: 10
+        paddingTop: 10,
+        color:'white'
 
 },header:{
     backgroundColor: color
@@ -58,7 +62,7 @@ buttoncolor :{
     imagelist:{
         width: 100,
         height: 150,
-        marginStart: 25,
+        marginStart: 10,
         padding: 10
         
     },   splitButton:{
