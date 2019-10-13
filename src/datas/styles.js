@@ -39,6 +39,18 @@ export default StyleSheet.create({
         height:50,
         alignSelf: 'center'
     },
+    oneButtonDanger:{
+        backgroundColor: '#F44336',
+        width: 270,
+        height:50,
+        alignSelf: 'center'
+    },
+    splitButtonDanger:{
+        backgroundColor: '#F44336',
+        height: 50,
+        marginStart: 11,
+        textAlignVertical: 'center'
+    },
     TextButton:{
         fontSize:18,
         textAlign:'center',
@@ -68,6 +80,7 @@ buttoncolor :{
     },   splitButton:{
         backgroundColor: buttonColor,
         marginStart: 11,
+
     },
     textList:{
         marginStart: 30

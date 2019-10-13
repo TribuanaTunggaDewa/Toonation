@@ -2,14 +2,13 @@ import React, { Component } from 'react';
 import { Icon,Container,Header,Text, Body, Content, Form, Item, Input, Button,Toast,Root, Label,InputGroup, Footer, FooterTab, CardItem,Card, Left, Right, ListItem} from 'native-base'
 import {Image,View,StyleSheet,Dimensions,ScrollView,FlatList,TouchableOpacity} from 'react-native';
 import Carousel from 'react-native-banner-carousel';
+import styles from '../datas/styles'
 
 
 export default class editWebtoonscreen extends Component{
   constructor(props){
     super(props)
     this.state={
-      BannerWidth: Dimensions.get('window').width,
-      BannerHeight: 260,
       entries: [{
         title: 'Webtoon 1',
         date: '1 Januari 1945',
@@ -32,12 +31,12 @@ export default class editWebtoonscreen extends Component{
   
   allPage(image, index) {
     return (
-        <ListItem style={{height:100,borderWidth:0}}>
-        <TouchableOpacity onPress={()=>this.props.navigation.navigate("", {title :image})} style={{width: 66, height: 58}}>
-        <Image source={{uri : image.image}} style={{width: 66, height: 58}}></Image>
+        <ListItem >
+        <TouchableOpacity onPress={()=>this.props.navigation.navigate("", {title :image})} >
+        <Image style={styles.imagelist} source={{uri : image.image}} ></Image>
         </TouchableOpacity>
-        <Body>
-        <Text style={{fontSize:20}}>{image.title}</Text>
+        <Body style={styles.textList}>
+        <Text>{image.title}</Text>
         </Body>
       </ListItem>
     );
@@ -47,11 +46,11 @@ export default class editWebtoonscreen extends Component{
     
     return (
       <Container>
-        <Content>
+        <Content style={styles.content}>
             <Label>
                     <Text>Name</Text>
             </Label>  
-          <Item regular style={{height: 40 ,width:Dimensions.get('window').width-20}}>
+          <Item>
             <Input></Input>
             
           </Item>
@@ -59,7 +58,7 @@ export default class editWebtoonscreen extends Component{
                     <Text>Add Image</Text>
             </Label>  
           <Item>
-            <FlatList style={{borderWidth:0}}
+            <FlatList 
             data={this.state.entries} 
             renderItem={({ item }) => this.allPage(item)}
             keyExtractor={item => item.id}
@@ -67,13 +66,13 @@ export default class editWebtoonscreen extends Component{
             </FlatList>
          </Item>
          <Item style={{justifyContent: 'center'}}>
-             <Button style={{width : 300,justifyContent:'center'}} onPress={()=>this.props.navigation.navigate("")}>
-                 <Text>+ IMAGE</Text>
-             </Button>
+             <TouchableOpacity style={styles.oneButton}  onPress={()=>this.props.navigation.navigate("")}>
+                 <Text style={styles.TextButton}>+ IMAGE</Text>
+             </TouchableOpacity>
          </Item>
          <Item style={{justifyContent:'center'}}>
-         <Button danger style={{width : 300,justifyContent:'center'}}><Text>DELETE</Text>
-        </Button>
+         <TouchableOpacity style={styles.oneButtonDanger} ><Text style={styles.TextButton}>DELETE</Text>
+        </TouchableOpacity>
          </Item>
 
         </Content>
@@ -82,10 +81,3 @@ export default class editWebtoonscreen extends Component{
   }
 };
 
-const styles = StyleSheet.create({
-  container: {
-      flex: 1,
-      backgroundColor: '#fff',
-      justifyContent: 'center'
-  },
-});
