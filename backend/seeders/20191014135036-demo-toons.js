@@ -10,7 +10,7 @@ module.exports = {
           image: "https://www.forbes.com/sites/joanmacdonald.jpg",
           createdAt: new Date(),
           updatedAt: new Date(),
-          created_by:1
+          createdBy:1
         },
         {
           title: "A Good Day to be a Dog",
@@ -19,7 +19,7 @@ module.exports = {
           image: "https://www.forbes.com/sites/joanmacdonald.jpg",
           createdAt: new Date(),
           updatedAt: new Date(),
-          created_by:1
+          createdBy:1
         }
       ], {})
   },

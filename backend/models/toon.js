@@ -5,7 +5,7 @@ module.exports = (sequelize, DataTypes) => {
     genre: DataTypes.STRING,
     isFavorite: DataTypes.BOOLEAN,
     image: DataTypes.STRING,
-    created_by: DataTypes.INTEGER
+    createdBy: DataTypes.INTEGER
   }, {});
   toon.associate = function(models) {
     // associations can be defined here
