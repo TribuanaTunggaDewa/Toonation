@@ -54,6 +54,10 @@ app.group("/api/v1", (router) => {
 
     //create my episode implementation
     router.post('/user/:id/webtoon/:wbToonid/episode', authenticated, Toonations.createMyepisode)
+
+
+    //get all images based on episode
+    router.get('/user/:id/webtoon/:wbToonid/episode/:id_ep/images', authenticated, Toonations.getMypage)
  
     //another APIs goes here
 })

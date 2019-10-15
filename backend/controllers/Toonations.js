@@ -149,3 +149,25 @@ exports.createMyepisode = (req, res)=> {
     Episodes.create(req.body, req.body.from = req.params.wbToonid).then(toons=> res.send(toons))
 }
 
+exports.getMypage = (req, res) => {
+
+    Pages.findAll({
+            where: {from: req.params.id_ep},
+            include: {
+                model: Episodes,
+                as: 'from_episodes',
+                where : {
+                    from: req.params.wbToonid
+                },
+                include:{
+                    model: Toon,
+                    as: 'from_toons',
+                    where:{
+                        createdBy: req.params.id
+                    }
+                }
+            }
+    }).then(page=>res.send(page))
+
+}
+
