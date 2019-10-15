@@ -48,6 +48,9 @@ app.group("/api/v1", (router) => {
 
     //update my webtoon creation
     router.put('/user/:id/webtoon/:wbToonid', authenticated, Toonations.editMywebtoon)
+
+    //delete my webtoon creation
+    router.delete('/user/:id/webtoon/:wbToonid', authenticated, Toonations.deleteMywebtoon)
  
     //another APIs goes here
 })

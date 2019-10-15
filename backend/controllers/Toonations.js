@@ -130,3 +130,16 @@ exports.editMywebtoon = (req, res)=> {
                 })
                 )
 }
+
+exports.deleteMywebtoon = (req, res)=> {
+    
+    Toon.destroy({where:
+                    {
+                        createdBy: req.params.id,
+                        id: req.params.wbToonid
+                    }}).then(toon=>res.send({
+                        message: 'success',
+                        toon
+                    }))
+
+}
