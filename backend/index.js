@@ -27,7 +27,10 @@ app.group("/api/v1", (router) => {
     router.get('/webtoons', Toonations.index)
     
     //episodes API
-    router.get('/webtoons/:id/episodes', Toonations.episodes)
+    router.get('/webtoon/:id/episodes', Toonations.episodes)
+
+    //pages API
+    router.get('/webtoon/:id/episode/:id_ep', Toonations.pages)
  
     //another APIs goes here
 })
