@@ -9,6 +9,10 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   toon.associate = function(models) {
     // associations can be defined here
+    toon.belongsTo(models.user,{
+      as: 'created_by',
+      foreignKey: 'createdBy'
+    })
   };
   return toon;
 };

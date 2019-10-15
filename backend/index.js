@@ -23,8 +23,11 @@ app.group("/api/v1", (router) => {
     //auth API
 	router.post('/login', AuthController.login)
 
-    //todos API
-    router.get('/webtoons', Toonations.index)    
+    //toons API
+    router.get('/webtoons', Toonations.index)
+    
+    //episodes API
+    router.get('/webtoons/:id/episodes', Toonations.episodes)
  
     //another APIs goes here
 })
