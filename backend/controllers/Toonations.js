@@ -114,3 +114,19 @@ exports.myEpisode = (req, res) => {
              }
          }}).then(episode=>res.send(episode))      
 }
+
+exports.editMywebtoon = (req, res)=> {
+
+    const result = req.body
+
+    Toon.update(req.body,
+                {where:{createdBy: req.params.id, 
+                        id: req.params.wbToonid}
+                }).then(toon=>res.send({
+                    message: 'success',
+                    toon,
+                    result
+                    
+                })
+                )
+}
