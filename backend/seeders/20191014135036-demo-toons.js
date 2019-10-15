@@ -4,7 +4,7 @@ module.exports = {
   up: (queryInterface, Sequelize) => {
       return queryInterface.bulkInsert('toons', [
         {
-          title: "True Beuty",
+          title: "True Ugly",
           genre:"Drama",
           isFavorite: false,
           image: "https://www.forbes.com/sites/joanmacdonald.jpg",
@@ -13,7 +13,7 @@ module.exports = {
           createdBy:1
         },
         {
-          title: "A Good Day to be a Dog",
+          title: "A Good Day to be a bug",
           genre:"Drama",
           isFavorite: true,
           image: "https://www.forbes.com/sites/joanmacdonald.jpg",

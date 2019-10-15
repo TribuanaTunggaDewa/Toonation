@@ -2,6 +2,7 @@
 require('express-group-routes')
 const express = require('express')
 const app = express()
+const querystring = require('querystring')
 const bodyParser = require('body-parser')
 const port = 5000
 
@@ -32,6 +33,9 @@ app.group("/api/v1", (router) => {
 
     //pages API
     router.get('/webtoon/:id/episode/:id_ep', Toonations.pages)
+
+    //Favorite API
+    router.get('/webtoon?is_favorite=true', Toonations.favorite)
  
     //another APIs goes here
 })

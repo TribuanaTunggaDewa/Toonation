@@ -6,12 +6,27 @@ const Pages = models.pages
 
 exports.index = (req, res) => {
 
-    Toon.findAll({
-        include:[{
-            model: User,
-            as: "created_by"
-        }]
-    }).then(toons=>res.send(toons))
+    if(req.query.is_favorite){
+
+        Toon.findAll({
+            where: {
+                isFavorite : true
+            },
+            include:[{
+                model: User,
+                as: "created_by"
+            }]
+        }).then(toons=>res.send(toons))
+        
+    }else{
+
+        Toon.findAll({
+            include:[{
+                model: User,
+                as: "created_by"
+            }]
+        }).then(toons=>res.send(toons))
+    }
 
 }
 
@@ -47,5 +62,19 @@ exports.pages = (req, res)=>{
         }
         
     }).then(page=>res.send(page))
+}
+
+exports.favorite = (req, res)=>{
+
+    Toon.findAll({
+        where: {
+           isFavorite : req.query.is_favorite
+        },
+        include:[{
+            model: User,
+            as: "created_by"
+        }]
+    }).then(toons=>res.send(toons))
 
 }
+
