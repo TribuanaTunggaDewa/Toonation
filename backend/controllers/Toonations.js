@@ -209,7 +209,17 @@ exports.createMypage = (req, res) => {
 
 }
 
+exports.deleteMypage = (req, res) => {
 
+    Pages.destroy({where: {from: req.params.id_ep,
+                                id: req.params.img_id
+                        }}).then(result=>{
+                            res.send({
+                                message : 'success',
+                                result
+                            })
+                        })
+}
 
 
 
