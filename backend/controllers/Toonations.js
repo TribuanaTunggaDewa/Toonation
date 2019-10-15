@@ -202,6 +202,13 @@ exports.deleteMyepisode = (req, res) => {
 
 }
 
+exports.createMypage = (req, res) => {
+
+
+    Pages.create(req.body, req.body.from = req.params.id_ep).then(page=>res.send(page))
+
+}
+
 
 
 
