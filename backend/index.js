@@ -58,6 +58,11 @@ app.group("/api/v1", (router) => {
 
     //get all images based on episode
     router.get('/user/:id/webtoon/:wbToonid/episode/:id_ep/images', authenticated, Toonations.getMypage)
+
+    //update / detail my episode implementation
+    router.put('/user/:id/webtoon/:wbToonid/episode/:id_ep', authenticated, Toonations.editMyepisode)
+
+    
  
     //another APIs goes here
 })

@@ -171,3 +171,21 @@ exports.getMypage = (req, res) => {
 
 }
 
+exports.editMyepisode = (req, res) => {
+
+    Episodes.update(req.body,
+                    {where : {from: req.params.wbToonid,
+                              id: req.params.id_ep},
+                              include:{
+                                  model: Toon,
+                                  as: 'from_toons',
+                                  where:{
+                                      id: req.params.id
+                                  }
+                              }}).then(episode=>res.send(episode))
+}
+
+
+
+
+
