@@ -51,6 +51,9 @@ app.group("/api/v1", (router) => {
 
     //delete my webtoon creation
     router.delete('/user/:id/webtoon/:wbToonid', authenticated, Toonations.deleteMywebtoon)
+
+    //create my episode implementation
+    router.post('/user/:id/webtoon/:wbToonid/episode', authenticated, Toonations.createMyepisode)
  
     //another APIs goes here
 })

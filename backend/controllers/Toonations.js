@@ -143,3 +143,9 @@ exports.deleteMywebtoon = (req, res)=> {
                     }))
 
 }
+
+exports.createMyepisode = (req, res)=> {
+
+    Episodes.create(req.body, req.body.from = req.params.wbToonid).then(toons=> res.send(toons))
+}
+
