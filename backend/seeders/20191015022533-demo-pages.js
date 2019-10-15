@@ -7,21 +7,21 @@ module.exports = {
       {
         page: 1,
         image: "https://www.forbes.com/sites/joanmacdonald.jpg",
-        from: 6,
+        from: 2,
         createdAt: new Date(),
         updatedAt : new Date()
       },
       {
         page: 2,
         image: "https://www.forbes.com/sites/joanmacdonald.jpg",
-        from: 6,
+        from: 2,
         createdAt: new Date(),
         updatedAt : new Date()
       },
       {
         page: 3,
         image: "https://www.forbes.com/sites/joanmacdonald.jpg",
-        from: 6,
+        from: 2,
         createdAt: new Date(),
         updatedAt : new Date()
       }], {});

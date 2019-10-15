@@ -177,13 +177,31 @@ exports.editMyepisode = (req, res) => {
                     {where : {from: req.params.wbToonid,
                               id: req.params.id_ep},
                               include:{
-                                  model: Toon,
+                                  model: Toon ,
                                   as: 'from_toons',
                                   where:{
                                       id: req.params.id
                                   }
-                              }}).then(episode=>res.send(episode))
+                              }}).then(episode=>res.send({
+                                  message: 'success',
+                                  episode
+                              }))
 }
+
+exports.deleteMyepisode = (req, res) => {
+
+
+    Episodes.destroy({where: {from : req.params.wbToonid,
+                               id: req.params.id_ep}}).then(result=>{
+                                   res.send({
+                                       message: 'success',
+                                       result
+                                   })
+                               })
+    
+
+}
+
 
 
 

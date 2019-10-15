@@ -62,7 +62,10 @@ app.group("/api/v1", (router) => {
     //update / detail my episode implementation
     router.put('/user/:id/webtoon/:wbToonid/episode/:id_ep', authenticated, Toonations.editMyepisode)
 
-    
+    //delete episode
+    router.delete('/user/:id/webtoon/:wbToonid/episode/:id_ep', authenticated, Toonations.deleteMyepisode)
+
+
  
     //another APIs goes here
 })

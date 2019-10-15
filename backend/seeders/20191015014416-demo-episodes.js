@@ -7,7 +7,7 @@ module.exports = {
       {
         title: "Ep.1",
         image: "https://www.forbes.com/sites/joanmacdonald.jpg",
-        from: 2,
+        from: 1,
         createdAt: new Date(),
         updatedAt : new Date()
       },
