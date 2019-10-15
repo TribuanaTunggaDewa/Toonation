@@ -83,3 +83,13 @@ exports.webtoon = (req, res) => {
     }
 
 }
+
+exports.mywebtoons = (req, res)=>{
+
+    Toon.findAll({
+        where:{
+            createdBy : req.params.id
+        }
+    }).then(toons=>res.send(toons))        
+
+}

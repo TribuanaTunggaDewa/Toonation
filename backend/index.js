@@ -35,7 +35,10 @@ app.group("/api/v1", (router) => {
     router.get('/webtoon/:id/episode/:id_ep', Toonations.pages)
 
     //pages Favorite
-    router.get('/webtoon', Toonations.webtoon)
+    router.get('/webtoon',authenticated, Toonations.webtoon)
+
+    //my creation webtoons
+    router.get('/user/:id/webtoons',authenticated, Toonations.mywebtoons)
 
  
     //another APIs goes here
