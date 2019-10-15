@@ -93,3 +93,24 @@ exports.mywebtoons = (req, res)=>{
     }).then(toons=>res.send(toons))        
 
 }
+
+exports.createMywebtoon = (req, res) => {
+
+    Toon.create(req.body, req.body.createdBy = req.params.id).then(toons=>res.send(toons))
+
+}
+
+exports.myEpisode = (req, res) => {
+    
+    Episodes.findAll(
+        {where: {
+            from: req.params.wbToonid
+        },
+         include: {
+             model: Toon,
+             as: "from_toons",
+             where:{
+             createdBy: req.params.id
+             }
+         }}).then(episode=>res.send(episode))      
+}

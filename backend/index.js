@@ -40,6 +40,13 @@ app.group("/api/v1", (router) => {
     //my creation webtoons
     router.get('/user/:id/webtoons',authenticated, Toonations.mywebtoons)
 
+    //create my creation webtoons
+    router.post('/user/:id/webtoon', authenticated, Toonations.createMywebtoon ) 
+    
+    //get episode based on my creation webtoons
+    router.get('/user/:id/webtoon/:wbToonid/episodes', Toonations.myEpisode)
+
+
  
     //another APIs goes here
 })
