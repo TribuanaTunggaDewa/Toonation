@@ -257,7 +257,7 @@
         }),
       } 
     },{
-      initialRouteName : 'For You'
+      initialRouteName : 'login'
     })
 
 

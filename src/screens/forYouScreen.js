@@ -8,6 +8,7 @@
         import  dataFavourite  from '../datas/dataFavourite'
         import styles from '../datas/styles'
         import axios from 'axios'
+import AsyncStorage from '@react-native-community/async-storage'
 
         const BannerWidth = 400
 
@@ -20,12 +21,30 @@
                 images : dataBanner,
                 favouriteUris : dataFavourite,
                 datas : [],
-                favourite: []
+                favourite: [],
+                token: ''
             }
         }
 
-        componentDidMount(){
-            axios.get('http://192.168.1.13:5000/api/v1/webtoons')
+        async SessionTokenCheck(){
+            try{
+                const Tokenize = await AsyncStorage.getItem('uToken')
+                if(Tokenize !== null){
+                    this.setState({token: Tokenize})
+                    return Tokenize
+                }
+            }catch(error){
+                console.log('Error Storing the Token')
+            }
+        }
+
+        async componentDidMount(){
+            await this.SessionTokenCheck() 
+            axios.get('http://192.168.1.13:5000/api/v1/webtoons',{
+                headers: {
+                    'Authorization': 'Bearer '+ this.state.token 
+                }
+            })
             .then(res=>{
                 const datas = res.data
                 this.setState({datas})
@@ -35,7 +54,11 @@
             })
 
 
-            axios.get('http://192.168.1.13:5000/api/v1/webtoons?is_favorite=true')
+            axios.get('http://192.168.1.13:5000/api/v1/webtoons?is_favorite=true',{
+                headers:{
+                    'Authorization': 'Bearer '+ this.state.token
+                }
+            })
             .then(res=>{
                 const favourite = res.data
                 this.setState({favourite})

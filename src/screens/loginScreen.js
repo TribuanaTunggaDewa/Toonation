@@ -3,6 +3,8 @@
     import {Container, Title, Content, Text, Header, Form, Card, CardItem, Item, Label, Input, Button} from 'native-base'
     import Icon from 'react-native-vector-icons/FontAwesome'
     import styles from '../datas/styles'
+    import axios from 'axios'
+    import AsyncStorage from '@react-native-community/async-storage'
 
 
     class loginScreen extends Component {
@@ -14,8 +16,35 @@
             statusHide : true,
             noteEmail : '',
             notePassword : '',
+            input_email: '',
+            input_password:'',
             button_status : true
           }
+      }
+
+      login = async () => {
+        try{
+          let temp = {
+            email : this.state.input_email,
+            password: this.state.input_password
+          }
+          await axios.post('http://192.168.1.13:5000/api/v1/login', temp)
+          .then((response)=>{
+            if(typeof response.data.token !== 'undefined'){
+              AsyncStorage.setItem('uToken', response.data.token)
+              this.props.navigation.navigate('For You')
+              console.log(response.data.token)
+            }else{
+              alert('Gagal Login')
+            }
+          })
+          .catch((error)=>{
+            alert(error)
+          })
+        }
+        catch(e){
+          console.log(e)
+        }
       }
 
 
@@ -31,7 +60,7 @@
       }
 
       validatePassword = (password)=>{
-        if(/^(?=.{8,})/.test(password)){
+        if(/^(?=.{1,})/.test(password)){
             this.setState({ notePassword: 'Password correct'})
         }
         else {
@@ -67,7 +96,7 @@
                       </CardItem>
                       <CardItem style={styles.cardItem}>
                       <Item>
-                      <TouchableOpacity style={styles.oneButton} disabled={this.state.button_status} onPress={()=> this.props.navigation.navigate('For You')} ><Text style={styles.TextButton} >LOG IN</Text></TouchableOpacity>
+                      <TouchableOpacity style={styles.oneButton} disabled={this.state.button_status} onPress={()=> this.login()} ><Text style={styles.TextButton} >LOG IN</Text></TouchableOpacity>
                       </Item>
                       </CardItem>
                       </Card>
