@@ -1,0 +1,17 @@
+//episodes
+ episodes.belongsTo(models.toon,{
+      as: 'from_toons',
+      foreignKey: 'from'
+
+//paged
+  pages.belongsTo(models.episodes, {
+        as: 'from_episodes',
+        foreignKey: 'from'
+
+//toon
+toon.belongsTo(models.user,{
+      as: 'created_by',
+      foreignKey: 'createdBy'
+    })
+
+//
