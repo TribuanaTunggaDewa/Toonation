@@ -7,9 +7,9 @@
         import dataBanner from '../datas/dataBanner'
         import  dataFavourite  from '../datas/dataFavourite'
         import styles from '../datas/styles'
+        import axios from 'axios'
 
         const BannerWidth = 400
-        const BannerHeight =  270
 
 
         class forYouScreen extends Component {
@@ -18,8 +18,32 @@
             super(props)
             this.state = {
                 images : dataBanner,
-                favouriteUris : dataFavourite
+                favouriteUris : dataFavourite,
+                datas : [],
+                favourite: []
             }
+        }
+
+        componentDidMount(){
+            axios.get('http://192.168.1.13:5000/api/v1/webtoons')
+            .then(res=>{
+                const datas = res.data
+                this.setState({datas})
+                console.log(datas)
+            }).catch(error => {
+                console.log(error.message)
+            })
+
+
+            axios.get('http://192.168.1.13:5000/api/v1/webtoons?is_favorite=true')
+            .then(res=>{
+                const favourite = res.data
+                this.setState({favourite})
+                console.log(datas)
+            }).catch(error => {
+                console.log(error.message)
+            })
+
         }
 
         allpage(images){
@@ -72,7 +96,7 @@
                             </Item>
                             <Item horizontal style={styles.content} >
                                 <ScrollView horizontal >
-                                    {this.state.favouriteUris.map((favouriteUri)=>{
+                                    {this.state.favourite.map((favouriteUri)=>{
                                         return(
 
                                             <View key={favouriteUri.index}>
@@ -89,7 +113,7 @@
                                 <Text>All</Text>
                             </Item>
                             <FlatList
-                            data={[...this.state.favouriteUris,...this.state.images]}
+                            data={this.state.datas}
                             renderItem={({item})=> this.allpage(item) }
                             style={styles.content}
                             >
