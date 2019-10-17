@@ -4,6 +4,7 @@ import {Container, Title, Content, Text, Header, Form, Card, CardItem, Item, Lab
 import Icon from 'react-native-vector-icons/FontAwesome'
 import styles from '../datas/styles'
 import axios from 'axios'
+import {ip} from '../datas/dataIp'
 
 
 class detailWebtoonScreen extends Component {
@@ -17,7 +18,7 @@ constructor(props){
 }
 
 componentDidMount(){
-  axios.get(`http://192.168.1.13:5000/api/v1/webtoon/${this.state.item.id}/episodes`)
+  axios.get(`${ip}/api/v1/webtoon/${this.state.item.id}/episodes`)
   .then(res=>{
       const datas = res.data
       this.setState({datas})

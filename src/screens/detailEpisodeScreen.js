@@ -3,6 +3,7 @@ import {View, StyleSheet, TouchableOpacity, ScrollView , FlatList, Image}  from 
 import {Container, Title, Content, Text, Header, Form, Card, CardItem, Item, Label, Input, Button} from 'native-base'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import axios from 'axios'
+import {ip} from '../datas/dataIp'
 
 
 
@@ -19,7 +20,7 @@ class detailEpisodeScreen extends Component {
     }
 
     componentDidMount(){
-      axios.get(`http://192.168.1.13:5000/api/v1/webtoon/${this.state.item.id}/episodes`)
+      axios.get(`${ip}/api/v1/webtoon/${this.state.item.from}/episode/${this.state.item.id}`)
       .then(res=>{
           const datas = res.data
           this.setState({datas})

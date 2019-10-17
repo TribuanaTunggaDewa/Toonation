@@ -5,6 +5,7 @@ import Carousel from 'react-native-banner-carousel';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import ImagePicker from 'react-native-image-picker'
 import styles from '../datas/styles';
+import AsyncStorage from '@react-native-community/async-storage';
 
 class profile extends Component{
   
@@ -46,9 +47,9 @@ handleChoosePhoto=()=>{
                 </Right>
 
           </Item>
-          <Item>
-            <TouchableOpacity style={{width:Dimensions.get('window').width}} >
-            <Text>Log Out</Text>
+          <Item style={{justifyContent:'center'}} onPress={()=>{AsyncStorage.removeItem('uToken',()=>{this.props.navigation.navigate('login')})}}>
+            <TouchableOpacity style={styles.oneButtonDanger} >
+            <Text style={styles.TextButton}>Log Out</Text>
             </TouchableOpacity> 
           </Item>
         </Content>

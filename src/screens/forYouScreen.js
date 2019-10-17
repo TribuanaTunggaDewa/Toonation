@@ -8,7 +8,9 @@
         import  dataFavourite  from '../datas/dataFavourite'
         import styles from '../datas/styles'
         import axios from 'axios'
-import AsyncStorage from '@react-native-community/async-storage'
+        import AsyncStorage from '@react-native-community/async-storage'
+        import {ip} from '../datas/dataIp'
+
 
         const BannerWidth = 400
 
@@ -22,6 +24,8 @@ import AsyncStorage from '@react-native-community/async-storage'
                 favouriteUris : dataFavourite,
                 datas : [],
                 favourite: [],
+                searchdat: [],
+                search:'',
                 token: ''
             }
         }
@@ -40,7 +44,7 @@ import AsyncStorage from '@react-native-community/async-storage'
 
         async componentDidMount(){
             await this.SessionTokenCheck() 
-            axios.get('http://192.168.1.13:5000/api/v1/webtoons',{
+            axios.get(`${ip}/api/v1/webtoons`,{
                 headers: {
                     'Authorization': 'Bearer '+ this.state.token 
                 }
@@ -54,7 +58,7 @@ import AsyncStorage from '@react-native-community/async-storage'
             })
 
 
-            axios.get('http://192.168.1.13:5000/api/v1/webtoons?is_favorite=true',{
+            axios.get(`${ip}/api/v1/webtoon?is_favorite=true`,{
                 headers:{
                     'Authorization': 'Bearer '+ this.state.token
                 }
@@ -68,6 +72,25 @@ import AsyncStorage from '@react-native-community/async-storage'
             })
 
         }
+
+        async handleSearch(title){
+            await this.SessionTokenCheck()
+            axios.get(`${ip}/api/v1/webtoon?title=${title}`,{
+                headers:{
+                    'Authorization': 'Bearer '+ this.state.token
+                }
+            })
+            .then(res=>{
+                const searchdat = res.data
+                this.setState({searchdat})
+                console.log(searchdat)
+            }).catch(error => {
+                console.log(error.message)
+            })
+        }
+
+        
+
 
         allpage(images){
             return(
@@ -92,8 +115,8 @@ import AsyncStorage from '@react-native-community/async-storage'
                     <Container>
                         <Header style={styles.header}  searchBar rounded>
                             <Item horizontal style={{padding:10}}>
-                                <Input placeholder='Search' />
-                                <TouchableOpacity><Icon name='search' size={22  } /></TouchableOpacity>
+                                <Input placeholder='Search' onChangeText={(search)=>{this.setState({search}), this.setState({searchdat:[]})}} value={this.state.search} />
+                                <TouchableOpacity onPress={()=>this.handleSearch(this.state.search)}><Icon name='search' size={22  } /></TouchableOpacity>
                             </Item>
                         </Header>
                         <Content >
@@ -104,7 +127,7 @@ import AsyncStorage from '@react-native-community/async-storage'
                                     loop
                                     index={0}
                                     pageSize={BannerWidth}
-                                >
+                                >   
                                     {this.state.images.map((img)=>{
                                         return(
                                             <View key={img.index}>
@@ -113,6 +136,19 @@ import AsyncStorage from '@react-native-community/async-storage'
                                         )
                                     })}
                                 </Carousel>
+                            </Item>
+                            <Item>
+                            {this.state.searchdat.map((favouriteUri)=>{
+                                        return(
+
+                                            <View key={favouriteUri.index}>
+                                                <View style={styles.textList}>
+                                                <TouchableOpacity onPress={()=> this.props.navigation.navigate('DetilWebtoon', {  item: favouriteUri })}><Image style={styles.imagelist} source={{uri:favouriteUri.image}} /></TouchableOpacity>
+                                                <Text style={{textAlign:'center'}}>{favouriteUri.title}</Text>
+                                                </View>
+                                            </View>                            
+                                        )
+                                    })} 
                             </Item>
                             <Item style={styles.secondHeader}>
                             <Text>Favourite</Text>

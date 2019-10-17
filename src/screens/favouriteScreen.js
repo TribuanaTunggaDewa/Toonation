@@ -4,6 +4,7 @@ import {Container, Title, Content, Text, Header, Form, Card, CardItem, Item, Lab
 import Icon from 'react-native-vector-icons/FontAwesome'
 import  dataFavourite  from '../datas/dataFavourite'
 import styles from '../datas/styles'
+import {ip} from '../datas/dataIp'
 
 
 class favouriteScreen extends Component {
@@ -12,6 +13,7 @@ class favouriteScreen extends Component {
     super(props)
     this.state = {
       favouriteUris : dataFavourite
+
 
   }
     }

@@ -5,6 +5,7 @@
     import styles from '../datas/styles'
     import axios from 'axios'
     import AsyncStorage from '@react-native-community/async-storage'
+    import {ip} from '../datas/dataIp'
 
 
     class loginScreen extends Component {
@@ -22,16 +23,32 @@
           }
       }
 
+      async SessionTokenCheck(){
+        try{
+            const Tokenize = await AsyncStorage.getItem('uToken')
+            if(Tokenize !== null){
+                return this.props.navigation.navigate('For You')
+            }
+        }catch(error){
+            console.log('Error Storing the Token')
+        }
+    }
+
+      async componentDidMount(){
+        await this.SessionTokenCheck()
+      }
+
       login = async () => {
         try{
           let temp = {
             email : this.state.input_email,
             password: this.state.input_password
           }
-          await axios.post('http://192.168.1.13:5000/api/v1/login', temp)
+          await axios.post(`${ip}/api/v1/login`, temp)
           .then((response)=>{
             if(typeof response.data.token !== 'undefined'){
               AsyncStorage.setItem('uToken', response.data.token)
+              AsyncStorage.setItem('User', response.data.user)
               this.props.navigation.navigate('For You')
               console.log(response.data.token)
             }else{

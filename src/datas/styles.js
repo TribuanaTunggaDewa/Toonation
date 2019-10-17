@@ -35,7 +35,7 @@ export default StyleSheet.create({
     },
     oneButton:{
         backgroundColor: buttonColor,
-        width: 270,
+        width: 240,
         height:50,
         alignSelf: 'center'
     },
