@@ -30,42 +30,31 @@
             }
         }
 
-        async SessionTokenCheck(){
-            try{
-                const Tokenize = await AsyncStorage.getItem('uToken')
-                if(Tokenize !== null){
-                    this.setState({token: Tokenize})
-                    return Tokenize
-                }
-            }catch(error){
-                console.log('Error Storing the Token')
-            }
+        async componentDidMount(){
+            await this.handleFavorite()
+            await this.handleGetAll()            
+
+
         }
 
-        async componentDidMount(){
-            await this.SessionTokenCheck() 
-            axios.get(`${ip}/api/v1/webtoons`,{
-                headers: {
-                    'Authorization': 'Bearer '+ this.state.token 
-                }
-            })
+
+        async handleFavorite(){
+             await axios.get(`${ip}/api/v1/webtoons?is_favorite=true`)
             .then(res=>{
-                const datas = res.data
-                this.setState({datas})
+                const favourite = res.data
+                this.setState({favourite})
                 console.log(datas)
             }).catch(error => {
                 console.log(error.message)
             })
+        }
 
-
-            axios.get(`${ip}/api/v1/webtoon?is_favorite=true`,{
-                headers:{
-                    'Authorization': 'Bearer '+ this.state.token
-                }
-            })
+        async handleGetAll(){
+            
+            await axios.get(`${ip}/api/v1/webtoons`)
             .then(res=>{
-                const favourite = res.data
-                this.setState({favourite})
+                const datas = res.data
+                this.setState({datas})
                 console.log(datas)
             }).catch(error => {
                 console.log(error.message)
@@ -75,11 +64,7 @@
 
         async handleSearch(title){
             await this.SessionTokenCheck()
-            axios.get(`${ip}/api/v1/webtoon?title=${title}`,{
-                headers:{
-                    'Authorization': 'Bearer '+ this.state.token
-                }
-            })
+            axios.get(`${ip}/api/v1/webtoon?title=${title}`)
             .then(res=>{
                 const searchdat = res.data
                 this.setState({searchdat})

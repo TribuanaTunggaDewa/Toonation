@@ -5,16 +5,63 @@ import Icon from 'react-native-vector-icons/FontAwesome'
 import styles from '../datas/styles'
 import dataBanner from '../datas/dataBanner'
 import dataFavourite from '../datas/dataFavourite'
+import AsyncStorage from '@react-native-community/async-storage'
+import axios from 'axios'
+import {ip} from '../datas/dataIp'
 
 
 export default class My_webtoon_creation extends Component{
   constructor(props){
     super(props)
     this.state={
-      entries: [...dataBanner,...dataFavourite]
+      datas: [],
+      token: '',
+      id : []
     }
   }
   
+  async SessionTokenCheck(){
+    try{
+        const Tokenize = await AsyncStorage.getItem('uToken')
+        const iD= await AsyncStorage.getItem('User')
+        console.log(iD)
+        const idize = JSON.parse(iD)
+        if(Tokenize !== null){
+            this.setState({token: Tokenize, id: idize})
+
+            console.log('adalah',idize.id)
+            return Tokenize
+        }
+    }catch(error){
+        console.log('Error Storing the Token')
+    }
+}
+
+async componentDidMount(){
+  await this.handleMyWebtoon()
+}
+
+ async handleMyWebtoon(){
+  await this.SessionTokenCheck() 
+  axios.get(`${ip}/api/v1/user/${this.state.id.id}/webtoons`,{
+      headers: {
+          'Authorization': 'Bearer '+ this.state.token 
+      }
+  })
+  .then(res=>{
+      const datas = res.data
+      this.setState({datas})
+      console.log(datas)
+  }).catch(error => {
+      console.log(error.message)
+  })
+
+}
+
+
+
+
+
   allPage(image, index) {
     return (
       <ListItem >
@@ -34,7 +81,7 @@ export default class My_webtoon_creation extends Component{
         <Content style={styles.content}>
           <Item>
             <FlatList 
-            data={this.state.entries} 
+            data={this.state.datas} 
             renderItem={({ item }) => this.allPage(item)}
             keyExtractor={item => item.id}
             />

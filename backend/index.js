@@ -26,7 +26,7 @@ app.group("/api/v1", (router) => {
     router.post('/login', AuthController.login)
 
     //toons API
-    router.get('/webtoons', authenticated, Toonations.index)
+    router.get('/webtoons',  Toonations.index)
     
     //episodes API
     router.get('/webtoon/:id/episodes', Toonations.episodes)
@@ -35,13 +35,13 @@ app.group("/api/v1", (router) => {
     router.get('/webtoon/:id/episode/:id_ep', Toonations.pages)
 
     //pages Favorite
-    router.get('/webtoon',authenticated, Toonations.webtoon)
+    router.get('/webtoons', Toonations.webtoon)
 
     //my creation webtoons
     router.get('/user/:id/webtoons',authenticated, Toonations.mywebtoons)
 
     //create my creation webtoons
-    router.post('/user/:id/webtoon', authenticated, Toonations.createMywebtoon ) 
+    router.post('/user/:id/webtoon',authenticated, Toonations.createMywebtoon ) 
     
     //get episode based on my creation webtoons
     router.get('/user/:id/webtoon/:wbToonid/episodes', authenticated, Toonations.myEpisode)

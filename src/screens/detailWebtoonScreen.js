@@ -35,7 +35,7 @@ componentDidMount(){
       <Container>
         <Content>
             <Item>
-            <Image style={styles.imageBanner} source={{uri:this.state.datas.image}} />
+            <Image style={styles.imageBanner} source={{uri:this.state.item.image}} />
             </Item>
             <Item style={styles.secondHeader}>
             <Text>{this.state.datas.title}</Text>

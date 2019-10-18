@@ -18,8 +18,11 @@
     import editEpisodeScreen from './src/screens/editEpisodeScreen'
     import editWebtoonscreen from './src/screens/editWebtoonscreen'
     import styles from './src/datas/styles'
+    import axios from 'axios'
+    import AsyncStorage from '@react-native-community/async-storage'
+import { ip } from './src/datas/dataIp'
 
-
+    
     const onShare = async () => {
       try {
         const result = await Share.share({
@@ -186,26 +189,26 @@
                 }
                 }
               },
-              createmyWebtoon : {
+              createmyWebtoon : { 
                 screen : createWebtoonScreen,
-                  navigationOptions: ({navigation})=> ({
-                    title: 'My Webtoon',
-                    headerRight: <Icon name='check' size={20} color='white'   />,
-                    headerStyle:{
-                      backgroundColor: '#009688'
-                    },
-                    headerTintColor:'white',
-                    headerTitleStyle:{
-                      color:'white'
-                    }
-                })
+                navigationOptions: ({navigation})=> ({
+                  title: 'My Webtoon',
+                  headerRight: <Icon name='check' size={20} color='white'  onPress={navigation.getParam('addedWebtoon')}  />,
+                  headerStyle:{
+                    backgroundColor: '#009688'
+                  },
+                  headerTintColor:'white',
+                  headerTitleStyle:{
+                    color:'white'
+              }
+              })
                 },
               createwebtoonEpisode : {
                 screen : createEpisodeScreen,
                
-                navigationOptions:{
+                navigationOptions: ({navigation})=>({
                   title : 'Create Episode',
-                  headerRight: <Icon name='check' size={20} color='white'   />,
+                  headerRight: <Icon name='check' size={20} color='white'  onPress={navigation.getParam('addedEpisode')}  />,
                   headerStyle:{
                     backgroundColor: '#009688'
                   },
@@ -213,7 +216,7 @@
                   headerTitleStyle:{
                     color:'white'
                   }
-                }
+                })
               },
               editWebtoonEpisode : {
                 screen: editEpisodeScreen,
@@ -257,7 +260,7 @@
         }),
       } 
     },{
-      initialRouteName : 'login'
+      initialRouteName : 'For You'
     })
 
 
