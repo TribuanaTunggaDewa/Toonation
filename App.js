@@ -234,17 +234,17 @@ import { ip } from './src/datas/dataIp'
               },
               EditWebtoon: {
                 screen: editWebtoonscreen,
-                navigationOptions:{
+                navigationOptions:({navigation})=>({
                   title: 'Edit Webtoon',
                   headerStyle:{
                     backgroundColor: '#009688'
                   },
-                  headerRight: <Icon name='check' size={20} color='white'   />,
+                  headerRight: <Icon name='check' size={20} color='white'  onPress={navigation.getParam('uptedWebtoon')}   />,
                   headerTintColor:'white',
                   headerTitleStyle:{
                     color:'white'
                   }
-                }
+                })
               }
             })
             ,

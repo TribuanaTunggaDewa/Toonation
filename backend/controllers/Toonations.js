@@ -99,11 +99,27 @@ exports.webtoon = (req, res) => {
 
 exports.mywebtoons = (req, res)=>{
 
-    Toon.findAll({
-        where:{
-            createdBy : req.params.id
-        }
-    }).then(toons=>res.send(toons))        
+    if(req.query.title){
+        
+        Toon.findAll({
+            where: {
+                title : req.query.title,
+                createdBy : req.params.id
+            },
+            include:[{
+                model: User,
+                as: "created_by"
+            }]
+        }).then(toons=>res.send(toons))
+    }else{
+        Toon.findAll({
+            where:{
+                createdBy : req.params.id
+            }
+        }).then(toons=>res.send(toons)) 
+    }
+
+          
 
 }
 

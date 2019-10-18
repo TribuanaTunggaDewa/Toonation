@@ -7,7 +7,7 @@ module.exports = {
           title: "True Ugly",
           genre:"Drama",
           isFavorite: false,
-          image: "https://www.forbes.com/sites/joanmacdonald.jpg",
+          image: "https://upload.wikimedia.org/wikipedia/en/thumb/9/9c/Bobo_%28magazine%29.jpg/220px-Bobo_%28magazine%29.jpg",
           createdAt: new Date(),
           updatedAt: new Date(),
           createdBy:1
@@ -16,10 +16,19 @@ module.exports = {
           title: "A Good Day to be a bug",
           genre:"Drama",
           isFavorite: true,
-          image: "https://www.forbes.com/sites/joanmacdonald.jpg",
+          image: "https://upload.wikimedia.org/wikipedia/en/thumb/9/9c/Bobo_%28magazine%29.jpg/220px-Bobo_%28magazine%29.jpg",
           createdAt: new Date(),
           updatedAt: new Date(),
-          createdBy:2
+          createdBy:1
+        },
+        {
+          title: "True Ugly",
+          genre:"Drama",
+          isFavorite: false,
+          image: "https://upload.wikimedia.org/wikipedia/en/thumb/9/9c/Bobo_%28magazine%29.jpg/220px-Bobo_%28magazine%29.jpg",
+          createdAt: new Date(),
+          updatedAt: new Date(),
+          createdBy:1
         }
       ], {})
   },

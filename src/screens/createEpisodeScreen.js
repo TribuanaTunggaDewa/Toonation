@@ -60,6 +60,22 @@ addEpisode = async ()=> {
   })
 }
 
+handleDeleteEpisode= async (Epid) => {
+  await this.SessionTokenCheck()
+  console.log(Epid)
+  axios.delete(`${ip}/api/v1/user/${this.state.id.id}/webtoon/${this.state.item.id}/episode/${Epid}`,{
+    headers:{
+      'Authorization': 'Bearer '+ this.state.token 
+    }
+  })
+  .then(()=>{
+    alert('Episode Deleted')
+    this.handleMyEpisode()
+  }).catch(error => {
+    console.log(error.message)
+  })
+}
+
 
  handleMyEpisode= async ()=> {
   await this.SessionTokenCheck() 
@@ -86,7 +102,7 @@ addEpisode = async ()=> {
         </TouchableOpacity>
         <Body style={styles.textList}>
         <Text>{image.title}</Text>
-        <Icon name='trash' style={{ marginLeft:130}} size={30} color='red' />
+        <Icon name='trash' style={{ marginLeft:130}} size={30} color='red' onPress={()=>this.handleDeleteEpisode(image.id)} />
        <Icon name='pencil' style={{marginLeft:130}} size={30}  onPress={()=>this.props.navigation.navigate("editWebtoonEpisode", {item : image})} />
         
         </Body>
