@@ -48,7 +48,8 @@
           .then((response)=>{
             if(typeof response.data.token !== 'undefined'){
               AsyncStorage.setItem('uToken', response.data.token)
-              AsyncStorage.setItem('User', JSON.stringify(response.data.id))
+              AsyncStorage.setItem('User', JSON.stringify(response.data.user.id))
+              console.log(response.data.user.id)
               this.props.navigation.navigate('For You')
             }else{
               alert('Gagal Login')

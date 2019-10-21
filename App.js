@@ -166,7 +166,7 @@ import { ip } from './src/datas/dataIp'
                 screen : editProfileScreen, 
                 navigationOptions: ({navigation})=> ({
                     title: 'Edit Profile',
-                    headerRight: <Icon name='check' size={20} color='white'  onPress={ ()=> navigation.navigate('Profile') }  />,
+                    headerRight: <Icon name='check' size={20} color='white'  onPress={navigation.getParam('uptedProfile')}  />,
                     headerStyle:{
                       backgroundColor: '#009688'
                     },

@@ -51,6 +51,7 @@ app.group("/api/v1", (router) => {
     //auth API
     router.post('/register', AuthController.register)
     router.post('/login', AuthController.login)
+    router.get('/user/:id', authenticated, AuthController.show)
     router.put('/user/:id', authenticated, upload.single('image'), AuthController.Useredit)
 
     //toons API

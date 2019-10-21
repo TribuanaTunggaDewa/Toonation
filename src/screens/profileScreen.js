@@ -6,6 +6,8 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 import ImagePicker from 'react-native-image-picker'
 import styles from '../datas/styles';
 import AsyncStorage from '@react-native-community/async-storage';
+import axios from 'axios'
+import {ip} from '../datas/dataIp'
 
 class profile extends Component{
   
@@ -13,7 +15,7 @@ class profile extends Component{
     super(props)
     this.state={
        photo:'',
-       user:'',
+       datas:'',
        token: [],
        id : []
     }
@@ -24,6 +26,7 @@ async SessionTokenCheck(){
       const Tokenize = await AsyncStorage.getItem('uToken')
       const iD= await AsyncStorage.getItem('User')
       const idize = JSON.parse(iD)
+      console.log(idize)
       if(Tokenize !== null){
           this.setState({token: Tokenize, id : idize})
           return Tokenize
@@ -36,7 +39,7 @@ async SessionTokenCheck(){
 }
 
 componentDidMount(){
-  this.SessionTokenCheck()
+  this.handleMyProfile()
 }
 
 handleChoosePhoto=()=>{
@@ -50,11 +53,21 @@ handleChoosePhoto=()=>{
   })
 }
 
+async handleMyProfile(){
+  await this.SessionTokenCheck() 
+  axios.get(`${ip}/api/v1/user/${this.state.id}`,{
+      headers: {
+          'Authorization': 'Bearer '+ this.state.token 
+      }
+  })
+  .then(res=>{
+      const datas = res.data
+      this.setState({datas})
+      console.log(datas)
+  }).catch(error => {
+      console.log(error.message)
+  })
 
-async handleProfile(){
-  user = await AsyncStorage.getItem('User')
-  console.log(user)
-  this.setState({user : user.username})
 }
 
   
@@ -65,10 +78,10 @@ async handleProfile(){
       <Container>
         <Content style={styles.content}>
           <Item style={{borderWidth:0, justifyContent:"center"}}>
-              <TouchableOpacity><Image style={styles.circleBorder} ></Image></TouchableOpacity>
+              <TouchableOpacity><Image style={styles.circleBorder} source={{uri: this.state.datas.image}} ></Image></TouchableOpacity>
              
           </Item>
-          <Item><Text>{this.state.user}</Text></Item>
+          <Item style={{justifyContent:'center'}}><Text>{this.state.datas.username}</Text></Item>
           
           <Item style={{marginTop: 30}} onPress={()=> this.props.navigation.navigate('myWebtoon')  }>
                 <Text>Create WebToon</Text>
