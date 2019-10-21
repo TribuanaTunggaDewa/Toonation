@@ -5,6 +5,8 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/FontAwesome'
 import ImagePicker from 'react-native-image-picker'
 import styles  from '../datas/styles'
+import axios from 'axios'
+import {ip} from '../datas/dataIp'
 
 class editProfilescreen extends Component{
   constructor(props){
@@ -13,6 +15,8 @@ class editProfilescreen extends Component{
       photo:''
     }
 }
+
+
   
 handleChoosePhoto=()=>{
   const option = {
@@ -22,6 +26,17 @@ handleChoosePhoto=()=>{
     if(response.uri){
       this.setState({ photo: response})
     }
+  })
+}
+
+handleConfirmPhoto=()=>{
+  const bodyFormImage = new FormData()
+
+  bodyFormImage.append('image', this.state.photo.uri)
+
+  axios({
+    method: 'put',
+    url: `${ip}/api/v1/user/4`
   })
 }
   

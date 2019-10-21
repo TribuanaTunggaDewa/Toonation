@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken')
-
+const ip = 'http://192.168.1.38:5000'
 const models = require('../models')
 const User = models.user
 
@@ -37,5 +37,16 @@ exports.register = (req, res) => {
         })
       })
      
+
+}
+
+exports.Useredit = (req, res) => {
+    console.log(req)
+    User.update({...req.body, image : `${ip}/`+req.file.path}, {where:{id: req.params.id}
+}).then(toon=>res.send({
+    message: 'success',
+    toon
+})
+)
 
 }

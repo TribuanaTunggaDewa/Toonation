@@ -3,6 +3,7 @@ const Toon = models.toon
 const User = models.user
 const Episodes = models.episodes
 const Pages = models.pages
+const ip = 'http://192.168.1.38:5000'
 
 exports.index = (req, res) => {
 
@@ -124,8 +125,9 @@ exports.mywebtoons = (req, res)=>{
 }
 
 exports.createMywebtoon = (req, res) => {
-
-    Toon.create(req.body, req.body.createdBy = req.params.id).then(toons=>res.send(toons))
+    console.log(req.file)
+    Toon.create(req.body, req.body.image = `${ip}/`+ req.file.path, req.body.createdBy = req.params.id).
+    then(toons=>res.send(toons))
 
 }
 

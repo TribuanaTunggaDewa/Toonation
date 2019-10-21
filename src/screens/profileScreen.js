@@ -14,15 +14,18 @@ class profile extends Component{
     this.state={
        photo:'',
        user:'',
-       token: []
+       token: [],
+       id : []
     }
 }
 
 async SessionTokenCheck(){
   try{
       const Tokenize = await AsyncStorage.getItem('uToken')
+      const iD= await AsyncStorage.getItem('User')
+      const idize = JSON.parse(iD)
       if(Tokenize !== null){
-          this.setState({token: Tokenize})
+          this.setState({token: Tokenize, id : idize})
           return Tokenize
       }else{
         this.props.navigation.navigate('login')
