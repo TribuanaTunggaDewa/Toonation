@@ -41,8 +41,8 @@ exports.register = (req, res) => {
 }
 
 exports.Useredit = (req, res) => {
-    console.log(req)
-    User.update({...req.body, image : `${ip}/`+req.file.path}, {where:{id: req.params.id}
+    console.log(req.file)
+    User.update({...req.body, image :`${ip}/`+req.file.path}, {where:{id: req.params.id}
 }).then(toon=>res.send({
     message: 'success',
     toon

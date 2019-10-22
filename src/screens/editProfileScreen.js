@@ -29,6 +29,7 @@ async SessionTokenCheck(){
       console.log(idize)
       if(Tokenize !== null){
           this.setState({token: Tokenize, id : idize})
+          console.log(this.state.token)
           return Tokenize
       }else{
         this.props.navigation.navigate('login')
@@ -55,23 +56,45 @@ handleChoosePhoto=()=>{
   })
 }
 
-async handleUptProfile(){
-  console.log(this.state.photo)
-  const dataImage = new FormData()
-  dataImage.append('image', this.state.photo.path)
-  await axios.put(`${ip}/api/v1/user/${this.state.id}`,dataImage,
-   {headers:{ 'Authorization': 'Bearer '+ this.state.token, 'Content-Type': 'multipart/form-data' } })
-  .then(response => {
-      res.send(response)
-      alert('Success Profile Updated')})
-      this.handleMyProfile()
-  .catch(err=>{
-    res.send(err)
-    alert('Profile Update Failed')
+handleUptProfile= async ()=>{
+  this.SessionTokenCheck()
+
+  const createFormData = (photo, body) => {
+    let data = new FormData();
+  
+    data.append('image', {
+      name: photo.fileName,
+      type: photo.type,
+      uri:
+        Platform.OS === 'android' ? photo.uri : photo.uri.replace('file://', ''),
+    })
+  
+    Object.keys(body).forEach(key => {
+      data.append(key, body[key])
+    })
+    console.log('data' ,data)
+    return data
+    
+  }
+  console.log('tokennya ini', this.state.token)
+
+
+  axios.put(`${ip}/api/v1/user/${this.state.id}`,createFormData(this.state.photo, {username: this.state.text}),{
+    headers : {
+        'Authorization': 'Bearer '+ this.state.token,
+        'Content-Type': 'multipart/form-data' 
+    }, 
+}).then(res=>{
+    console.log('Updated success', res)
+    alert('Update Data Success')
+    this.handleMyProfile()
+  }).catch(err => {
+    console.log('Updated Data Failed ', err)
+    alert('updated data failed')
   })
 }
 
-async handleMyProfile(){
+handleMyProfile = async ()=>{
   await this.SessionTokenCheck() 
   axios.get(`${ip}/api/v1/user/${this.state.id}`,{
       headers: {
