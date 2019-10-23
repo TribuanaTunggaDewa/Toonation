@@ -10,6 +10,9 @@
         import axios from 'axios'
         import AsyncStorage from '@react-native-community/async-storage'
         import {ip} from '../datas/dataIp'
+        import {connect} from 'react-redux'
+        import {getAllToons} from '../_redux/toonsStore'
+        import {getAllFavorites} from '../_redux/favoritesStore'
 
 
         const BannerWidth = 400
@@ -22,45 +25,68 @@
             this.state = {
                 images : dataBanner,
                 favouriteUris : dataFavourite,
-                datas : [],
-                favourite: [],
+                id: [],
                 searchdat: [],
                 search:'',
-                token: ''
+                token: []
             }
         }
 
         async componentDidMount(){
-            await this.handleFavorite()
-            await this.handleGetAll()            
-
+            this.showToons()
+            this.showFavorites()
 
         }
 
 
-        async handleFavorite(){
-             await axios.get(`${ip}/api/v1/webtoons?is_favorite=true`)
-            .then(res=>{
-                const favourite = res.data
-                this.setState({favourite})
-                console.log(datas)
-            }).catch(error => {
-                console.log(error.message)
-            })
+        async SessionTokenCheck(){
+            try{
+                const Tokenize = await AsyncStorage.getItem('uToken')
+                const iD= await AsyncStorage.getItem('User')
+                const idize = JSON.parse(iD)
+                console.log(idize)
+                if(Tokenize !== null){
+                    this.setState({token: Tokenize, id : idize})
+                    return Tokenize
+                }else{
+                  this.props.navigation.navigate('login')
+                }
+            }catch(error){
+                console.log('Error Storing the Token')
+            }
+          }
+        // async handleFavorite(){
+        //      await axios.get(`${ip}/api/v1/webtoons?is_favorite=true`)
+        //     .then(res=>{
+        //         const favourite = res.data
+        //         this.setState({favourite})
+        //         console.log(datas)
+        //     }).catch(error => {
+        //         console.log(error.message)
+        //     })
+        // }
+        showFavorites = () => {
+            this.props.getAllFavorites()
         }
 
-        async handleGetAll(){
+        // async handleGetAll(){
             
-            await axios.get(`${ip}/api/v1/webtoons`)
-            .then(res=>{
-                const datas = res.data
-                this.setState({datas})
-                console.log(datas)
-            }).catch(error => {
-                console.log(error.message)
-            })
+        //     await axios.get(`${ip}/api/v1/webtoons`)
+        //     .then(res=>{
+        //         const datas = res.data
+        //         this.setState({datas})
+        //         console.log(datas)
+        //     }).catch(error => {
+        //         console.log(error.message)
+        //     })
 
+        // }
+
+        showToons = () => {
+            this.props.getAllToons()
         }
+
+
 
         async handleSearch(title){
             await this.SessionTokenCheck()
@@ -95,6 +121,8 @@
 
 
         render(){
+            const {toons, favorites} = this.props
+
 
             return(
                     <Container>
@@ -140,24 +168,30 @@
                             </Item>
                             <Item horizontal style={styles.content} >
                                 <ScrollView horizontal >
-                                    {this.state.favourite.map((favouriteUri)=>{
+                                    {/* {favorites.favorites.map((favouriteUri)=>{
                                         return(
 
                                             <View key={favouriteUri.index}>
                                                 <View style={styles.textList}>
                                                 <TouchableOpacity onPress={()=> this.props.navigation.navigate('DetilWebtoon', {  item: favouriteUri })}><Image style={styles.imagelist} source={{uri:favouriteUri.image}} /></TouchableOpacity>
-                                                <Text style={{textAlign:'center'}}>{favouriteUri.title}</Text>
+                                                <Text style={{textAlign:'center'}}>{favouriteUri.webtoon_id}</Text>
                                                 </View>
                                             </View>                            
                                         )
-                                    })} 
+                                    })}  */}
+                                    <FlatList
+                                        data={favorites.favorites}
+                                        renderItem={({item})=> this.allpage(item) }
+                                        style={styles.content}
+                                        horizontal >
+                                    </FlatList>
                                 </ScrollView>
                             </Item>
                             <Item style={styles.secondHeader}>
                                 <Text>All</Text>
                             </Item>
                             <FlatList
-                            data={this.state.datas}
+                            data={toons.toons}
                             renderItem={({item})=> this.allpage(item) }
                             style={styles.content}
                             >
@@ -169,4 +203,19 @@
             )} 
         }
 
-        export default forYouScreen
+        const mapStateToProps = state => {
+            return {
+                toons: state.toons,
+                favorites: state.favorites
+            }
+        }
+
+        const mapDispatchToProps = {
+            getAllToons,
+            getAllFavorites
+        }
+
+        export default connect(
+            mapStateToProps,
+            mapDispatchToProps
+        )(forYouScreen)

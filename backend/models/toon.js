@@ -13,6 +13,13 @@ module.exports = (sequelize, DataTypes) => {
       as: 'created_by',
       foreignKey: 'createdBy'
     })
+
+    toon.belongsToMany(models.user,{
+      through: 'favorite',
+      as: 'users',
+      foreignKey: 'webtoon_id',
+      otherKey: 'user_id'
+    })
   };
   return toon;
 };

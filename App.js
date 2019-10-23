@@ -20,7 +20,9 @@
     import styles from './src/datas/styles'
     import axios from 'axios'
     import AsyncStorage from '@react-native-community/async-storage'
-import { ip } from './src/datas/dataIp'
+    import { ip } from './src/datas/dataIp'
+    import { Provider } from 'react-redux'
+import store from './src/_redux/store'
 
     
     const onShare = async () => {
@@ -265,8 +267,18 @@ import { ip } from './src/datas/dataIp'
 
 
     const AppContainer = createAppContainer(switchContainer)
-    export default class App extends Component {
-      render(){
-        return (<AppContainer/>)
-      }
+    // export default class App extends Component {
+    //   render(){
+    //     return (<AppContainer/>)
+    //   }
+    // }
+
+    const App = () => {
+      return(
+        <Provider store={store}>
+          <AppContainer />
+        </Provider>
+      )
     }
+
+export default App

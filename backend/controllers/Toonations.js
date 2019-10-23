@@ -3,6 +3,7 @@ const Toon = models.toon
 const User = models.user
 const Episodes = models.episodes
 const Pages = models.pages
+const Favorites = models.favorite
 const ip = 'http://192.168.1.38:5000'
 
 exports.index = (req, res) => {
@@ -60,6 +61,21 @@ exports.pages = (req, res)=>{
         }
         
     }).then(page=>res.send(page))
+}
+
+exports.favorites = (req, res) =>{
+    User.findOne({
+        where: {
+            id: req.params.id
+        },
+        include:[{
+            model: Toon,
+            as: 'toons',
+            required: false,
+            attributes: ['id','title', 'image']
+        }]
+    
+    }).then(toon=>res.send(toon.toons))
 }
 
 exports.webtoon = (req, res) => {
