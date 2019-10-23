@@ -80,7 +80,7 @@ app.group("/api/v1", (router) => {
     router.get('/user/:id/webtoon/:wbToonid/episodes', authenticated, Toonations.myEpisode)
 
     //update my webtoon creation
-    router.put('/user/:id/webtoon/:wbToonid', authenticated, Toonations.editMywebtoon)
+    router.put('/user/:id/webtoon/:wbToonid', authenticated, upload.single('image'), Toonations.editMywebtoon)
 
     //delete my webtoon creation
     router.delete('/user/:id/webtoon/:wbToonid', authenticated, Toonations.deleteMywebtoon)

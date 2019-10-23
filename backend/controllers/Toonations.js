@@ -166,7 +166,10 @@ exports.editMywebtoon = (req, res)=> {
 
     const result = req.body
 
-    Toon.update(req.body,
+    Toon.update({
+                ...req.body,
+                image: `${ip}/`+req.file.path
+                },
                 {where:{createdBy: req.params.id, 
                         id: req.params.wbToonid}
                 }).then(toon=>res.send({

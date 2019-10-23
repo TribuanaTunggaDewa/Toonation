@@ -29,7 +29,7 @@ export default class My_webtoon_creation extends Component{
         if(Tokenize !== null){
             this.setState({token: Tokenize, id: idize})
 
-            console.log('adalah',idize.id)
+            console.log('adalah',idize)
             return Tokenize
         }
     }catch(error){
@@ -43,7 +43,7 @@ async componentDidMount(){
 
  async handleMyWebtoon(){
   await this.SessionTokenCheck() 
-  axios.get(`${ip}/api/v1/user/${this.state.id.id}/webtoons`,{
+  axios.get(`${ip}/api/v1/user/${this.state.id}/webtoons`,{
       headers: {
           'Authorization': 'Bearer '+ this.state.token 
       }

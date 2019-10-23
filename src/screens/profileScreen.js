@@ -39,7 +39,9 @@ async SessionTokenCheck(){
 }
 
 componentDidMount(){
-  this.handleMyProfile()
+  this.focusListener = this.props.navigation.addListener('didFocus', ()=>{
+    this.handleMyProfile()
+  })
 }
 
 handleChoosePhoto=()=>{

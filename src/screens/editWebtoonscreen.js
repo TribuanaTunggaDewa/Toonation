@@ -5,6 +5,7 @@ import Carousel from 'react-native-banner-carousel';
 import styles from '../datas/styles'
 import {ip} from '../datas/dataIp'
 import axios from 'axios'
+import ImagePicker from 'react-native-image-picker'
 
 import AsyncStorage from '@react-native-community/async-storage'
 
@@ -13,6 +14,7 @@ export default class editWebtoonscreen extends Component{
   constructor(props){
     super(props)
     this.state={
+      photo:'',
       item : props.navigation.state.params.item,
       token:'',
       id:[],
@@ -44,9 +46,21 @@ async componentDidMount(){
   this.props.navigation.setParams({uptedWebtoon : this.uptWebtoon})
 }
 
+handleChoosePhoto=()=>{
+  const option = {
+    noData : true
+  }
+  ImagePicker.launchImageLibrary(option, response => {
+    if(response.uri){
+      this.setState({ photo: response})
+    }
+  })
+}
+
+
  handleMyWebtoon= async (title)=> {
   await this.SessionTokenCheck() 
-  axios.get(`${ip}/api/v1/user/${this.state.id.id}/webtoons?title=${title}`,{
+  axios.get(`${ip}/api/v1/user/${this.state.id}/webtoons?title=${title}`,{
       headers: {
           'Authorization': 'Bearer '+ this.state.token 
       }
@@ -63,8 +77,30 @@ async componentDidMount(){
 
 uptWebtoon = async ()=> {
   await this.SessionTokenCheck()
-  await axios.put(`${ip}/api/v1/user/${this.state.id.id}/webtoon/${this.state.item.id}`, {
-    title : this.state.title }, {
+
+  const createFormData = (photo, body) => {
+    let data = new FormData();
+  
+    data.append('image', {
+      name: photo.fileName,
+      type: photo.type,
+      uri:
+        Platform.OS === 'android' ? photo.uri : photo.uri.replace('file://', ''),
+    })
+  
+    Object.keys(body).forEach(key => {
+      data.append(key, body[key])
+    })
+    console.log('data' ,data)
+    return data
+    
+  }
+  console.log('tokennya ini', this.state.token)
+
+  axios.put(`${ip}/api/v1/user/${this.state.id}/webtoon/${this.state.item.id}`,createFormData(this.state.photo, 
+    {
+      title : this.state.title
+    }), {
     headers:{
       'Authorization': 'Bearer '+ this.state.token
     }
@@ -116,16 +152,19 @@ uptWebtoon = async ()=> {
     return (
       <Container>
         <Content style={styles.content}>
-            <Label>
+        <Label>
                     <Text>Name</Text>
             </Label>  
-          <Item>
-          <Input style={styles.input} onChangeText={(title)=>{this.setState({title}), this.props.navigation.setParams({name: this.state.title}) }} value={this.state.title}></Input>
+          <Item >
+            <Input style={styles.input} onChangeText={(title)=>{this.setState({title}), this.props.navigation.setParams({name: this.state.title}) }} value={this.state.title}></Input>
             
           </Item>
-          <Label>
-                    <Text>Add Image</Text>
-            </Label>  
+          <Item style={{justifyContent: 'center'}}>
+             <Image style={styles.imagelist} source={{uri : this.state.photo.uri}}></Image>
+             <TouchableOpacity style={styles.oneButton} onPress={this.handleChoosePhoto}>
+                 <Text style={styles.TextButton}>+ IMAGE</Text>
+             </TouchableOpacity>
+         </Item> 
           <Item>
             <FlatList 
             data={this.state.datas} 
@@ -134,17 +173,7 @@ uptWebtoon = async ()=> {
             >
             </FlatList>
          </Item>
-         <Item style={{justifyContent: 'center'}}>
-             <TouchableOpacity style={styles.oneButton}  onPress={()=>this.props.navigation.navigate("")}>
-                 <Text style={styles.TextButton}>+ IMAGE</Text>
-             </TouchableOpacity>
-         </Item>
-         <Item style={{justifyContent:'center'}}>
-         <TouchableOpacity style={styles.oneButtonDanger} ><Text style={styles.TextButton}>DELETE</Text>
-        </TouchableOpacity>
-         </Item>
-
-        </Content>
+           </Content>
       </Container>
     )
   }

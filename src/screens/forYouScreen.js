@@ -109,7 +109,6 @@
                     <TouchableOpacity onPress={()=> this.props.navigation.navigate('DetilWebtoon', {  item: images })} ><Image source={{uri:images.image}} style={styles.imagelist} /></TouchableOpacity>
                     <Body style={styles.textList}>
                         <Text>{images.title}</Text>
-                        <Button style={styles.splitButton} ><Text>+ Add Favorite</Text></Button>
                     </Body>
                 </ListItem>
             )
