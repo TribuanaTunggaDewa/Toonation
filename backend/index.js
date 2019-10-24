@@ -93,13 +93,13 @@ app.group("/api/v1", (router) => {
     router.get('/user/:id/webtoon/:wbToonid/episode/:id_ep/images', authenticated, Toonations.getMypage)
 
     //update / detail my episode implementation
-    router.put('/user/:id/webtoon/:wbToonid/episode/:id_ep', authenticated, Toonations.editMyepisode)
+    router.put('/user/:id/webtoon/:wbToonid/episode/:id_ep', authenticated, upload.single('image'), Toonations.editMyepisode)
 
     //delete episode
     router.delete('/user/:id/webtoon/:wbToonid/episode/:id_ep', authenticated, Toonations.deleteMyepisode)
 
     //create image for episode implementation
-    router.post('/user/:id/webtoon/:wbToonid/episode/:id_ep/image', authenticated, Toonations.createMypage)
+    router.post('/user/:id/webtoon/:wbToonid/episode/:id_ep/image', authenticated, upload.single('image'), Toonations.createMypage)
 
 
     //delete image detail episode implementation

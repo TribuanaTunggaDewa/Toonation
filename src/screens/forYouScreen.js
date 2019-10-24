@@ -35,6 +35,10 @@
         async componentDidMount(){
             this.showToons()
             this.showFavorites()
+            this.focusListener = this.props.navigation.addListener('didFocus', ()=>{
+                this.showToons()
+                this.showFavorites()
+              })
 
         }
 
@@ -109,7 +113,21 @@
                     <TouchableOpacity onPress={()=> this.props.navigation.navigate('DetilWebtoon', {  item: images })} ><Image source={{uri:images.image}} style={styles.imagelist} /></TouchableOpacity>
                     <Body style={styles.textList}>
                         <Text>{images.title}</Text>
+                    <TouchableOpacity style={styles.splitButton}>
+                        <Text style={styles.TextButton}>Add Favorite</Text>
+                    </TouchableOpacity>
                     </Body>
+                </ListItem>
+            )
+        }
+
+        favoritepage(images){
+            return(
+                <ListItem rounded>
+                    <TouchableOpacity onPress={()=> this.props.navigation.navigate('DetilWebtoon', {  item: images })} ><Image source={{uri:images.image}} style={styles.imagelist} /></TouchableOpacity>
+                    <View style={styles.textList}>
+                        <Text>{images.title}</Text>
+                    </View>
                 </ListItem>
             )
         }
@@ -180,7 +198,7 @@
                                     })}  */}
                                     <FlatList
                                         data={favorites.favorites}
-                                        renderItem={({item})=> this.allpage(item) }
+                                        renderItem={({item})=> this.favoritepage(item) }
                                         style={styles.content}
                                         horizontal >
                                     </FlatList>

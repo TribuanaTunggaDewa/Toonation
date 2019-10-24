@@ -13,7 +13,6 @@ export default StyleSheet.create({
         alignItems: 'center'
     },
     content:{
-        marginTop: 10,
         padding: 10,
         backgroundColor : '#BDBDBD'
     },
@@ -79,7 +78,9 @@ buttoncolor :{
         
     },   splitButton:{
         backgroundColor: buttonColor,
+        height: 50,
         marginStart: 11,
+        textAlignVertical: 'center'
 
     },
     textList:{

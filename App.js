@@ -17,6 +17,8 @@
     import createEpisodeScreen from './src/screens/createEpisodeScreen'
     import editEpisodeScreen from './src/screens/editEpisodeScreen'
     import editWebtoonscreen from './src/screens/editWebtoonscreen'
+    import pagesScreen from './src/screens/pagesScreen'
+    import registerScreen from './src/screens/registerScreen'
     import styles from './src/datas/styles'
     import axios from 'axios'
     import AsyncStorage from '@react-native-community/async-storage'
@@ -49,7 +51,20 @@ import store from './src/_redux/store'
 
 
     const switchContainer = createSwitchNavigator({
-      login : loginScreen,
+      login : createStackNavigator({
+        login: {
+          screen: loginScreen,
+          navigationOptions: ({navigation})=> (console.log(navigation),{
+            header: null
+          })
+        },
+        register: {
+          screen:registerScreen,
+          navigationOptions: ({navigation})=> (console.log(navigation),{
+            header: null
+          })
+        }
+      }),
       'For You' : {
         screen : createBottomTabNavigator({
         'For You' : {
@@ -133,8 +148,7 @@ import store from './src/_redux/store'
                   color:'white'
                 }
                 })
-              }
-              
+              },                           
             }),
             navigationOptions:{
               tabBarLabel: 'Favorite',
@@ -220,11 +234,11 @@ import store from './src/_redux/store'
                   }
                 })
               },
-              editWebtoonEpisode : {
+              editWebtoonEpisode :{
                 screen: editEpisodeScreen,
-                headerRight: <Icon name='check' size={20} color='white'   />,
-                navigationOptions: {
+                navigationOptions: ({navigation}) => ({
                   title : 'Edit Episode',
+                  headerRight: <Icon name='check' size={20} color='white'  onPress={navigation.getParam('uptEpisode')}  />,
                   headerStyle:{
                     backgroundColor: '#009688'
                   },
@@ -232,7 +246,7 @@ import store from './src/_redux/store'
                   headerTitleStyle:{
                     color:'white'
                   }
-                }
+                })
               },
               EditWebtoon: {
                 screen: editWebtoonscreen,
@@ -247,9 +261,22 @@ import store from './src/_redux/store'
                     color:'white'
                   }
                 })
+              },
+              PagesScreen: {
+                screen: pagesScreen,
+                navigationOptions:({navigation})=>({
+                  title: 'Pages',
+                  headerStyle:{
+                    backgroundColor: '#009688'
+                  },
+                  headerRight: <Icon name='check' size={20} color='white'  onPress={navigation.getParam('addedPages')}   />,
+                  headerTintColor:'white',
+                  headerTitleStyle:{
+                    color:'white'
+                  }
+                })
               }
-            })
-            ,
+            }),
             navigationOptions: {
               tabBarLabel:'Profile',
               tabBarIcon: ({tintColor}) => <Icon name='user' size={30} color={tintColor} />,

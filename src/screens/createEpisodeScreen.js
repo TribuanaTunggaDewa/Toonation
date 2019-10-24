@@ -137,13 +137,13 @@ handleDeleteEpisode= async (Epid) => {
   allPage(image, index) {
     return (
         <ListItem>
-        <TouchableOpacity onPress={()=>this.props.navigation.navigate("editWebtoonEpisode", {title :image})} >
+        <TouchableOpacity onPress={()=>this.props.navigation.navigate('PagesScreen', {item : image, olditem: this.state.item})} >
         <Image style={styles.imagelist} source={{uri : image.image}} ></Image>
         </TouchableOpacity>
         <Body style={styles.textList}>
         <Text>{image.title}</Text>
         <Icon name='trash' style={{ marginLeft:130}} size={30} color='red' onPress={()=>this.handleDeleteEpisode(image.id)} />
-       <Icon name='pencil' style={{marginLeft:130}} size={30}  onPress={()=>this.props.navigation.navigate("editWebtoonEpisode", {item : image})} />
+       <Icon name='pencil' style={{marginLeft:130}} size={30}  onPress={()=>this.props.navigation.navigate("editWebtoonEpisode", {item : image, olditem: this.state.item})} />
         
         </Body>
       </ListItem>

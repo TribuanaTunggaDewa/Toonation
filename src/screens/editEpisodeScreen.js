@@ -8,12 +8,15 @@ import dataFavourite from '../datas/dataFavourite'
 import axios from 'axios'
 import {ip} from '../datas/dataIp'
 import AsyncStorage from '@react-native-community/async-storage'
+import ImagePicker from 'react-native-image-picker'
 
 
 export default class editEpisodeScreen extends Component{
   constructor(props){
     super(props)
     this.state={
+      photo:'',
+      olditem: props.navigation.state.params.olditem,
       item : props.navigation.state.params.item,
       token:'',
       id:[],
@@ -31,7 +34,7 @@ export default class editEpisodeScreen extends Component{
         if(Tokenize !== null){
             this.setState({token: Tokenize, id: idize})
 
-            console.log('adalah',idize.id)
+            console.log('adalah',idize)
             return Tokenize
         }
     }catch(error){
@@ -40,44 +43,65 @@ export default class editEpisodeScreen extends Component{
 }
 
 async componentDidMount(){
-  await this.handleMyEpisode()
-  this.props.navigation.setParams({addedEpisode : this.addEpisode})
+  await this.handleMyEpisode(this.state.item.title)
+  this.props.navigation.setParams({uptEpisode : this.uptEpisode})
+  console.log(this.state.item)
+
+}
+
+handleChoosePhoto=()=>{
+  const option = {
+    noData : true
+  }
+  ImagePicker.launchImageLibrary(option, response => {
+    if(response.uri){
+      this.setState({ photo: response})
+    }
+  })
 }
 
 
-addEpisode = async ()=> {
+uptEpisode = async ()=> {
   await this.SessionTokenCheck()
-  await axios.post(`${ip}/api/v1/user/${this.state.id.id}/webtoon/${this.state.item.id}/episode`, {
-    title : this.state.title }, {
+
+  const createFormData = (photo, body) => {
+    let data = new FormData();
+  
+    data.append('image', {
+      name: photo.fileName,
+      type: photo.type,
+      uri:
+        Platform.OS === 'android' ? photo.uri : photo.uri.replace('file://', ''),
+    })
+  
+    Object.keys(body).forEach(key => {
+      data.append(key, body[key])
+    })
+    console.log('data' ,data)
+    return data
+    
+  }
+  console.log('tokennya ini', this.state.token)
+
+  axios.put(`${ip}/api/v1/user/${this.state.id}/webtoon/${this.state.olditem.id}/episode/${this.state.item.id}`,createFormData(this.state.photo, 
+    {
+      title : this.state.title
+    }), {
     headers:{
       'Authorization': 'Bearer '+ this.state.token
     }
   }).then(()=>{
-    alert('Added Your Episode')
+    alert('Update Your Episode')
     this.handleMyEpisode()
   })
 }
 
-handleDeleteEpisode= async (Epid) => {
-  await this.SessionTokenCheck()
-  console.log(Epid)
-  axios.delete(`${ip}/api/v1/user/${this.state.id.id}/webtoon/${this.state.item.id}/episode/${Epid}`,{
-    headers:{
-      'Authorization': 'Bearer '+ this.state.token 
-    }
-  })
-  .then(()=>{
-    alert('Episode Deleted')
-    this.handleMyEpisode()
-  }).catch(error => {
-    console.log(error.message)
-  })
-}
 
 
- handleMyEpisode= async ()=> {
+
+ handleMyEpisode= async (title)=> {
   await this.SessionTokenCheck() 
-  axios.get(`${ip}/api/v1/user/${this.state.id.id}/webtoon/${this.state.item.id}/episodes`,{
+  axios.get(`${ip}/api/v1/user/${this.state.id}/webtoon/${this.state.olditem.id}/episodes?title=${title}`,{
       headers: {
           'Authorization': 'Bearer '+ this.state.token 
       }
@@ -99,10 +123,7 @@ handleDeleteEpisode= async (Epid) => {
         <Image style={styles.imagelist} source={{uri : image.image}} ></Image>
         </TouchableOpacity>
         <Body style={styles.textList}>
-        <Text>{image.title}</Text>
-        <Icon name='trash' style={{ marginLeft:130}} size={30} color='red' onPress={()=>this.handleDeleteEpisode(image.id)} />
-       <Icon name='pencil' style={{marginLeft:130}} size={30}  onPress={()=>this.props.navigation.navigate("editWebtoonEpisode", {item : image})} />
-        
+        <Text>{image.title}</Text>        
         </Body>
       </ListItem>
     );
@@ -113,16 +134,19 @@ handleDeleteEpisode= async (Epid) => {
     return (
       <Container>
         <Content style={styles.content}>
-            <Label>
+        <Label>
                     <Text>Name</Text>
             </Label>  
-          <Item>
-            <Input style={styles.input}></Input>
+          <Item >
+            <Input style={styles.input} onChangeText={(title)=>{this.setState({title}), this.props.navigation.setParams({name: this.state.title}) }} value={this.state.title}></Input>
             
           </Item>
-          <Label>
-                    <Text>Add Image</Text>
-            </Label>  
+          <Item style={{justifyContent: 'center'}}>
+             <Image style={styles.imagelist} source={{uri : this.state.photo.uri}}></Image>
+             <TouchableOpacity style={styles.oneButton} onPress={this.handleChoosePhoto}>
+                 <Text style={styles.TextButton}>+ IMAGE</Text>
+             </TouchableOpacity>
+         </Item>
           <Item>
             <FlatList 
             data={this.state.datas} 
@@ -131,16 +155,6 @@ handleDeleteEpisode= async (Epid) => {
             >
             </FlatList>
          </Item>
-         <Item style={{justifyContent:'center'}}>
-             <TouchableOpacity style={styles.oneButton} onPress={()=>this.props.navigation.navigate("")}>
-                 <Text style={styles.TextButton} >+ IMAGE</Text>
-             </TouchableOpacity>
-         </Item>
-         <Item style={{justifyContent:'center'}} >
-              <TouchableOpacity style={styles.oneButtonDanger}><Text style={styles.TextButton}>DELETE</Text>
-              </TouchableOpacity>
-         </Item>
-
         </Content>
       </Container>
     )

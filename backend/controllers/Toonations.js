@@ -148,18 +148,38 @@ exports.createMywebtoon = (req, res) => {
 }
 
 exports.myEpisode = (req, res) => {
+
+
+    if(req.query.title){
+        
+        Episodes.findAll(
+            {where: {
+                from: req.params.wbToonid,
+                title: req.query.title
+            },
+             include: {
+                 model: Toon,
+                 as: "from_toons",
+                 where:{
+                 createdBy: req.params.id
+                 }
+             }}).then(episode=>res.send(episode))
+    }else{
+        Episodes.findAll(
+            {where: {
+                from: req.params.wbToonid
+            },
+             include: {
+                 model: Toon,
+                 as: "from_toons",
+                 where:{
+                 createdBy: req.params.id
+                 }
+             }}).then(episode=>res.send(episode))
+    }
     
-    Episodes.findAll(
-        {where: {
-            from: req.params.wbToonid
-        },
-         include: {
-             model: Toon,
-             as: "from_toons",
-             where:{
-             createdBy: req.params.id
-             }
-         }}).then(episode=>res.send(episode))      
+    
+         
 }
 
 exports.editMywebtoon = (req, res)=> {
@@ -225,9 +245,13 @@ exports.getMypage = (req, res) => {
 
 }
 
+
 exports.editMyepisode = (req, res) => {
 
-    Episodes.update(req.body,
+    Episodes.update({
+                        ...req.body,
+                        image: `${ip}/`+req.file.path
+                    },
                     {where : {from: req.params.wbToonid,
                               id: req.params.id_ep},
                               include:{
@@ -256,10 +280,21 @@ exports.deleteMyepisode = (req, res) => {
 
 }
 
+// exports.createMyepisode = (req, res)=> {
+
+//     Episodes.create(req.body,
+//                      req.body.from = req.params.wbToonid,
+//                      req.body.image = `${ip}/`+ req.file.path 
+//                      ).
+//     then(toons=> res.send(toons))
+// }
+
 exports.createMypage = (req, res) => {
 
 
-    Pages.create(req.body, req.body.from = req.params.id_ep).then(page=>res.send(page))
+    Pages.create(req.body, req.body.from = req.params.id_ep,
+                 req.body.image = `${ip}/` + req.file.path).
+                 then(page=>res.send(page))
 
 }
 

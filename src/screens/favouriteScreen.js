@@ -7,6 +7,8 @@ import styles from '../datas/styles'
 import {ip} from '../datas/dataIp'
 import axios from 'axios'
 import AsyncStorage from '@react-native-community/async-storage'
+import {connect} from 'react-redux'
+import {getAllFavorites} from '../_redux/favoritesStore'
 
 
 
@@ -23,22 +25,26 @@ class favouriteScreen extends Component {
   }
     }
 
-  async componentDidMount(){
-    await this.handleFavorite()
+  componentDidMount(){
+    this.showFavorites()
   }
 
 
 
-    async handleFavorite(){
-      await axios.get(`${ip}/api/v1/webtoons?is_favorite=true`)
-      .then(res=>{
-          const favouriteUris = res.data
-          this.setState({favouriteUris})
-          console.log(favouriteUris)
-      }).catch(error => {
-          console.log(error.message)
-      })
-  }  
+  //   async handleFavorite(){
+  //     await axios.get(`${ip}/api/v1/webtoons?is_favorite=true`)
+  //     .then(res=>{
+  //         const favouriteUris = res.data
+  //         this.setState({favouriteUris})
+  //         console.log(favouriteUris)
+  //     }).catch(error => {
+  //         console.log(error.message)
+  //     })
+  // }  
+  showFavorites = () => {
+    this.props.getAllFavorites()
+}
+
 
   async handleSearch(title){
     axios.get(`${ip}/api/v1/webtoons?title=${title}`)
@@ -56,6 +62,8 @@ class favouriteScreen extends Component {
  
 
   render(){
+    const {favorites} = this.props
+
     return(
       <Container>
                 <Header style={styles.header} searchBar rounded>
@@ -82,7 +90,7 @@ class favouriteScreen extends Component {
                         <Text>My Favorite</Text>
                     </Item>
                     <FlatList
-                     data={this.state.favouriteUris}
+                     data={favorites.favorites}
                      renderItem={({item})=> {
                       return(
                       <Item>
@@ -104,4 +112,17 @@ class favouriteScreen extends Component {
   }
 }
 
-export default favouriteScreen
+const mapStateToProps = state => {
+  return {
+      favorites: state.favorites
+  }
+}
+
+const mapDispatchToProps = {
+  getAllFavorites
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(favouriteScreen)

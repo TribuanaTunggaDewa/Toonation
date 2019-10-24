@@ -85,7 +85,7 @@ async componentDidMount(){
             renderItem={({ item }) => this.allPage(item)}
             keyExtractor={item => item.id}
             />
-          <Icon name='plus-circle' color='#03A9F4' size={50} onPress={()=> this.props.navigation.navigate('createmyWebtoon') }/>
+          <Icon name='plus-circle' color='#03A9F4' size={50} onPress={()=> this.props.navigation.navigate('createmyWebtoon')} style={{flex:1, flexDirection:'column'}} />
           </Item>
           
         </Content>

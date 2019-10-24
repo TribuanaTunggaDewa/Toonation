@@ -118,6 +118,12 @@
                       </CardItem>
                       </Card>
                   </Form>
+                  <Item style={{justifyContent:'center'}} onPress={()=> this.props.navigation.navigate('register')}>
+                        <Text>Register</Text>
+                  </Item>
+                  <Item style={{justifyContent:'center'}} onPress={()=> this.props.navigation.navigate('For You')}>
+                        <Text>Just Look around</Text>
+                  </Item>
                 </Content>
               </Container>
         )
