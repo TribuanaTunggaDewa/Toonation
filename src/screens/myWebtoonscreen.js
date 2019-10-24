@@ -39,6 +39,9 @@ export default class My_webtoon_creation extends Component{
 
 async componentDidMount(){
   await this.handleMyWebtoon()
+  this.focusListener = this.props.navigation.addListener('didFocus', ()=>{
+    this.handleMyWebtoon()
+  })
 }
 
  async handleMyWebtoon(){
@@ -85,8 +88,8 @@ async componentDidMount(){
             renderItem={({ item }) => this.allPage(item)}
             keyExtractor={item => item.id}
             />
-          <Icon name='plus-circle' color='#03A9F4' size={50} onPress={()=> this.props.navigation.navigate('createmyWebtoon')} style={{flex:1, flexDirection:'column'}} />
           </Item>
+          <Icon name='plus-circle' color='#03A9F4' size={50} onPress={()=> this.props.navigation.navigate('createmyWebtoon')} style={{alignSelf:'flex-end'}} />
           
         </Content>
       </Container>

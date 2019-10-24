@@ -123,12 +123,14 @@
 
         favoritepage(images){
             return(
-                <ListItem rounded>
+                <View >
+                    <View>
                     <TouchableOpacity onPress={()=> this.props.navigation.navigate('DetilWebtoon', {  item: images })} ><Image source={{uri:images.image}} style={styles.imagelist} /></TouchableOpacity>
+                    </View>
                     <View style={styles.textList}>
                         <Text>{images.title}</Text>
                     </View>
-                </ListItem>
+                </View>
             )
         }
 
