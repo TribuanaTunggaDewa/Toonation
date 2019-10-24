@@ -86,7 +86,7 @@ app.group("/api/v1", (router) => {
     router.delete('/user/:id/webtoon/:wbToonid', authenticated, Toonations.deleteMywebtoon)
 
     //create my episode implementation
-    router.post('/user/:id/webtoon/:wbToonid/episode', authenticated, Toonations.createMyepisode)
+    router.post('/user/:id/webtoon/:wbToonid/episode', authenticated, upload.single('image'), Toonations.createMyepisode)
 
 
     //get all images based on episode
