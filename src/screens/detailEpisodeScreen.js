@@ -42,7 +42,7 @@ class detailEpisodeScreen extends Component {
                      renderItem={({item})=> {
                          return(
                          <Item>
-                         <Image style={{height:600, width:450}} source={{uri:item.image}} />
+                         <Image style={{height:600, width:350}} source={{uri:item.image}} />
                          </Item>)
                      }}
                      >
