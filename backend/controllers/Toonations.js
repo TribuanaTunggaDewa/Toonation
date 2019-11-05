@@ -4,7 +4,7 @@ const User = models.user
 const Episodes = models.episodes
 const Pages = models.pages
 const Favorites = models.favorite
-const ip = 'http://192.168.1.38:5000'
+const ip = 'http://192.168.1.34:5000'
 
 exports.index = (req, res) => {
 

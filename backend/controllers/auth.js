@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken')
-const ip = 'http://192.168.1.38:5000'
+const ip = 'http://192.168.1.34:5000'
 const models = require('../models')
 const User = models.user
 

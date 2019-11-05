@@ -1,1 +1,1 @@
-export const ip = 'https://serene-eyrie-10119.herokuapp.com' //'http://192.168.1.38:5000'
+export const ip = 'http://192.168.1.34:5000' //'https://serene-eyrie-10119.herokuapp.com' //
