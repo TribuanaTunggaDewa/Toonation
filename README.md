@@ -1,0 +1,2 @@
+# Toonation
+Toonation is a comic publishing app created as a comic-sharing platform for comic art workers for both professionals and newcomers alike. Toonation also makes it possible for comic lovers to read the works that have been published by its creators on the platform. To read comics on the platform is not necessary to register in advance but to choose a comic that is a favorite or publish the comic itself is required first time registration.
